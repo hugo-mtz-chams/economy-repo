@@ -1,0 +1,503 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/forms/basic" class="link-primary font-weight-500"><i class="icon-edit-pencil mr-1"></i> Forms</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Basic</li>
+    <span class="spacer"></span>
+    <li class="breadcrumb-item no-driver">
+      <a href="" class="text-muted link-primary">
+        <i class="icon-bubbles"></i> Support</a>
+    </li>
+    <li class="breadcrumb-item">
+
+      <a href="#" class="dropdown-toggle text-muted link-primary" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false"><i class="icon-cog"></i> Settings</a>
+
+      <div class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href=""><i class="icon-key"></i> Account Sicurity</a>
+        <a class="dropdown-item" href=""><i class="icon-stats-dots"></i> Analytics</a>
+        <a class="dropdown-item" href=""><i class="icon-accessibility"></i> Accessibility</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href=""><i class="icon-cog"></i> All settings</a>
+      </div>
+
+    </li>
+  </ol>
+
+
+</nav>
+
+<div class="separator-breadcrumb border-top"></div>
+
+<div class="row">
+
+  <div class="col-lg-12">
+
+    <div class="card eg-card-1 o-hidden mb-4">
+
+      <div class="card-header justify-content-between mb-3">
+
+        <div class="info">
+          <p class="title text-15 font-family-1 font-weight-500 line-height-1 mt-0 mb-1">Basic Form Inputs</p>
+          <p class="subtitle text-13 font-family-1 font-weight-400 line-height-1 mb-0">
+            Examples of standard form controls supported in an example form layout. Individual form controls
+            automatically receive some global styling. All textual <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>,
+            and <code>&lt;select&gt;</code> elements with <code>.form-control</code></p>
+        </div>
+
+        <div class="action">
+          <a href="" class="text-muted link-primary mr-2"><i class="icon-reload"></i></a>
+          <a href="" class="text-muted link-primary"><i class="icon-close"></i></a>
+        </div>
+
+      </div>
+
+      <div class="card-body pt-3">
+
+        <div class="content">
+          <p class="title text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-2">INPUTS</p>
+          <div class="separator-breadcrumb border-top"></div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Default text input</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" placeholder="">
+            </div>
+          </div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Input with placeholder</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Input with placeholder">
+            </div>
+          </div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Read only input </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Read only input" readonly>
+            </div>
+          </div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Predefiend value</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" value="http://" placeholder="Predefiend value">
+            </div>
+          </div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Autocomplete Disabled</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Input with placeholder" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Maximum Value</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Max length 7" maxlength="7">
+            </div>
+          </div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Static Text</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Static Text">
+            </div>
+          </div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Text Area</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Default Textarea"></textarea>
+            </div>
+          </div>
+
+          <p class="title text-13 font-family-1 font-weight-500 line-height-1 mt-4 mb-2">SELECTS</p>
+          <div class="separator-breadcrumb border-top"></div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Default Select</label>
+            <div class="col-sm-10">
+              <select class="form-control custom-select">
+                <option>Option 1</option>
+                <option>Option 1</option>
+                <option>Option 1</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Multiple Select</label>
+            <div class="col-sm-10">
+              <select class="form-control custom-select" multiple>
+                <option selected>Open this select menu</option>
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+                <option>Option 4</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Multiple Select with size</label>
+            <div class="col-sm-10">
+              <select class="form-control custom-select" multiple size="3">
+                <option selected>Open this select menu</option>
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+                <option>Option 4</option>
+              </select>
+            </div>
+          </div>
+
+          <p class="title text-13 font-family-1 font-weight-500 line-height-1 mt-4 mb-2">FILE INPUT</p>
+          <div class="separator-breadcrumb border-top"></div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Browser Default File Input</label>
+            <div class="col-sm-10">
+                <input type="file" class="form-control" id="customFile">
+            </div>
+          </div>
+
+          <div class="form-group row mb-4">
+            <label for="staticEmail" class="col-sm-2 col-form-label mb-0">Bootstrap File Input</label>
+            <div class="col-sm-10">
+                <input type="file" class="form-control custom-file-input" id="customFileBootstrap">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+          </div>
+
+          <p class="title text-13 font-family-1 font-weight-500 line-height-1 mt-4 mb-2">INPUT HELPER</p>
+          <div class="separator-breadcrumb border-top"></div>
+
+          <div class="form-group row mb-2">
+            <label for="" class="col-sm-2 col-form-label mb-0">Text form helper</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="">
+              <label for="" class="helper mt-0">Left align helper</label>
+            </div>
+
+          </div>
+
+          <div class="form-group row mb-2">
+            <label for="" class="col-sm-2 col-form-label mb-0"></label>
+
+            <div class="col-sm-10 text-center">
+              <input type="text" class="form-control" placeholder="">
+              <label for="" class="helper mt-0">Center align helper</label>
+            </div>
+
+          </div>
+
+          <div class="form-group row mb-4">
+            <label for="" class="col-sm-2 col-form-label mb-0"></label>
+            <div class="col-sm-10 text-right">
+              <input type="text" class="form-control" placeholder="">
+              <label for="" class="helper mt-0">Right align helper</label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-12">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="card-title mb-3">Form</div>
+        <form [formGroup]="formBasic" (ngSubmit)="submit()">
+          <div class="row">
+            <div class="col-md-6 form-group mb-3">
+              <label for="firstName">First name</label>
+              <input type="text" class="form-control" id="firstName" placeholder="Enter your first name">
+            </div>
+
+            <div class="col-md-6 form-group mb-3">
+              <label for="lastName">Last name</label>
+              <input type="text" class="form-control" id="lastName" placeholder="Enter your last name">
+            </div>
+
+            <div class="col-md-6 form-group mb-3">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+
+            <div class="col-md-6 form-group mb-3">
+              <label for="phone">Phone</label>
+              <input class="form-control" id="phone" placeholder="Enter phone">
+            </div>
+
+            <div class="col-md-6 form-group mb-3">
+              <label for="credit">Cradit card number</label>
+              <input class="form-control" id="credit" placeholder="Card">
+            </div>
+
+            <div class="col-md-6 form-group mb-3">
+              <label for="credit">Website</label>
+              <input class="form-control" id="website" placeholder="Web address">
+            </div>
+
+            <div class="col-md-6 form-group mb-3">
+              <label for="picker1">Birth date</label>
+              <div class="input-group">
+                <input id="picker1" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-secondary" (click)="dp.toggle()" type="button">
+                    <i class="icon-calendar2 mr-0"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 form-group mb-3">
+              <label for="picker1">Select</label>
+              <select class="form-control">
+                <option>Option 1</option>
+                <option>Option 1</option>
+                <option>Option 1</option>
+              </select>
+            </div>
+
+            <div class="col-md-12">
+              <btn-loading btnClass="btn-primary" [loading]="loading">Submit</btn-loading>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="card-title">Switch</div>
+        <label class="switch switch-primary mr-3">
+          <span>Primary</span>
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+        <label class="switch switch-secondary mr-3">
+          <span>Secondary</span>
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+        <label class="switch switch-success mr-3">
+          <span>Success</span>
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+        <label class="switch switch-warning mr-3">
+          <span>Warning</span>
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+        <label class="switch switch-danger mr-3">
+          <span>Danger</span>
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+        <label class="switch switch-light mr-3">
+          <span>Light</span>
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+        <label class="switch switch-dark mr-3">
+          <span>Dark</span>
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="card-title">Checkbox Default</div>
+        <label class="checkbox checkbox-primary">
+          <input type="checkbox" checked>
+          <span>Primary</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkbox checkbox-secondary">
+          <input type="checkbox" checked>
+          <span>Secondary</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkbox checkbox-success">
+          <input type="checkbox" checked>
+          <span>Success</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkbox checkbox-warning">
+          <input type="checkbox" checked>
+          <span>Warning</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkbox checkbox-danger">
+          <input type="checkbox" checked>
+          <span>Danger</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkbox checkbox-info">
+          <input type="checkbox" checked>
+          <span>Info</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkbox checkbox-dark">
+          <input type="checkbox" checked>
+          <span>Dark</span>
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="card-title">Checkbox Outline</div>
+        <label class="checkbox checkbox-outline-primary">
+          <input type="checkbox" checked>
+          <span>Primary</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkbox checkbox-outline-secondary">
+          <input type="checkbox" checked>
+          <span>Secondary</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkbox checkbox-outline-success">
+          <input type="checkbox" checked>
+          <span>Success</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkbox checkbox-outline-warning">
+          <input type="checkbox" checked>
+          <span>Warning</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkbox checkbox-outline-danger">
+          <input type="checkbox" checked>
+          <span>Danger</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkbox checkbox-outline-info">
+          <input type="checkbox" checked>
+          <span>Info</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkbox checkbox-outline-dark">
+          <input type="checkbox" checked>
+          <span>Dark</span>
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-body" [formGroup]="radioGroup">
+        <div class="card-title">Radio Button</div>
+        <label class="radio radio-primary">
+          <input type="radio" name="radio" [value]="1" formControlName="radio">
+          <span>Primary</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio radio-secondary">
+          <input type="radio" name="radio" [value]="2" formControlName="radio">
+          <span>Secondary</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio radio-success">
+          <input type="radio" name="radio" [value]="3" formControlName="radio">
+          <span>Success</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio radio-warning">
+          <input type="radio" name="radio" [value]="4" formControlName="radio">
+          <span>Warning</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio radio-danger">
+          <input type="radio" name="radio" [value]="5" formControlName="radio">
+          <span>Danger</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio radio-light">
+          <input type="radio" name="radio" [value]="6" formControlName="radio">
+          <span>Light</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio radio-dark">
+          <input type="radio" name="radio" [value]="7" formControlName="radio">
+          <span>Dark</span>
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-body" [formGroup]="radioGroup">
+        <div class="card-title">Radio Button Outline</div>
+        <label class="radio radio-outline-primary">
+          <input type="radio" name="radio" [value]="1" formControlName="radio">
+          <span>Primary</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio radio-outline-secondary">
+          <input type="radio" name="radio" [value]="2" formControlName="radio">
+          <span>Secondary</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio radio-outline-success">
+          <input type="radio" name="radio" [value]="3" formControlName="radio">
+          <span>Success</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio radio-outline-warning">
+          <input type="radio" name="radio" [value]="4" formControlName="radio">
+          <span>Warning</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio radio-outline-danger">
+          <input type="radio" name="radio" [value]="5" formControlName="radio">
+          <span>Danger</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio radio-outline-light">
+          <input type="radio" name="radio" [value]="6" formControlName="radio">
+          <span>Light</span>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio radio-outline-dark">
+          <input type="radio" name="radio" [value]="7" formControlName="radio">
+          <span>Dark</span>
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+</div>

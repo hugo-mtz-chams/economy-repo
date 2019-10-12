@@ -1,0 +1,18 @@
+import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { ProductDB } from './products';
+import { MailDB } from './mails';
+import { CountryDB } from './countries';
+import { ChatDB } from './chat-db';
+
+export class InMemoryDataService implements InMemoryDbService {
+  createDb() {
+    return { 
+      'products': ProductDB.products,
+      'mails': MailDB.messages,
+      'countries': CountryDB.countries,
+      'contacts': ChatDB.contacts,
+      'chat-collections': ChatDB.chatCollection,
+      'chat-user': ChatDB.user
+    }
+  }
+}

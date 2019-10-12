@@ -1,0 +1,345 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#" class="link-primary font-weight-500"><i class="icon-layers1"></i> Forms</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Validation</li>
+    <span class="spacer"></span>
+    <li class="breadcrumb-item no-driver">
+      <a href="" class="text-muted link-primary">
+        <i class="icon-bubbles"></i> Support</a>
+    </li>
+    <li class="breadcrumb-item">
+
+      <a href="#" class="dropdown-toggle text-muted link-primary" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false"><i class="icon-cog"></i> Settings</a>
+
+      <div class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href=""><i class="icon-key"></i> Account Sicurity</a>
+        <a class="dropdown-item" href=""><i class="icon-stats-dots"></i> Analytics</a>
+        <a class="dropdown-item" href=""><i class="icon-accessibility"></i> Accessibility</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href=""><i class="icon-cog"></i> All settings</a>
+      </div>
+
+    </li>
+  </ol>
+
+</nav>
+
+<div class="separator-breadcrumb border-top"></div>
+
+<div class="row mb-4">
+
+  <div class="col-lg-12 col-md-12">
+
+    <div class="card eg-card-1 o-hidden mb-4">
+
+      <div class="card-header justify-content-between mb-3">
+
+        <div class="info">
+          <p class="title text-15 font-family-1 font-weight-400 mt-0 mb-1">Form Validation</p>
+          <p class="subtitle text-13 font-family-1 font-weight-400 mt-0 mb-1">Validate with native angular validation script & ng2-validation library</p>
+        </div>
+
+        <div class="action">
+          <a href="" class="text-muted link-primary mr-2"><i class="icon-reload"></i></a>
+          <a href="" class="text-muted link-primary"><i class="icon-close"></i></a>
+        </div>
+
+      </div>
+
+      <div class="card-body pt-3">
+
+        <div class="content">
+
+          <form [formGroup]="form">
+
+            <div class="form-group row mb-4">
+              <label for="inputBasic" class="col-sm-2 col-form-label mb-0">Default Input Validation <span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="inputBasic" />
+                <div *ngIf="form.controls.inputBasic.dirty || form.controls.inputBasic.touched">
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputBasic.errors?.required">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field is required
+                  </p>
+
+                  <p class="form-alert alert-success m-1" *ngIf="!form.controls.inputBasic.errors?.required">
+                    <i class="icon-checkmark-outline mr-1 align-middle"></i>Success
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mb-4">
+              <label for="inputIcon" class="col-sm-2 col-form-label mb-0">Input with icon <span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+
+                <div class="input-group">
+                  <input type="text" class="form-control" formControlName="inputIcon" />
+                  <div class="input-group-append">
+                    <div class="input-group-text"><i class="icon-user"></i></div>
+                  </div>
+                </div>
+                <div *ngIf="form.controls.inputIcon.dirty || form.controls.inputIcon.touched">
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputIcon.errors?.required">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field is required
+                  </p>
+
+                  <p class="form-alert alert-success m-1" *ngIf="!form.controls.inputIcon.errors?.required">
+                    <i class="icon-checkmark-outline mr-1 align-middle"></i>Success
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mb-4">
+              <label for="inputGroup" class="col-sm-2 col-form-label mb-0">Input Group <span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="icon-at-sign"></i></div>
+                  </div>
+                  <input type="text" class="form-control" formControlName="inputGroup" />
+
+                </div>
+                <div *ngIf="form.controls.inputGroup.dirty || form.controls.inputGroup.touched">
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputGroup.errors?.required">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field is required
+                  </p>
+
+                  <p class="form-alert alert-success m-1" *ngIf="!form.controls.inputGroup.errors?.required">
+                    <i class="icon-checkmark-outline mr-1 align-middle"></i>Success
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mb-4">
+              <label for="inputPassword" class="col-sm-2 col-form-label mb-0">Input Password <span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" formControlName="inputPassword" />
+
+                <div *ngIf="form.controls.inputPassword.dirty || form.controls.inputPassword.touched">
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputPassword.errors?.required">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field is required
+                  </p>
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputPassword.errors?.minlength">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field is required 5 char min
+                  </p>
+
+                  <p class="form-alert alert-success m-1" *ngIf="!form.controls.inputPassword.errors?.required && !form.controls.inputPassword.errors?.minlength">
+                    <i class="icon-checkmark-outline mr-1 align-middle"></i>Success
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mb-4">
+              <label for="inputPasswordConfirm" class="col-sm-2 col-form-label mb-0">Input Confirm Password <span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" formControlName="inputPasswordConfirm" />
+
+                <div *ngIf="form.controls.inputPasswordConfirm.dirty || form.controls.inputPasswordConfirm.touched">
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputPasswordConfirm.errors?.required">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field is required
+                  </p>
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputPasswordConfirm.errors?.equalTo">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field not matched
+                  </p>
+
+                  <p class="form-alert alert-success m-1" *ngIf="!form.controls.inputPasswordConfirm.errors?.required && !form.controls.inputPasswordConfirm.errors?.equalTo">
+                    <i class="icon-checkmark-outline mr-1 align-middle"></i>Success
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mb-4">
+              <label for="inputEmail" class="col-sm-2 col-form-label mb-0">Input Email <span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" formControlName="inputEmail" />
+
+                <div *ngIf="form.controls.inputEmail.dirty || form.controls.inputEmail.touched">
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputEmail.errors?.required">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field is required
+                  </p>
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputEmail.errors?.email">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field required email
+                  </p>
+
+                  <p class="form-alert alert-success m-1" *ngIf="!form.controls.inputEmail.errors?.required && !form.controls.inputEmail.errors?.email">
+                    <i class="icon-checkmark-outline mr-1 align-middle"></i>Success
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mb-4">
+              <label for="inputEmailConfirm" class="col-sm-2 col-form-label mb-0">Input Email Confirm <span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" formControlName="inputEmailConfirm" />
+
+                <div *ngIf="form.controls.inputEmailConfirm.dirty || form.controls.inputEmailConfirm.touched">
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputEmailConfirm.errors?.required">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field is required
+                  </p>
+
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputEmailConfirm.errors?.equalTo">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field email not matched
+                  </p>
+
+                  <p class="form-alert alert-success m-1" *ngIf="!form.controls.inputEmailConfirm.errors?.required && !form.controls.inputEmailConfirm.errors?.email && !form.controls.inputEmailConfirm.errors?.equalTo">
+                    <i class="icon-checkmark-outline mr-1 align-middle"></i>Success
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mb-4">
+              <label for="inputMinChar" class="col-sm-2 col-form-label mb-0">Input Min Character <span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" formControlName="inputMinChar" />
+
+                <div *ngIf="form.controls.inputMinChar.dirty || form.controls.inputMinChar.touched">
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputMinChar.errors?.required">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field is required
+                  </p>
+
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputMinChar.errors?.minlength">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field required min 5 character
+                  </p>
+
+                  <p class="form-alert alert-success m-1" *ngIf="!form.controls.inputMinChar.errors?.required && !form.controls.inputMinChar.errors?.minlength">
+                    <i class="icon-checkmark-outline mr-1 align-middle"></i>Success
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mb-4">
+              <label for="inputMaxChar" class="col-sm-2 col-form-label mb-0">Input Max Character <span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" formControlName="inputMaxChar" />
+
+                <div *ngIf="form.controls.inputMaxChar.dirty || form.controls.inputMaxChar.touched">
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputMaxChar.errors?.required">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field is required
+                  </p>
+
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputMaxChar.errors?.maxlength">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field only accept max 15 character
+                  </p>
+
+                  <p class="form-alert alert-success m-1" *ngIf="!form.controls.inputMaxChar.errors?.required && !form.controls.inputMaxChar.errors?.maxlength">
+                    <i class="icon-checkmark-outline mr-1 align-middle"></i>Success
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mb-4">
+              <label for="inputMinNumber" class="col-sm-2 col-form-label mb-0">Input Min Number <span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" formControlName="inputMinNumber" />
+
+                <div *ngIf="form.controls.inputMinNumber.dirty || form.controls.inputMinNumber.touched">
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputMinNumber.errors?.required">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field is required
+                  </p>
+
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputMinNumber.errors?.min">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field required min number 5
+                  </p>
+
+                  <p class="form-alert alert-success m-1" *ngIf="!form.controls.inputMinNumber.errors?.required && !form.controls.inputMinNumber.errors?.min">
+                    <i class="icon-checkmark-outline mr-1 align-middle"></i>Success
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mb-4">
+              <label for="inputMaxNumber" class="col-sm-2 col-form-label mb-0">Input Max Number <span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" formControlName="inputMaxNumber" />
+
+                <div *ngIf="form.controls.inputMaxNumber.dirty || form.controls.inputMaxNumber.touched">
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputMaxNumber.errors?.required">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field is required
+                  </p>
+
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.inputMaxNumber.errors?.max">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field only accept max number 255
+                  </p>
+
+                  <p class="form-alert alert-success m-1" *ngIf="!form.controls.inputMaxNumber.errors?.required && !form.controls.inputMaxNumber.errors?.max">
+                    <i class="icon-checkmark-outline mr-1 align-middle"></i>Success
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mb-4">
+              <label for="textareaBasic" class="col-sm-2 col-form-label mb-0">Text Area With Limit <span class="text-danger">*</span></label>
+              <div class="col-sm-10">
+                <textarea class="form-control"  formControlName="textareaBasic" placeholder="Default Textarea" rows="3"></textarea>
+                <div *ngIf="form.controls.textareaBasic.dirty || form.controls.textareaBasic.touched">
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.textareaBasic.errors?.required">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field is required
+                  </p>
+
+
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.textareaBasic.errors?.minlength">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field only accept min character 100
+                  </p>
+                  <p class="form-alert alert-danger m-1" *ngIf="form.controls.textareaBasic.errors?.maxlength">
+                    <i class="icon-close-solid mr-1 align-middle"></i>This field only accept max character 200
+                  </p>
+
+                  <p class="form-alert alert-success m-1" *ngIf="!form.controls.textareaBasic.errors?.required && !form.controls.textareaBasic.errors?.minlength && !form.controls.textareaBasic.errors?.maxlength">
+                    <i class="icon-checkmark-outline mr-1 align-middle"></i>Success
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

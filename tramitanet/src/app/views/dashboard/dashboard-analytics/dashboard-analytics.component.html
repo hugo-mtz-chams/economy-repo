@@ -1,0 +1,637 @@
+<div class="">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#" class="link-primary font-weight-500"><i class="icon-home"></i> Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Analytics</li>
+      <span class="spacer"></span>
+      <li class="breadcrumb-item no-driver">
+        <a href="" class="text-muted link-primary">
+          <i class="icon-bubbles"></i> Support</a>
+      </li>
+      <li class="breadcrumb-item">
+
+        <a href="#" class="dropdown-toggle text-muted link-primary" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false"><i class="icon-cog"></i> Settings</a>
+
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" href=""><i class="icon-key"></i> Account Sicurity</a>
+          <a class="dropdown-item" href=""><i class="icon-stats-dots"></i> Analytics</a>
+          <a class="dropdown-item" href=""><i class="icon-accessibility"></i> Accessibility</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href=""><i class="icon-cog"></i> All settings</a>
+        </div>
+
+      </li>
+    </ol>
+
+
+  </nav>
+
+  <div class="separator-breadcrumb border-top"></div>
+
+
+  <div class="row">
+
+    <div class="col-lg-3 col-md-6 col-sm-6">
+
+      <div class="card bm-card-1 o-hidden mb-4">
+
+        <div class="card-body text-left">
+          <div class="content">
+            <p class="title text-13 font-family-1 font-weight-500 mt-0 mb-0">New Visitors</p>
+            <p class="subtitle text-13 font-family-1 font-weight-500 mt-0 mb-0 mr-1">2349 avg</p>
+            <div class="card-icon "><i class="icon-user-plus1 color-red text-25"></i></div>
+
+            <div echarts [options]="chartLineOption1" [autoResize]="true" style="height: 50px;"></div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-6">
+
+      <div class="card bm-card-1 o-hidden mb-4">
+
+        <div class="card-body text-left">
+          <div class="content">
+            <p class="title text-13 font-family-1 font-weight-500 mt-0 mb-0">New Sessions</p>
+            <p class="subtitle text-13 font-family-1 font-weight-500 mt-0 mb-0 mr-1">08:20 avg</p>
+            <div class="card-icon color-blue"><i class="icon-watch color-red text-25"></i></div>
+
+            <div echarts [options]="chartLineOption2" [autoResize]="true" style="height: 50px;"></div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-6">
+
+      <div class="card bm-card-1 o-hidden mb-4">
+
+        <div class="card-body text-left">
+          <div class="content">
+            <p class="title text-13 font-family-1 font-weight-500 mt-0 mb-0">Total Online</p>
+            <p class="subtitle text-13 font-family-1 font-weight-500 mt-0 mb-0 mr-1">6,590 avg</p>
+            <div class="card-icon"><i class="icon-user-check1 text-25 color-red"></i></div>
+
+            <div echarts [options]="chartLineOption3" [autoResize]="true" style="height: 50px;"></div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-6">
+
+      <div class="card bm-card-1 o-hidden mb-4">
+
+        <div class="card-body text-left">
+          <div class="content">
+            <p class="title text-13 font-family-1 font-weight-500 mt-0 mb-0">Bounce Rate</p>
+            <p class="subtitle text-13 font-family-1 font-weight-500 mt-0 mb-0 mr-1">17.86%</p>
+            <div class="card-icon"><i class="icon-user-x text-25 color-red"></i></div>
+
+            <div echarts [options]="chartLineOption4" [autoResize]="true" style="height: 50px;"></div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+
+      <div class="card bm-card-2 o-hidden mb-4">
+
+        <div class="card-body text-left">
+          <div class="content">
+            <p class="title text-13 font-family-1 font-weight-500  mt-0 mb-1">TRAFFIC SOURCE STATISTICS</p>
+            <p class="subtitle text-13 font-family-1 font-weight-400 mb-0">Sales Performance for Online and Offline Revenue</p>
+
+            <div echarts [options]="timeriverOption" [autoResize]="true" style="height: 400px;"></div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+
+      <div class="card bm-card-2 o-hidden mb-4">
+
+        <div class="card-body text-left">
+          <div class="content">
+            <p class="title text-13 font-family-1 font-weight-500 mt-0 mb-1">SALES STATISTICS</p>
+            <p class="subtitle text-13 font-family-1 font-weight-400 mb-0">Sales Performance for Online and Offline Revenue</p>
+
+            <div echarts [options]="chartLineOptionD2" [autoResize]="true" style="height: 300px;"></div>
+            <div echarts [options]="chartLineOptionD1" [autoResize]="true" style="height: 100px;"></div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+
+      <div class="card bm-card-2 o-hidden mb-4">
+        <div class="card-body text-left">
+          <div class="content">
+            <p class="title text-13 font-family-1 font-weight-500  mt-0 mb-1">PAGE VIEWS BY TITLE</p>
+            <p class="subtitle text-13 font-family-1 font-weight-400 mb-3">Sales Performance by Page Views</p>
+
+
+            <div class="data-list table-responsive">
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <td class="text-left">
+                      <p class="title text-13 font-weight-500 ml-0">Admin Home</p>
+                      <p class="subtitle text-12 font-weight-400 ml-0">/demo/admin/index.html</p>
+                    </td>
+                    <td class="text-right">
+                      <p class="title text-14 font-family-2 font-weight-700 ml-0 text-blue">7756</p>
+                      <p class="subtitle text-12 font-family-2 font-weight-500 ml-0">31.74% (-100%)</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <p class="title text-13 font-weight-500 ml-0">Form Elements</p>
+                      <p class="subtitle text-12 font-weight-400 ml-0">/demo/admin/forms.html</p>
+                    </td>
+                    <td class="text-right">
+                      <p class="title text-14 font-family-2 font-weight-700 ml-0 text-blue">5756</p>
+                      <p class="subtitle text-12 font-family-2 font-weight-500 ml-0">42.74% (-100%)</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <p class="title text-13 font-weight-500 ml-0">Utilities</p>
+                      <p class="subtitle text-12 font-weight-400 ml-0">/demo/admin/util.html</p>
+                    </td>
+                    <td class="text-right">
+                      <p class="title text-14 font-family-2 font-weight-700 ml-0 text-blue">6756</p>
+                      <p class="subtitle text-12 font-family-2 font-weight-500 ml-0">81.74% (-100%)</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <p class="title text-13 font-weight-500 ml-0">Form Validation</p>
+                      <p class="subtitle text-12 font-weight-400 ml-0">/demo/admin/validation.html</p>
+                    </td>
+                    <td class="text-right">
+                      <p class="title text-14 font-family-2 font-weight-700 ml-0 text-blue">3756</p>
+                      <p class="subtitle text-12 font-family-2 font-weight-500 ml-0">52.74% (-100%)</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <p class="title text-13 font-weight-500 ml-0">Modals</p>
+                      <p class="subtitle text-12 font-weight-400 ml-0">/demo/admin/modals.html</p>
+                    </td>
+                    <td class="text-right">
+                      <p class="title text-14 font-family-2 font-weight-700 ml-0 text-blue">1756</p>
+                      <p class="subtitle text-12 font-family-2 font-weight-500 ml-0">96.74% (-100%)</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <p class="title text-13 font-weight-500 ml-0">Admin Home</p>
+                      <p class="subtitle text-12 font-weight-400 ml-0">/demo/admin/index.html</p>
+                    </td>
+                    <td class="text-right">
+                      <p class="title text-14 font-family-2 font-weight-700 ml-0 text-blue">2756</p>
+                      <p class="subtitle text-12 font-family-2 font-weight-500 ml-0">21.74% (-100%)</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+
+      <div class="card bm-card-11 o-hidden mb-4">
+
+        <div class="card-body text-left">
+
+          <div class="content">
+
+            <p class="title text-13 font-family-1 font-weight-500 mt-0 mb-1">SESSIONS BY SOURCES</p>
+            <p class="subtitle text-13 font-family-1 font-weight-400 mb-1">Sales Performance for Online and Offline Revenue</p>
+
+            <div class="row mt-1 ml-0 mr-0">
+
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 data-chart">
+                <div echarts [options]="chartPaiOption3" [autoResize]="true" style="height: 300px;"></div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 data-list table-responsive">
+
+                <table class="table table-striped">
+                  <tbody>
+                    <tr>
+                      <td class="text-left">
+                        <div class="sources mb-1">
+                          <p class="title text-13 font-weight-500 ml-0">Organic</p>
+                          <p class="subtitle text-12 font-family-2 font-weight-700 ml-0">1,320 <span>(25%)</span></p>
+                        </div>
+                        <div class="progress" style="height: 3px;">
+                          <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-blue"
+                            role="progressbar" style="width: 25%"></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">
+                        <div class="sources mb-1">
+                          <p class="title text-13 font-weight-500 ml-0">Search Engine.</p>
+                          <p class="subtitle text-12 font-family-2 font-weight-700 ml-0">1,320 <span>(25%)</span></p>
+                        </div>
+                        <div class="progress" style="height: 3px;">
+                          <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-blue"
+                            role="progressbar" style="width: 25%"></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">
+                        <div class="sources mb-1">
+                          <p class="title text-13 font-weight-500 ml-0">Email</p>
+                          <p class="subtitle text-12 font-family-2 font-weight-700 ml-0">1,320 <span>(25%)</span></p>
+                        </div>
+                        <div class="progress" style="height: 3px;">
+                          <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-red"
+                            role="progressbar" style="width: 25%"></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left mt-1 mb-1">
+                        <div class="sources mb-1">
+                          <p class="title text-13 font-weight-500 ml-0">Referral</p>
+                          <p class="subtitle text-12 font-family-2 font-weight-700 ml-0">1,320 <span>(25%)</span></p>
+                        </div>
+                        <div class="progress" style="height: 3px;">
+                          <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-blue"
+                            role="progressbar" style="width: 25%"></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">
+                        <div class="sources mb-1">
+                          <p class="title text-13 font-weight-500 ml-0">Social</p>
+                          <p class="subtitle text-12 font-family-2 font-weight-700 ml-0">1,320 <span>(25%)</span></p>
+                        </div>
+                        <div class="progress" style="height: 3px;">
+                          <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-blue"
+                            role="progressbar" style="width: 25%"></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">
+                        <div class="sources mb-1">
+                          <p class="title text-13 font-weight-500 ml-0">Others</p>
+                          <p class="subtitle text-12 font-family-2 font-weight-700 ml-0">1,320 <span>(25%)</span></p>
+                        </div>
+                        <div class="progress" style="height: 3px;">
+                          <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-blue"
+                            role="progressbar" style="width: 25%"></div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+
+      <div class="card bm-card-12 o-hidden mb-4">
+
+        <div class="card-body text-left">
+          <div class="content">
+            <p class="title text-13 font-family-1 font-weight-500 mt-0 mb-1">TOP REFERRING & DESTINATIONS</p>
+            <p class="subtitle text-13 font-family-1 font-weight-400 mb-1">Sales Performance for Online and Offline Revenue</p>
+
+            <div class="row mt-1 ml-0 mr-0">
+
+              <div class="data-chart">
+                <div echarts [options]="chartLineOption12" [autoResize]="true" style="height: 325px;"></div>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+
+      <div class="card bm-card-13 o-hidden mb-4">
+
+        <div class="card-body text-left">
+          <div class="content">
+            <p class="title text-13 font-family-1 font-weight-500 mt-0 mb-1">PAGES YOUR USERS VISIT</p>
+            <p class="subtitle text-13 font-family-1 font-weight-400 mt-0 mb-4">Part of this date range occurs
+              before the new users metric had been calculated, so the old users metric is displayed.</p>
+
+            <div class="data-list mt-1 table-responsive">
+              <table class="table table-striped table-dashboard-two">
+                <thead>
+                  <tr>
+                    <th class="text-left">COUNTRY</th>
+                    <th class="text-right">ENTRANCES</th>
+                    <th class="text-right">BOUNCE RATE</th>
+                    <th class="text-right">EXITS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-left">
+                      <i class="flag-icon flag-icon-us flag-icon-squared"></i>
+                      <p class="text-13">United States</p>
+                    </td>
+                    <td class="text-right font-weight-500">134 (1.51%)</td>
+                    <td class="text-right font-weight-500">33.58%</td>
+                    <td class="text-right font-weight-500">15.47%</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <i class="flag-icon flag-icon-gb flag-icon-squared"></i>
+                      <p class="text-13">United Kingdom</p>
+                    </td>
+                    <td class="text-right font-weight-500">134 (1.51%)</td>
+                    <td class="text-right font-weight-500">33.58%</td>
+                    <td class="text-right font-weight-500">15.47%</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <i class="flag-icon flag-icon-au flag-icon-squared"></i>
+                      <p class="text-13">Australia</p>
+                    </td>
+                    <td class="text-right font-weight-500">134 (1.51%)</td>
+                    <td class="text-right font-weight-500">33.58%</td>
+                    <td class="text-right font-weight-500">15.47%</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <i class="flag-icon flag-icon-ca flag-icon-squared"></i>
+                      <p class="text-13">Canada</p>
+                    </td>
+                    <td class="text-right font-weight-500">134 (1.51%)</td>
+                    <td class="text-right font-weight-500">33.58%</td>
+                    <td class="text-right font-weight-500">15.47%</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <i class="flag-icon flag-icon-in flag-icon-squared"></i>
+                      <p class="text-13">India</p>
+                    </td>
+                    <td class="text-right font-weight-500">134 (1.51%)</td>
+                    <td class="text-right font-weight-500">33.58%</td>
+                    <td class="text-right font-weight-500">15.47%</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <i class="flag-icon flag-icon-nl flag-icon-squared"></i>
+                      <p class="text-13">Netherlands</p>
+                    </td>
+                    <td class="text-right font-weight-500">134 (1.51%)</td>
+                    <td class="text-right font-weight-500">33.58%</td>
+                    <td class="text-right font-weight-500">15.47%</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <i class="flag-icon flag-icon-de flag-icon-squared"></i>
+                      <p class="text-13">Germany</p>
+                    </td>
+                    <td class="text-right font-weight-500">134 (1.51%)</td>
+                    <td class="text-right font-weight-500">33.58%</td>
+                    <td class="text-right font-weight-500">15.47%</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <i class="flag-icon flag-icon-de flag-icon-squared"></i>
+                      <p class="text-13">Germany</p>
+                    </td>
+                    <td class="text-right font-weight-500">134 (1.51%)</td>
+                    <td class="text-right font-weight-500">33.58%</td>
+                    <td class="text-right font-weight-500">15.47%</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <i class="flag-icon flag-icon-de flag-icon-squared"></i>
+                      <p class="text-13">Germany</p>
+                    </td>
+                    <td class="text-right font-weight-500">134 (1.51%)</td>
+                    <td class="text-right font-weight-500">33.58%</td>
+                    <td class="text-right font-weight-500">15.47%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+
+      <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+          <div class="card bm-card-7 o-hidden mb-4">
+
+            <div class="card-body text-left">
+
+              <div class="content">
+
+                <p class="title text-15 text-primary font-family-1 font-weight-400 mt-0 mb-1">EXPANSIONS</p>
+                <p class="subtitle text-13 font-family-1 font-weight-400 mt-0 mb-3 mr-0">Customers who have upgraded
+                  the
+                  level of your service.</p>
+
+                <div class="data-list">
+                  <table class="table table-striped table-dashboard-two">
+                    <tbody>
+                      <tr>
+                        <td class="text-left">
+                          <div class="sources mb-1">
+                            <p class="title text-17 font-family-2 font-weight-600 ml-0">$1,500</p>
+                            <p class="subtitle text-17 font-family-2 font-weight-600 ml-0">$1,320</p>
+                          </div>
+                          <div class="progress mb-1" style="height: 4px;">
+                            <div class="progress-bar bg-blue" role="progressbar" style="width: 25%" aria-valuenow="25"
+                              aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                          <div class="sources mb-0">
+                            <p class="progressbar-subtext text-12 font-weight-500 ml-0">This Month</p>
+                            <p class="progressbar-subtext text-12 font-weight-500 ml-0">Previous Month</p>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+          <div class="card bm-card-7 o-hidden mb-4">
+
+            <div class="card-body text-left">
+
+              <div class="content">
+
+                <p class="title text-15 text-danger font-family-1 font-weight-400 mt-0 mb-1">CANCELLATIONS</p>
+                <p class="subtitle text-13 font-family-1 font-weight-400 mt-0 mb-3 mr-0">Customers who have ended their
+                  subscription with you.</p>
+
+                <div class="data-list">
+                  <table class="table table-striped table-dashboard-two">
+                    <tbody>
+                      <tr>
+                        <td class="text-left">
+                          <div class="sources mb-1">
+                            <p class="title text-17 font-family-2 font-weight-600 ml-0">$1,500</p>
+                            <p class="subtitle text-17 font-family-2 font-weight-600 ml-0">$1,320</p>
+                          </div>
+                          <div class="progress mb-1" style="height: 4px;">
+                            <div class="progress-bar bg-red" role="progressbar" style="width: 25%" aria-valuenow="25"
+                              aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                          <div class="sources mb-0">
+                            <p class="progressbar-subtext text-12 font-weight-500 ml-0">This Month</p>
+                            <p class="progressbar-subtext text-12 font-weight-500 ml-0">Previous Month</p>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+          <div class="card bm-card-8 o-hidden mb-4">
+
+            <div class="card-body text-left">
+
+              <div class="content">
+
+                <p class="title text-15 font-family-1 font-weight-400 mt-0 mb-4">MRR (Sept)
+                  <span>
+                    <ul class="progress-legend">
+                      <li>Expansion</li>
+                      <li class="ml-2">New</li>
+                    </ul>
+                  </span>
+                </p>
+
+                <div class="progress-wrapper mb-4">
+                  <label>None:</label>
+                  <div class="progressbar-body ml-2">
+                    <div class="progress" style="height: 20px;">
+                      <div class="progress-bar text-12 font-weight-500 bg-primary" role="progressbar" style="width: 30%"
+                        aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>
+                      <div class="progress-bar text-12 font-weight-500 bg-red" role="progressbar" style="width: 52%"
+                        aria-valuenow="52" aria-valuemin="0" aria-valuemax="100">52%</div>
+
+                    </div>
+                  </div>
+
+
+
+                </div>
+
+                <div class="progress-wrapper">
+                  <label>Partner:</label>
+                  <div class="progressbar-body ml-2">
+                    <div class="progress" style="height: 20px;">
+                      <div class="progress-bar text-12 font-weight-500 bg-primary" role="progressbar" style="width: 25%"
+                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                      <div class="progress-bar text-12 font-weight-500 bg-red" role="progressbar" style="width: 32%"
+                        aria-valuenow="32" aria-valuemin="0" aria-valuemax="100">32%</div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

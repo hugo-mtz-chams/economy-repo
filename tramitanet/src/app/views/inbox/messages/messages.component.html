@@ -1,0 +1,87 @@
+<div class="">
+
+  <!-- MAIN SIDEBAR CONTAINER -->
+  <div appSidebarContainer class="inbox-main-sidebar-container">
+    <div appSidebarContent class="inbox-main-content">
+      <!-- SECONDARY SIDEBAR CONTAINER -->
+      <div appSidebarContainer class="inbox-secondary-sidebar-container box-shadow-1">
+        <div appSidebarContent>
+          <div class="inbox-secondary-sidebar-content position-relative" style="min-height: 500px">
+              <div class="inbox-topbar box-shadow-1 pl-3" [perfectScrollbar]="{suppressScrollY: true}">
+                <!-- <span class="d-sm-none">Test</span> -->
+                <a appSidebarToggler="inbox-main-sidebar" class="link-icon d-md-none">
+                  <i class="icon-regular icon-menu1"></i>
+                </a>
+                <a appSidebarToggler="inbox-secondary-sidebar" class="link-icon mr-3 d-md-none">
+                  <i class="icon-regular mr-1 icon-arrow-left1"></i>
+                  Inbox
+                </a>
+
+                <div class="d-flex" *ngIf="selected">
+                  <a href="" class="link-icon mr-3"><i class="icon-regular icon-reply1"></i> Reply</a>
+                  <a href="" class="link-icon mr-3"><i class="icon-regular icon-reply-all"></i> Forward</a>
+                  <a href="" class="link-icon mr-3"><i class="icon-regular icon-trash-2"></i> Delete</a>
+                </div>
+              </div>
+              <!-- EMAIL DETAILS -->
+              <div class="inbox-details" *ngIf="selected" [perfectScrollbar]="{suppressScrollX: true}">
+                <div class="row no-gutters">
+                  <div class="mr-2" style="width: 36px">
+                    <img class="rounded-circle" [src]="selected?.sender?.photo" alt="">
+                  </div>
+                  <div class="col-xs-12">
+                    <p class="m-0">{{selected?.sender?.name}}</p>
+                    <p class="text-12 text-muted">{{selected?.date | date}}</p>
+                  </div>
+                </div>
+                <p class="lead">{{selected?.subject}}</p>
+                <div [innerHTML]="selected?.message"></div>
+              </div>
+              <!-- Intro screen -->
+              <div class="app-inro-circle inbox-intro" *ngIf="!selected">
+                <div class="border rounded-circle big-bubble"  [@animate]="{value:'*',params:{scale:'.2',delay:'400ms', duration: '400ms'}}">
+                  <i class="icon-mail1"></i>
+                </div>
+                <p class="text-16" [@animate]="{value:'*',params:{y:'120px',delay:'600ms', duration: '400ms'}}">Inbox App</p>
+              </div>
+          </div>
+        </div>
+        <div appSidebar="inbox-secondary-sidebar" class="inbox-secondary-sidebar" [perfectScrollbar]="{suppressScrollX: true}">
+            <i class="sidebar-close icon-x-circle" appSidebarToggler="inbox-secondary-sidebar"></i>
+
+            <div class="mail-item" [ngClass]="{active:m.selected==true}" *ngFor="let m of mails" (click)="select(m)">
+              <div class="avatar">
+                <img [src]="m.sender.photo" alt="">
+              </div>
+              <div class="col-xs-6 details">
+                <span class="name text-muted">{{m.sender.name}}</span>
+                <p class="m-0">{{m.subject}}</p>
+              </div>
+              <div class="col-xs-3 date">
+                <span class="text-muted">{{m.date | date}}</span>
+              </div>
+            </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN SIDEBAR -->
+    <div appSidebar="inbox-main-sidebar" class="inbox-main-sidebar">
+      <div class="pt-3 pr-3 pb-3 pl-3">
+          <i class="sidebar-close icon-x-circle" appSidebarToggler="inbox-main-sidebar"></i>
+          <button class="btn btn-primary btn-block mb-4" (click)="openComposeModal()">Compose</button>
+          <p class="text-muted mb-2">Browse</p>
+          <ul class="inbox-main-nav">
+            <li><a href="" class="active"><i class="icon-regular icon-inbox"></i> Inbox (2)</a></li>
+            <li><a href=""><i class="icon-regular icon-mail1"></i> Sent</a></li>
+            <li><a href=""><i class="icon-regular icon-star"></i> Starred</a></li>
+            <li><a href=""><i class="icon-regular icon-trash"></i> Trash</a></li>
+            <li><a href=""><i class="icon-regular icon-alert-octagon"></i> Spam</a></li>
+          </ul>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,124 @@
+<div class="main-header">
+
+    <div id="toggle-sidebar" class="menu-toggle">
+        <div class="menu-icon">
+            <i class="icon-menu5"></i>
+        </div>
+    </div>
+
+    <div class="logo">
+        <img class="logo-small" src="./assets/images/logo@400.png" alt="">
+        <img class="logo-wide" src="./assets/images/logo-wide.png" alt="">
+    </div>
+
+
+
+    <div class="d-flex align-items-center">
+        <!-- Mega menu -->
+        <div ngbDropdown class="mega-menu d-md-block">
+            <button ngbDropdownToggle class="btn text-muted dropdown-toggle mr-3">Mega Menu</button>
+            <div ngbDropdownMenu perfectScrollbar>
+                <div class="row m-0">
+                    <div class="col-md-4 p-4 bg-img">
+                        <h2 class="title">Mega Menu <br> Sidebar</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores natus
+                            laboriosam fugit, consequatur.
+                        </p>
+                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                            Exercitationem odio amet eos dolore suscipit placeat.</p>
+                        <button class="btn btn-lg btn-rounded btn-outline-warning">Learn More</button>
+                    </div>
+                    <div class="col-md-4 p-4">
+                        <p class="text-primary text--cap border-bottom-primary d-inline-block">Features</p>
+                        <div class="menu-icon-grid w-auto p-0">
+                            <a routerLink="/dashboard/v1"><i class="icon-home"></i> Home</a>
+                            <a routerLink="/uikits/buttons"><i class="icon-layers1"></i> UI Kits</a>
+                            <a routerLink="/forms/actions"><i class="icon-edit-pencil"></i> Forms</a>
+                            <a routerLink="/charts/area"><i class="icon-chart-bar"></i> Charts</a>
+                            <a routerLink="/tables/basic"><i class="icon-table2"></i> Tables</a>
+                            <a routerLink="/sessions/signup"><i class="icon-user-solid-circle"></i> Sessions</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 p-4">
+                        <p class="text-primary text--cap border-bottom-primary d-inline-block">Components</p>
+                        <ul class="links">
+                            <li><a routerLink="/uikits/accordions">Accordion</a></li>
+                            <li><a routerLink="/uikits/alerts">Alerts</a></li>
+                            <li><a routerLink="/uikits/buttons">Buttons</a></li>
+                            <li><a routerLink="/uikits/badges">Badges</a></li>
+                            <li><a routerLink="/uikits/cards">Cards</a></li>
+                            <li><a routerLink="/uikits/loaders">Loaders</a></li>
+                            <li><a routerLink="/tables/basic">Tables</a></li>
+                            <li><a routerLink="/tables/list">Lists</a></li>
+                            <li><a routerLink="/forms/actions">Form Actions</a></li>
+                            <li><a routerLink="/uikits/modals">Modals</a></li>
+                            <li><a routerLink="/inbox">Inbox</a></li>
+                            <li><a routerLink="/chat">Chat</a></li>
+                            <li><a routerLink="/calendar">Calendar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search" (focus)="searchService.searchOpen = true">
+            <i class="search-icon text-muted icon-search1"></i>
+        </div>
+    </div>
+    <div style="margin: auto"></div>
+    <div class="header-part-right">
+        <div ngbDropdown [placement]="'bottom-right'" class="d-sm-inline-block">
+            <i class="icon-search1 text-muted header-icon" role="button" (click)="searchService.searchOpen = true"></i>
+            <i ngbDropdownToggle class="icon-layers text-muted header-icon" role="button"></i>
+            <div ngbDropdownMenu>
+                <div class="menu-icon-grid">
+                    <a routerLink="/dashboard/v1"><i class="icon-home"></i> Home</a>
+                    <a routerLink="/uikits/buttons"><i class="icon-layers1"></i> UI Kits</a>
+                    <a routerLink="/forms/actions"><i class="icon-edit-pencil"></i> Forms</a>
+                    <a routerLink="/charts/area"><i class="icon-chart-bar"></i> Charts</a>
+                    <a routerLink="/tables/basic"><i class="icon-table2"></i> Tables</a>
+                    <a routerLink="/sessions/signup"><i class="icon-user-solid-circle"></i> Sessions</a>
+                </div>
+            </div>
+        </div>
+        <div ngbDropdown [placement]="'bottom-right'" class="">
+            <div class="badge-top-container">
+                <span class="badge badge-primary">{{notifications.length}}</span>
+                <i class="icon-bell1 text-muted header-icon" id="dropdownBasic1" ngbDropdownToggle></i>
+            </div>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="notification-dropdown" perfectScrollbar>
+                <div class="dropdown-item d-flex" *ngFor="let item of notifications" [routerLink]="[item.link]">
+                    <div class="notification-icon">
+                        <i class="{{item.icon}} text-{{item.status}} mr-1"></i>
+                    </div>
+                    <div class="notification-details flex-grow-1">
+                        <p class="m-0 d-flex align-items-center">
+                            <span>{{item.title}}</span>
+                            <span class="badge badge-pill badge-{{item.status}} ml-1 mr-1">{{item.badge}}</span>
+                            <span class="flex-grow-1"></span>
+                            <span class="text-small text-muted ml-auto">{{item.time | relativeTime}}</span>
+                        </p>
+                        <p class="text-small text-muted m-0">{{item.text | excerpt:30}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ngbDropdown [placement]="'bottom-right'" class="user col align-self-end">
+            <img src="./assets/images/faces/1.jpg" id="userDropdown" ngbDropdownToggle alt="">
+
+            <div ngbDropdownMenu aria-labelledby="userDropdown">
+                <div class="dropdown-header">
+                    <i class="icon-user-solid-circle mr-1"></i> Timothy Carlson
+                </div>
+                <button class="dropdown-item">Account settings</button>
+                <button class="dropdown-item">Billing history</button>
+                <button class="dropdown-item" (click)="signout()">Sign out</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

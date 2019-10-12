@@ -1,0 +1,48 @@
+.badge {
+    font-weight: 600;
+    padding: 0.3rem 0.6rem !important;
+    border-radius: 2px;
+
+    i {
+        vertical-align: text-bottom;
+    }
+}
+
+.badge-round {
+    border-radius: 99px !important;
+}
+
+.badge-pill {
+    padding-right: 0.6em !important;
+    padding-left: 0.6em !important;
+    border-radius: 10rem !important;
+}
+
+.badge-padded-pill {
+    padding: 0.4rem 0.6rem !important;
+    border-radius: 10rem !important;
+}
+
+.badge-link {
+    padding: 0.15rem !important;
+}
+
+@each $name, $value in $theme-colors {
+    .badge-outline-#{$name} {
+        background: unset;
+        border: 1px solid $value;
+        color: $value;
+    }
+}
+
+.badge-top-container {
+    position: relative;
+
+    .badge {
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        border-radius: 2px;
+        padding: 0.3rem !important;
+    }
+}

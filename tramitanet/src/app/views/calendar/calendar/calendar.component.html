@@ -1,0 +1,75 @@
+<div class="mb-4">
+  <button class="btn btn-primary" (click)="addEvent()">Add Event</button>
+</div>
+<div class="card">
+  <div class="">
+    <div class="p-3 d-flex justify-content-between align-items-center calendar-title row cal-top-action">
+      <!-- Arrow navigations -->
+      <div class="cal-nav cal-top-col col-md-4 col-sm-12 ">
+        <button class="btn btn-icon btn-outline-primary m-1" mwlCalendarPreviousView [view]="view"
+          [(viewDate)]="viewDate">
+          <i class="icon-arrow-left1"></i>
+        </button>
+        <button class="btn btn-icon btn-primary m-1" mwlCalendarToday [(viewDate)]="viewDate">
+          <i class="icon-calendar2"></i>
+        </button>
+        <button class="btn btn-icon btn-outline-primary m-1" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+          <i class="icon-arrow-right1"></i>
+        </button>
+      </div>
+
+      <!-- Date title -->
+      <div class="cal-title col-md-4 col-sm-12">
+        <h5 class="m-0 text-muted font-weight-bold">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h5>
+      </div>
+
+      <!-- Month, day, week view toggle buttons -->
+      <div class="cal-style col-md-4 col-sm-12 ">
+        <button class="btn btn-icon btn-primary m-1" (click)="view = 'month'" [class.active]="view === 'month'"
+          ngbTooltip="Month view">
+          <i class="icon-calendar2"></i>
+        </button>
+        <button class="btn btn-icon btn-primary m-1" (click)="view = 'week'" [class.active]="view === 'week'"
+          ngbTooltip="Week view">
+          <i class="icon-view-column"></i>
+        </button>
+        <button class="btn btn-icon btn-primary m-1" (click)="view = 'day'" [class.active]="view === 'day'"
+          ngbTooltip="Day view">
+          <i class="icon-view-list"></i>
+        </button>
+      </div>
+    </div>
+    <!-- <mat-divider></mat-divider> -->
+  </div>
+
+  <!-- Calendar -->
+  <div class="p-0">
+    <div [ngSwitch]="view">
+      <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+        [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+        (eventClicked)="handleEvent('edit', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+      </mwl-calendar-month-view>
+      <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+        (eventClicked)="handleEvent('edit', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+      </mwl-calendar-week-view>
+      <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+        (eventClicked)="handleEvent('edit', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+      </mwl-calendar-day-view>
+    </div>
+  </div>
+</div>
+
+<ng-template #eventDeleteConfirm let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Delete Event?</h4>
+    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title"
+      (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel')">No</button>
+    <button type="button" ngbAutofocus class="btn btn-danger" (click)="modal.close('Ok')">Yes</button>
+  </div>
+</ng-template>

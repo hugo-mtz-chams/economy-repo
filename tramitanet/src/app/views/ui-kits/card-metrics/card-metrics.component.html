@@ -1,0 +1,793 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="#" class="link-primary font-weight-500"><i class="icon-layers1 mr-1"></i> UI Kits</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Card metrics</li>
+    <span class="spacer"></span>
+    <li class="breadcrumb-item no-driver">
+      <a href="" class="text-muted link-primary">
+        <i class="icon-bubbles"></i> Support</a>
+    </li>
+    <li class="breadcrumb-item">
+
+      <a href="#" class="dropdown-toggle text-muted link-primary" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false"><i class="icon-cog"></i> Settings</a>
+
+      <div class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href=""><i class="icon-key"></i> Account Sicurity</a>
+        <a class="dropdown-item" href=""><i class="icon-stats-dots"></i> Analytics</a>
+        <a class="dropdown-item" href=""><i class="icon-accessibility"></i> Accessibility</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href=""><i class="icon-cog"></i> All settings</a>
+      </div>
+
+    </li>
+  </ol>
+
+</nav>
+
+<div class="separator-breadcrumb border-top"></div>
+
+<div class="row">
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-1 o-hidden mb-4">
+
+      <div class="card-body text-left">
+        <div class="content">
+          <p class="title text-13 font-family-1 font-weight-500 mt-0 mb-1">New Visitors</p>
+          <p class="subtitle text-13 font-family-1 font-weight-500 mt-0 mb-0 mr-1">2349 avg</p>
+          <div class="card-icon "><i class="icon-user-plus1 color-red text-25"></i></div>
+
+          <div echarts [options]="chartLineOption1" [autoResize]="true" style="height: 50px;"></div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-1 o-hidden mb-4">
+
+      <div class="card-body text-left">
+        <div class="content">
+          <p class="title text-13 font-family-1 font-weight-500 mt-0 mb-1">New Sessions</p>
+          <p class="subtitle text-13 font-family-1 font-weight-500 mt-0 mb-0 mr-1">08:20 avg</p>
+          <div class="card-icon color-blue"><i class="icon-watch color-red text-25"></i></div>
+
+          <div echarts [options]="chartLineOption2" [autoResize]="true" style="height: 50px;"></div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-1 o-hidden mb-4">
+
+      <div class="card-body text-left">
+        <div class="content">
+          <p class="title text-13 font-family-1 font-weight-500 mt-0 mb-1">Total Online</p>
+          <p class="subtitle text-13 font-family-1 font-weight-500 mt-0 mb-0 mr-1">6,590 avg</p>
+          <div class="card-icon"><i class="icon-user-check1 text-25 color-red"></i></div>
+
+          <div echarts [options]="chartLineOption3" [autoResize]="true" style="height: 50px;"></div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-1 o-hidden mb-4">
+
+      <div class="card-body text-left">
+        <div class="content">
+          <p class="title text-13 font-family-1 font-weight-500 mt-0 mb-1">Bounce Rate</p>
+          <p class="subtitle text-13 font-family-1 font-weight-500 mt-0 mb-0 mr-1">17.86%</p>
+          <div class="card-icon"><i class="icon-user-x text-25 color-red"></i></div>
+
+          <div echarts [options]="chartLineOption4" [autoResize]="true" style="height: 50px;"></div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-1 o-hidden mb-4">
+
+      <div class="card-body text-left">
+        <div class="content">
+          <p class="title text-12 line-height-1 font-weight-600 mt-0 mb-2">ORDERS</p>
+          <p class="title text-30 line-height-1 font-weight-400  mt-0 mb-2 d-inline-block">3,590</p>
+          <div class="trend d-inline-block line-height-1">
+            <p class="text-14 mb-0 ml-1 trend-up d-inline-block text-danger"><i class="icon-trending-down mr-1"></i>9%</p>
+            <p class="text-14 mb-0 ml-1 d-inline-block">of target</p>
+          </div>
+
+          <div echarts [options]="chartOrders" [autoResize]="true" style="height: 50px;"></div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-1 o-hidden mb-4">
+
+      <div class="card-body text-left">
+        <div class="content">
+          <p class="title text-12 line-height-1 font-weight-600 mt-0 mb-2">TOTAL SALES</p>
+          <p class="title text-30 line-height-1 font-weight-400  mt-0 mb-2 d-inline-block">$13,590</p>
+          <div class="trend d-inline-block line-height-1">
+            <p class="text-14 mb-0 ml-1 trend-up d-inline-block text-success"><i class="icon-trending-up mr-1"></i>3%</p>
+            <p class="text-14 mb-0 ml-1 d-inline-block">of target</p>
+          </div>
+
+          <div echarts [options]="chartSales" [autoResize]="true" style="height: 50px;"></div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-1 o-hidden mb-4">
+
+      <div class="card-body text-left">
+        <div class="content">
+          <p class="title text-12 line-height-1 font-weight-600 mt-0 mb-2">TOTAL COST</p>
+          <p class="title text-30 line-height-1 font-weight-400  mt-0 mb-2 d-inline-block">$10,456</p>
+          <div class="trend d-inline-block line-height-1">
+            <p class="text-14 mb-0 ml-1 trend-up d-inline-block text-success"><i class="icon-trending-up mr-1"></i>2%</p>
+            <p class="text-14 mb-0 ml-1 d-inline-block">of target</p>
+          </div>
+
+          <div echarts [options]="chartCost" [autoResize]="true" style="height: 50px;"></div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-1 o-hidden mb-4">
+
+      <div class="card-body text-left">
+        <div class="content">
+          <p class="title text-12 line-height-1 font-weight-600 mt-0 mb-2">NET PROFIT</p>
+          <p class="title text-30 line-height-1 font-weight-400  mt-0 mb-2 d-inline-block">$3,450</p>
+          <div class="trend d-inline-block line-height-1">
+            <p class="text-14 mb-0 ml-1 trend-up d-inline-block text-success"><i class="icon-trending-up mr-1"></i>7%</p>
+            <p class="text-14 mb-0 ml-1 d-inline-block">of target</p>
+          </div>
+
+          <div echarts [options]="chartProfit" [autoResize]="true" style="height: 50px;"></div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-10 o-hidden mb-4">
+
+      <div class="card-body text-left">
+
+        <div class="content">
+
+          <p class="title text-12 font-family-1 font-weight-500 mt-0 mb-0">CONVERSION RATE</p>
+          <p class="subtitle text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">0.88%</p>
+
+          <div echarts [options]="chartLineOptionD1" [autoResize]="true" style="height: 30px;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-10 o-hidden mb-4">
+
+      <div class="card-body text-left">
+
+        <div class="content">
+
+          <p class="title text-12 font-family-1 font-weight-500 mt-0 mb-0">REVENUE</p>
+          <p class="subtitle text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$1,095,190</p>
+
+          <div echarts [options]="chartLineOptionD2" [autoResize]="true" style="height: 30px;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-10 o-hidden mb-4">
+
+      <div class="card-body text-left">
+
+        <div class="content">
+
+          <p class="title text-12 font-family-1 font-weight-500 mt-0 mb-0">AVG. ORDER VALUE</p>
+          <p class="subtitle text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$306.20</p>
+
+          <div echarts [options]="chartLineOptionD3" [autoResize]="true" style="height: 30px;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-10 o-hidden mb-4">
+
+      <div class="card-body text-left">
+
+        <div class="content">
+
+          <p class="title text-12 font-family-1 font-weight-500 mt-0 mb-0">AVG. ORDER VALUE</p>
+          <p class="subtitle text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$306.20</p>
+
+          <div echarts [options]="chartLineOptionD4" [autoResize]="true" style="height: 30px;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="mb-3">SERVER STATUS - <span class="text-primary">Region 1</span></h6>
+        <p class="text-20 text-success line-height-1 mb-3"><i class="icon-arrow-up-circle"></i> Up</p>
+        <small class="text-muted">Last down 4 days ago</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="mb-3">SERVER STATUS - <span class="text-success">Region 2</span></h6>
+        <p class="text-20 text-success line-height-1 mb-3"><i class="icon-arrow-up-circle"></i> Up</p>
+        <small class="text-muted">Last down 8 days ago</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="mb-3">SERVER STATUS - <span class="text-danger">Region 3</span></h6>
+        <p class="text-20 text-danger line-height-1 mb-3"><i class="icon-arrow-down-circle"></i> Down</p>
+        <small class="text-muted">Last down 22 days ago</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="mb-3">SERVER STATUS - <span class="text-info">Region 4</span></h6>
+        <p class="text-20 text-danger line-height-1 mb-3"><i class="icon-arrow-down-circle"></i> Down</p>
+        <small class="text-muted">Last down 2 days ago</small>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="mb-0">Taffic in last 24h</h6>
+        <p class="text-22 text-success font-weight-light mb-1">13000</p>
+        <div echarts [options]="chartLine1" [autoResize]="true" style="height: 65px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="mb-0">Taffic in last week</h6>
+        <p class="text-22 text-danger font-weight-light mb-1">65058</p>
+        <div echarts [options]="chartLine2" [autoResize]="true" style="height: 65px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="m-0 text-muted">Taffic in last month</h6>
+        <p class="text-22 font-weight-light mb-1">165058</p>
+        <div echarts [options]="chartLine3" [autoResize]="true" style="height: 65px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="m-0 text-muted">Taffic in last 3 months</h6>
+        <p class="text-22 font-weight-light mb-1">1065058</p>
+        <div echarts [options]="chartLine4" [autoResize]="true" style="height: 65px;"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="mb-2 text-muted">Storage Usage</h6>
+        <p class="mb-1 text-22 font-weight-light">50%</p>
+        <p class="mb-1">
+          <ngb-progressbar type="success" [value]="50" height="4px"></ngb-progressbar>
+        </p>
+        <small class="text-muted">Most data used in last 3 days</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="mb-2 text-muted">Bandwith Usage</h6>
+        <p class="mb-1 text-22 font-weight-light">90%</p>
+        <p class="mb-1">
+          <ngb-progressbar type="danger" [value]="90" height="4px"></ngb-progressbar>
+        </p>
+        <small class="text-muted">Most data used in last 7 days</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="mb-2 text-muted">Data Usage</h6>
+        <p class="mb-1 text-22 font-weight-light">60%</p>
+        <p class="mb-1">
+          <ngb-progressbar type="warning" [value]="60" height="4px"></ngb-progressbar>
+        </p>
+        <small class="text-muted">Most data used in last 5 days</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="mb-2 text-muted">Data Usage</h6>
+        <p class="mb-1 text-22 font-weight-light">60%</p>
+        <p class="mb-1">
+          <ngb-progressbar type="info" [value]="60" height="4px"></ngb-progressbar>
+        </p>
+        <small class="text-muted">Most data used in last 4 days</small>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-3 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="mb-0 text-muted">Registration/Subscription</h6>
+        <p class="text-22 font-weight-light mb-1">20/80</p>
+        <div echarts [options]="chartPie1" [autoResize]="true" style="height: 140px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="mb-0 text-muted">Project Running/Completed</h6>
+        <p class="text-22 font-weight-light mb-1">40/60</p>
+        <div echarts [options]="chartPie2" [autoResize]="true" style="height: 140px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="mb-0 text-muted">Registration/Subscription</h6>
+        <p class="text-22 font-weight-light mb-1">20/80</p>
+        <div echarts [options]="chartPie1" [autoResize]="true" style="height: 140px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="mb-0 text-muted">Project Running/Completed</h6>
+        <p class="text-22 font-weight-light mb-1">40/60</p>
+        <div echarts [options]="chartPie2" [autoResize]="true" style="height: 140px;"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-14 bg-red o-hidden mb-4">
+
+      <div class="card-header justify-content-between">
+        <div class="info">
+          <p class="title text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$212,088</p>
+          <p class="subtitle text-14 font-family-1 font-weight-500 mt-0 mb-0">TOTAL SALES</p>
+        </div>
+
+        <div class="action">
+          <i class="icon-anchor text-30 text-white"></i>
+        </div>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="content mt-1">
+
+          <div echarts [options]="chartLineOptionD5" [autoResize]="true" style="height: 150px;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-14 bg-blue o-hidden mb-4">
+
+      <div class="card-header justify-content-between">
+        <div class="info">
+          <p class="title text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$72,088</p>
+          <p class="subtitle text-14 font-family-1 font-weight-500 mt-0 mb-0">TOTAL COST</p>
+        </div>
+
+        <div class="action">
+          <i class="icon-adjust text-30 text-white"></i>
+        </div>
+
+      </div>
+
+      <div class="card-body text-left">
+
+        <div class="content mt-1">
+
+
+
+          <div echarts [options]="chartLineOptionD6" [autoResize]="true" style="height: 150px;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-14 bg-purple o-hidden mb-4">
+
+      <div class="card-header justify-content-between">
+        <div class="info">
+          <p class="title text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$22,088</p>
+          <p class="subtitle text-16 font-family-1 font-weight-500 mt-0 mb-0">TOTAL TAX</p>
+        </div>
+
+        <div class="action">
+          <i class="icon-chart-pie text-30 text-white"></i>
+        </div>
+
+      </div>
+
+      <div class="card-body text-left">
+
+        <div class="content mt-1">
+
+
+
+          <div echarts [options]="chartLineOptionD7" [autoResize]="true" style="height: 150px;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-14 bg-green o-hidden mb-4">
+
+      <div class="card-header justify-content-between">
+        <div class="info">
+          <p class="title text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$28,088</p>
+          <p class="subtitle text-16 font-family-1 font-weight-500 mt-0 mb-0">TOTAL EARNINGS</p>
+        </div>
+
+        <div class="action">
+          <i class="icon-currency-dollar text-30 text-white"></i>
+        </div>
+
+      </div>
+
+      <div class="card-body text-left">
+
+        <div class="content mt-1">
+
+          <div echarts [options]="chartLineOptionD8" [autoResize]="true" style="height: 150px;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-15 o-hidden mb-4">
+
+      <div class="card-header justify-content-start">
+
+        <div class="info-icon mr-1">
+          <a href="">
+            <img src="http://www.insightintodiversity.com/wp-content/uploads/2016/01/apple_topic.png?w=1400" class="rounded-circle"
+              width="32" height="32" alt="">
+          </a>
+        </div>
+
+        <div class="info flex-fill">
+
+          <p class="title text-20 text-gray font-family-1 font-weight-400 mt-0 mb-2">Apple Inc.</p>
+          <p class="title text-12 font-family-1 font-weight-500 mt-0 mb-0">NASDAQ: AAPL</p>
+        </div>
+
+        <div class="action text-right">
+          <p class="subtitle text-20 font-family-1 font-weight-400 mt-0 mb-0 line-height-1">$148.26 <span class="text-15"></span></p>
+          <p class="title text-12 text-success font-family-1 font-weight-500 mt-0 mb-0">4.27%<i class="icon-arrow-up1 ml-0"></i></p>
+
+        </div>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="content mt-1">
+
+          <div echarts [options]="chartStockOption1" [autoResize]="true" style="height: 100px;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-15 o-hidden mb-4">
+
+      <div class="card-header justify-content-start">
+
+        <div class="info-icon mr-1">
+          <a href="">
+            <img src="https://xebialabs.com/assets/files/logos/gtest%20logo.png" class="rounded-circle" width="32"
+              height="32" alt="">
+          </a>
+        </div>
+
+        <div class="info flex-fill">
+
+          <p class="title text-20 text-gray font-family-1 font-weight-400 mt-0 mb-2">Alphabet Inc.</p>
+          <p class="title text-12 font-family-1 font-weight-500 mt-0 mb-0">NASDAQ: GOOGL</p>
+
+        </div>
+
+        <div class="action text-right">
+          <p class="subtitle text-20 font-family-1 font-weight-400 mt-0 mb-0 line-height-1">$1,078.07 <span class="text-15"></span></p>
+          <p class="title text-12 text-success font-family-1 font-weight-500 mt-0 mb-0">5.13%<i class="icon-arrow-up1 ml-0"></i></p>
+
+        </div>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="content mt-1">
+
+          <div echarts [options]="chartStockOption2" [autoResize]="true" style="height: 100px;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-15 o-hidden mb-4">
+
+      <div class="card-header justify-content-start">
+
+        <div class="info-icon mr-1">
+          <a href="">
+            <img src="src/assets/images/brands/facebook.png" class="rounded-circle" width="32" height="32" alt="">
+          </a>
+        </div>
+
+        <div class="info flex-fill">
+
+          <p class="title text-20 text-gray font-family-1 font-weight-400 mt-0 mb-2">Facebook Inc.</p>
+          <p class="title text-12 font-family-1 font-weight-500 mt-0 mb-0">NASDAQ: FB</p>
+
+        </div>
+
+        <div class="action text-right">
+          <p class="subtitle text-20 font-family-1 font-weight-400 mt-0 mb-0 line-height-1">$137.95 <span class="text-15"></span></p>
+          <p class="title text-12 text-success font-family-1 font-weight-500 mt-0 mb-0">4.71%<i class="icon-arrow-up1 ml-0"></i></p>
+
+        </div>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="content mt-1">
+
+          <div echarts [options]="chartStockOption3" [autoResize]="true" style="height: 100px;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+
+    <div class="card bm-card-15 o-hidden mb-4">
+
+      <div class="card-header justify-content-start">
+
+        <div class="info-icon mr-1">
+          <a href="">
+            <img src="https://merivisfoundation.org/wp-content/uploads/2018/02/Amazon-Logo-Transparent-PNG.png" class="rounded-circle"
+              width="32" height="32" alt="">
+          </a>
+        </div>
+
+        <div class="info flex-fill">
+
+          <p class="title text-20 text-gray font-family-1 font-weight-400 mt-0 mb-2">Amazon Inc.</p>
+          <p class="title text-12 font-family-1 font-weight-500 mt-0 mb-0">NASDAQ: AMZN</p>
+
+        </div>
+
+        <div class="action text-right">
+          <p class="subtitle text-20 font-family-1 font-weight-400 mt-0 mb-0 line-height-1">$1,575.39 <span class="text-15"></span></p>
+          <p class="title text-12 text-success font-family-1 font-weight-500 mt-0 mb-0">5.01%<i class="icon-arrow-up1 ml-0"></i></p>
+
+        </div>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="content mt-1">
+
+          <div echarts [options]="chartStockOption4" [autoResize]="true" style="height: 100px;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="mb-2 text-muted">Project Completion Rate</h6>
+        <p class="text-22 font-weight-light mb-1"><i class="i-Up text-success"></i> 15%</p>
+        <div echarts [options]="chartBar1" [autoResize]="true" style="height: 60px;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h6 class="mb-2 text-muted">Project Completion Rate</h6>
+        <p class="text-22 font-weight-light mb-1"><i class="i-Down text-danger"></i> 15%</p>
+        <div echarts [options]="chartBar1" [autoResize]="true" style="height: 60px;"></div>
+      </div>
+    </div>
+  </div>
+</div>

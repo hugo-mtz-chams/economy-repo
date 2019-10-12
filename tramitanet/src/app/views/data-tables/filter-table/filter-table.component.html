@@ -1,0 +1,67 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#" class="link-primary font-weight-500"><i class="icon-home mr-1"></i> Data Tables</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Filter</li>
+    <span class="spacer"></span>
+    <li class="breadcrumb-item no-driver">
+      <a href="" class="text-muted link-primary">
+        <i class="icon-bubbles"></i> Support</a>
+    </li>
+    <li class="breadcrumb-item">
+
+      <a href="#" class="dropdown-toggle text-muted link-primary" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false"><i class="icon-cog"></i> Settings</a>
+
+      <div class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href=""><i class="icon-key"></i> Account Sicurity</a>
+        <a class="dropdown-item" href=""><i class="icon-stats-dots"></i> Analytics</a>
+        <a class="dropdown-item" href=""><i class="icon-accessibility"></i> Accessibility</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href=""><i class="icon-cog"></i> All settings</a>
+      </div>
+
+    </li>
+  </ol>
+
+</nav>
+
+<div class="separator-breadcrumb border-top"></div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <input id="email" placeholder="Search Products" [formControl]="searchControl" class="form-control" type="email">
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="card  o-hidden">
+      <ngx-datatable style="height: 500px; box-shadow: none" class="material fullscreen" [columnMode]="'force'"
+        [headerHeight]="50" [footerHeight]="50" [rowHeight]="60" [scrollbarV]="true" [rows]="filteredProducts">
+        <ngx-datatable-column name="photo" [maxWidth]="120">
+          <ng-template ngx-datatable-header-template>
+            Thumbnail
+          </ng-template>
+          <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+            <img height="32px" width="32px" style="border-radius: 4px" [src]="value" alt="">
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="name" [width]="300">
+          <ng-template ngx-datatable-header-template>
+            Title
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="category">
+          <ng-template ngx-datatable-header-template>
+            Category
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="subtitle">
+          <ng-template ngx-datatable-header-template>
+            Description
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+</div>

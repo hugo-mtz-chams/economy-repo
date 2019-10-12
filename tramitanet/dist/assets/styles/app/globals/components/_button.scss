@@ -1,0 +1,287 @@
+html [type="button"],
+.btn[type="button"] {
+    -webkit-appearance: none !important;
+}
+.btn {
+    height: 36px;
+    padding: 0.43rem 0.875rem;
+    border-radius: 0px;
+    font-size: 0.845rem !important;
+    font-weight: 500 !important;
+    line-height: 0.9rem !important;
+}
+
+.btn i {
+    top: 0;
+    font-size: 16px;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+
+.btn.btn-icon i {
+    margin-right: 0;
+}
+
+.btn-round {
+    border-radius: 99px !important;
+}
+
+.btn-label-left {
+    position: relative;
+    padding-left: 3.125rem;
+
+    b {
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        background-color: rgba(0, 0, 0, 0.15);
+        display: block;
+        line-height: 1;
+        padding: 0.5rem;
+
+        i {
+            top: 0;
+            font-size: 20px;
+            vertical-align: middle;
+            margin-right: 0;
+        }
+    }
+
+}
+
+.btn-label-right {
+    position: relative;
+    padding-right: 3.125rem;
+
+    b {
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        background-color: rgba(0, 0, 0, 0.15);
+        display: block;
+        line-height: 1;
+        padding: 0.5rem;
+
+        i {
+            top: 0;
+            font-size: 20px;
+            vertical-align: middle;
+            margin-right: 0;
+        }
+    }
+
+}
+
+.btn-label-left.btn-round,
+.btn-label-right.btn-round {
+    b {
+        border-radius: 99px;
+    }
+}
+
+.btn-link {
+    color: #2d9eff;
+    font-weight: 400;
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover, &:focus {
+        text-decoration: none;
+        color: $primary;
+    }
+}
+
+.btn-float {
+    height: auto !important;
+    padding: 0.75rem !important;
+}
+
+.btn-float i {
+    display: block !important;
+    margin-right: 0;
+}
+
+.btn-group .btn {
+    padding: 0.6rem 1rem !important;
+}
+
+.btn-group-small .btn {
+    font-size: 0.8rem !important;
+    padding: 0.45rem 0.6rem !important;
+    height: 30px;
+}
+
+.btn-default {
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    color: #333;
+    border-radius: 1px;
+}
+
+.btn-primary {
+    color: $white;
+    background-color: $primary;
+    border-color: $primary;
+}
+
+.btn-secondary {
+    color: $foreground;
+    background-color: $gray-200;
+}
+
+.btn-icon {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    [class^="i-"],
+    .icon {
+        vertical-align: middle;
+        margin: 0 2px;
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+}
+
+.btn-icon.bg-primary {
+    color: #ffffff !important;
+}
+.btn-icon-text {
+    [class^="i-"],
+    .icon {
+        vertical-align: middle;
+        margin: 0 2px;
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+}
+
+.btn-facebook {
+    background: $facebook;
+    border-color: $facebook;
+    &:hover {
+        background: darken($facebook, 5%);
+        border-color: darken($facebook, 5%);
+    }
+    &:focus {
+        box-shadow: 0 0 0 0.2rem rgba($facebook, 0.5);
+    }
+}
+.btn-facebook {
+    background: $google;
+    border-color: $google;
+    &:hover {
+        background: darken($google, 5%);
+        border-color: darken($google, 5%);
+    }
+    &:focus {
+        box-shadow: 0 0 0 0.2rem rgba($google, 0.5);
+    }
+}
+.btn-twitter {
+    background: $twitter;
+    border-color: $twitter;
+    &:hover {
+        background: darken($twitter, 5%);
+        border-color: darken($twitter, 5%);
+    }
+    &:focus {
+        box-shadow: 0 0 0 0.2rem rgba($twitter, 0.5);
+    }
+}
+
+.btn-outline-facebook {
+    color: $facebook;
+    border-color: $facebook;
+    background: rgba($gray-200, 0.6);
+    &:hover {
+        background: darken($facebook, 5%);
+        border-color: darken($facebook, 5%);
+    }
+    &:focus {
+        box-shadow: 0 0 0 0.2rem rgba($facebook, 0.5);
+    }
+}
+.btn-outline-google {
+    color: $google;
+    border-color: $google;
+    background: rgba($gray-200, 0.6);
+    &:hover {
+        background: darken($google, 5%);
+        border-color: darken($google, 5%);
+    }
+    &:focus {
+        box-shadow: 0 0 0 0.2rem rgba($google, 0.5);
+    }
+}
+.btn-outline-twitter {
+    color: $twitter;
+    border-color: $twitter;
+    background: rgba($gray-200, 0.6);
+    &:hover {
+        background: darken($twitter, 5%);
+        border-color: darken($twitter, 5%);
+    }
+    &:focus {
+        box-shadow: 0 0 0 0.2rem rgba($twitter, 0.5);
+    }
+}
+
+.btn-outline-email {
+    background: rgba($gray-200, 0.6);
+}
+
+.btn-spinner {
+    width: 1em;
+    height: 1em;
+    background: transparent;
+    border-radius: 50%;
+    margin: 0 16px 0 0;
+    border: 2px solid transparent;
+}
+.btn-checkbox {
+    .checkbox {
+        display: inline;
+    }
+}
+.btn.bg-transparent.active {
+    background: $gray-200 !important;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus,
+.btn-outline-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0rem rgba(1, 104, 193, 0.5) !important;
+}
+
+@each $name, $value in $theme-colors {
+    .btn-#{$name} {
+        .btn-spinner {
+            animation: btn-glow-#{$name} 1s ease infinite;
+        }
+    }
+    @keyframes btn-glow-#{$name} {
+        0% {
+            box-shadow: 0 0 0 0.4em darken($value, 10%),
+                0 0 0 0.1em darken($value, 10%);
+            transform: rotate(360deg);
+        }
+        50% {
+            border-top-color: #ffffff;
+        }
+        100% {
+            box-shadow: 0 0 0 0.4em darken($value, 10%), 0 0 0 3.6em transparent;
+        }
+    }
+}
+
+// Bootstrap Override Classes
+
+.dropdown-toggle::after {
+    content: "\e92e";
+    margin-left: 0px;
+    vertical-align: -1.9px;
+    line-height: 1;
+    font-family: blumingo;
+    border: 0;
+    font-size: inherit;
+}
+
+

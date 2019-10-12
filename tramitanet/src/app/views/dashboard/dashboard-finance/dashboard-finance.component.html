@@ -1,0 +1,410 @@
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="#" class="link-primary font-weight-500"><i class="icon-home"></i> Home</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Finance</li>
+		<span class="spacer"></span>
+		<li class="breadcrumb-item no-driver">
+			<a href="" class="text-muted link-primary">
+				<i class="icon-bubbles"></i> Support</a>
+		</li>
+		<li class="breadcrumb-item">
+
+			<a href="#" class="dropdown-toggle text-muted link-primary" data-toggle="dropdown" aria-haspopup="true"
+			 aria-expanded="false"><i class="icon-cog"></i> Settings</a>
+
+			<div class="dropdown-menu dropdown-menu-right">
+				<a class="dropdown-item" href=""><i class="icon-key"></i> Account Sicurity</a>
+				<a class="dropdown-item" href=""><i class="icon-stats-dots"></i> Analytics</a>
+				<a class="dropdown-item" href=""><i class="icon-accessibility"></i> Accessibility</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href=""><i class="icon-cog"></i> All settings</a>
+			</div>
+
+		</li>
+	</ol>
+
+</nav>
+
+<div class="separator-breadcrumb border-top mb-5"></div>
+
+<div class="row">
+
+	<div class="col-lg-3 col-md-6 col-sm-6">
+
+		<div class="card bm-card-14 bg-red o-hidden mb-4">
+
+			<div class="card-header justify-content-between">
+				<div class="info">
+					<p class="title text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$212,088</p>
+					<p class="subtitle text-14 font-family-1 font-weight-500 mt-0 mb-0">TOTAL SALES</p>
+				</div>
+
+				<div class="action">
+					<i class="icon-anchor text-30 text-white"></i>
+				</div>
+
+			</div>
+
+			<div class="card-body">
+
+				<div class="content mt-1">
+
+					<div echarts [options]="chartLineOptionD1" [autoResize]="true" style="height: 150px;"></div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="col-lg-3 col-md-6 col-sm-6">
+
+		<div class="card bm-card-14 bg-blue o-hidden mb-4">
+
+			<div class="card-header justify-content-between">
+				<div class="info">
+					<p class="title text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$72,088</p>
+					<p class="subtitle text-14 font-family-1 font-weight-500 mt-0 mb-0">TOTAL COST</p>
+				</div>
+
+				<div class="action">
+					<i class="icon-adjust text-30 text-white"></i>
+				</div>
+
+			</div>
+
+			<div class="card-body text-left">
+
+				<div class="content mt-1">
+
+
+
+					<div echarts [options]="chartLineOptionD2" [autoResize]="true" style="height: 150px;"></div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="col-lg-3 col-md-6 col-sm-6">
+
+		<div class="card bm-card-14 bg-purple o-hidden mb-4">
+
+			<div class="card-header justify-content-between">
+				<div class="info">
+					<p class="title text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$22,088</p>
+					<p class="subtitle text-16 font-family-1 font-weight-500 mt-0 mb-0">TOTAL TAX</p>
+				</div>
+
+				<div class="action">
+					<i class="icon-chart-pie text-30 text-white"></i>
+				</div>
+
+			</div>
+
+			<div class="card-body text-left">
+
+				<div class="content mt-1">
+
+
+
+					<div echarts [options]="chartLineOptionD3" [autoResize]="true" style="height: 150px;"></div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="col-lg-3 col-md-6 col-sm-6">
+
+		<div class="card bm-card-14 bg-green o-hidden mb-4">
+
+			<div class="card-header justify-content-between">
+				<div class="info">
+					<p class="title text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$28,088</p>
+					<p class="subtitle text-16 font-family-1 font-weight-500 mt-0 mb-0">TOTAL EARNINGS</p>
+				</div>
+
+				<div class="action">
+					<i class="icon-currency-dollar text-30 text-white"></i>
+				</div>
+
+			</div>
+
+			<div class="card-body text-left">
+
+				<div class="content mt-1">
+
+					<div echarts [options]="chartLineOptionD4" [autoResize]="true" style="height: 150px;"></div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="row">
+
+	<div class="col-md-8 col-md-12 col-sm-12">
+
+		<div class="card eg-card-1 o-hidden mb-4">
+
+			<div class="card-header mb-3 row">
+
+				<div class="info col-md-9 col-sm-12">
+					<p class="title text-gray text-16 font-family-1 font-weight-500 mt-0 mb-1">SALES ANALYSIS</p>
+					<p class="subtitle text-13 font-family-1 font-weight-400 mb-0">Audience to which the users belonged while on the
+						current date range</p>
+				</div>
+
+				<div class="action col-md-3 col-sm-12">
+					<div class="btn-group btn-group-small btn-group-toggle" data-toggle="buttons">
+						<label class="btn btn-outline-primary">
+							<input type="radio" name="options" id="option1" autocomplete="off" checked> Day
+						</label>
+						<label class="btn btn-outline-primary">
+							<input type="radio" name="options" id="option2" autocomplete="off"> Week
+						</label>
+						<label class="btn btn-outline-primary active">
+							<input type="radio" name="options" id="option3" autocomplete="off"> Month
+						</label>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="card-body pt-1">
+				<div class="content">
+
+					<div class="info-box text-wrap mr-5 mb-4">
+						<p class="title text-14 font-family-1 font-weight-500 line-height-1 mt-0 mb-1">
+							<i class="icon-disc text-orange"></i>
+							SALES</p>
+					</div>
+
+					<div class="info-box text-wrap mr-5 mb-4">
+						<p class="title text-14 font-family-1 font-weight-500 line-height-1 mt-0 mb-1">
+							<i class="icon-disc text-success"></i>
+							VISITS</p>
+					</div>
+
+					<div class="info-box text-wrap mr-5 mb-4">
+						<p class="title text-14 font-family-1 font-weight-500 line-height-1 mt-0 mb-1">
+							<i class="icon-disc text-primary"></i>
+							CLICKS</p>
+					</div>
+
+
+					<div echarts [options]="chartCampaignMatrics" [autoResize]="true" style="height: 300px;"></div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="col-md-4 col-md-12 col-sm-12">
+
+		<div class="card eg-card-1 o-hidden mb-4">
+
+			<div class="card-header justify-content-between mb-2">
+
+				<div class="info">
+					<p class="title text-gray text-16 font-family-1 font-weight-500 line-height-1 mt-0 mb-1">DISCOVER PEOPLE</p>
+					<p class="subtitle text-13 font-family-1 font-weight-400 line-height-1 mb-0">Audience to which the users
+						belonged
+						while on the current date range</p>
+				</div>
+
+				<div class="action">
+
+				</div>
+
+			</div>
+
+			<div class="card-body">
+
+				<div class="d-flex align-items-center border-bottom-dotted-dim pb-1 mb-2">
+					<img class="avatar-md mr-3" src="./assets/images/faces/2.jpg" alt="">
+					<div class="flex-grow-1">
+						<h5 class="m-0 font-weight-400 text-muted">David Hopkins</h5>
+						<p class="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+					<div>
+						<button class="btn btn-outline-primary btn-sm">Follow</button>
+					</div>
+				</div>
+
+				<div class="d-flex align-items-center border-bottom-dotted-dim pb-1 mb-2">
+					<img class="avatar-md mr-3" src="./assets/images/faces/3.jpg" alt="">
+					<div class="flex-grow-1">
+						<h5 class="m-0 font-weight-400 text-muted">James Mitchell</h5>
+						<p class="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+					<div>
+						<button class="btn btn-outline-primary btn-sm">Follow</button>
+					</div>
+				</div>
+
+				<div class="d-flex align-items-center border-bottom-dotted-dim pb-1 mb-2">
+					<img class="avatar-md mr-3" src="./assets/images/faces/4.jpg" alt="">
+					<div class="flex-grow-1">
+						<h5 class="m-0 font-weight-400 text-muted">Jessica Mitchell</h5>
+						<p class="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+					<div>
+						<button class="btn btn-outline-primary btn-sm">Follow</button>
+					</div>
+				</div>
+
+				<div class="d-flex align-items-center border-bottom-dotted-dim pb-1 mb-2">
+					<img class="avatar-md mr-3" src="./assets/images/faces/4.jpg" alt="">
+					<div class="flex-grow-1">
+						<h5 class="m-0 font-weight-400 text-muted">Jessica Mitchell</h5>
+						<p class="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+					<div>
+						<button class="btn btn-outline-primary btn-sm">Follow</button>
+					</div>
+				</div>
+
+				<div class="d-flex align-items-center border-bottom-dotted-dim pb-1 mb-2">
+					<img class="avatar-md mr-3" src="./assets/images/faces/5.jpg" alt="">
+					<div class="flex-grow-1">
+						<h5 class="m-0 font-weight-400 text-muted">Jessica Mitchell</h5>
+						<p class="m-0 text-small text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+					</div>
+					<div>
+						<button class="btn btn-outline-primary btn-sm">Follow</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="row">
+
+	<div class="col-lg-12 col-md-12 col-sm-12">
+
+		<div class="card eg-card-7 o-hidden mb-4">
+
+			<div class="card-header justify-content-between mb-2">
+
+				<div class="info">
+					<p class="title text-gray text-16 font-family-1 font-weight-500 line-height-1 mt-0 mb-1">FINANCIAL MANAGEMENT
+						REVIEW</p>
+					<p class="subtitle text-13 font-family-1 font-weight-400 line-height-1 mb-2">Audience to which the users
+						belonged
+						while on the current date range</p>
+				</div>
+
+				<div class="action"></div>
+
+			</div>
+
+			<div class="card-body text-left pt-2">
+
+				<div class="content">
+
+					<div class="data-table-2 table-responsive">
+
+						<table class="table table-striped">
+
+							<thead>
+								<tr>
+									<th colspan="5" class="border-right border-top">Quarter To Date (QTD)</th>
+									<th colspan="2" class="border-top">Year To Date (YTD)</th>
+								</tr>
+								<tr>
+									<th class="border-right">&nbsp;</th>
+									<th class="text-right">Actual</th>
+									<th class="text-right">Forecast</th>
+									<th class="text-right">Variance</th>
+									<th class="text-right border-right">% Variance</th>
+									<th class="text-right">Actual</th>
+									<th class="text-right">Forecast</th>
+								</tr>
+							</thead>
+							<tbody class="text-right">
+								<tr>
+									<td class="text-left border-right">Office &amp; Supplies</td>
+									<td>232,243</td>
+									<td>399,768</td>
+									<td>40,234</td>
+									<td class="border-right">5.1%</td>
+									<td>2,983,098</td>
+									<td>2,092,243</td>
+								</tr>
+								<tr>
+									<td class="text-left border-right">Salaries &amp; Benefits</td>
+									<td>2,232,877</td>
+									<td>3,099,565</td>
+									<td>400,020</td>
+									<td class="border-right">6.8%</td>
+									<td>28,983,091</td>
+									<td>29,092,765</td>
+								</tr>
+								<tr>
+									<td class="text-left border-right">Professional Services</td>
+									<td>32,435</td>
+									<td>99,789</td>
+									<td>20,020</td>
+									<td class="border-right">16.9%</td>
+									<td>183,566</td>
+									<td>292,897</td>
+								</tr>
+								<tr>
+									<td class="text-left border-right">Human Resources</td>
+									<td>76,877</td>
+									<td>98,565</td>
+									<td>123,020</td>
+									<td class="border-right">15.0%</td>
+									<td>101,675</td>
+									<td>122,232</td>
+								</tr>
+								<tr>
+									<td class="text-left border-right">Travel &amp; Entertainment</td>
+									<td>2,232</td>
+									<td>3,099</td>
+									<td>400</td>
+									<td class="border-right">1.2%</td>
+									<td>13,091</td>
+									<td>14,765</td>
+								</tr>
+								<tr>
+									<td class="text-left font-weight-600 border-right">Grand Total</td>
+									<td class="font-weight-600">3,433,232</td>
+									<td class="font-weight-600">4,768,099</td>
+									<td class="font-weight-600">999,400</td>
+									<td class="font-weight-600 border-right">88.2%</td>
+									<td class="font-weight-600">30,643,091</td>
+									<td class="font-weight-600">31,644,765</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

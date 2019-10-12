@@ -1,0 +1,57 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/forms/basic" class="link-primary font-weight-500"><i class="icon-edit-pencil mr-1"></i> Forms</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Tag Input</li>
+      <span class="spacer"></span>
+      <li class="breadcrumb-item no-driver">
+        <a href="" class="text-muted link-primary">
+          <i class="icon-bubbles"></i> Support</a>
+      </li>
+      <li class="breadcrumb-item">
+
+        <a href="#" class="dropdown-toggle text-muted link-primary" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false"><i class="icon-cog"></i> Settings</a>
+
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" href=""><i class="icon-key"></i> Account Sicurity</a>
+          <a class="dropdown-item" href=""><i class="icon-stats-dots"></i> Analytics</a>
+          <a class="dropdown-item" href=""><i class="icon-accessibility"></i> Accessibility</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href=""><i class="icon-cog"></i> All settings</a>
+        </div>
+
+      </li>
+    </ol>
+
+
+  </nav>
+
+<div class="separator-breadcrumb border-top"></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="card-title">Tag inputs</div>
+        <tag-input [formControl]="tagsCtrl1"
+          (onSelect)="onSelect($event)"
+          [modelAsStrings]="true" theme='primary'>
+        </tag-input>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="card-title">Autocomplete</div>
+        <tag-input [formControl]="tagsCtrl2"
+          (onSelect)="onSelect($event)"
+          theme='primary' placeholder="Type Country name">
+          <tag-input-dropdown [focusFirstElement]="true" [autocompleteItems]="autocompletes$ | async">
+          </tag-input-dropdown>
+        </tag-input>
+      </div>
+    </div>
+  </div>
+</div>
