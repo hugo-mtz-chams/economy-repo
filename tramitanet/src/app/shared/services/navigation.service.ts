@@ -58,6 +58,15 @@ export class NavigationService {
       ]
     },
     {
+      name: 'Application',
+      type: 'dropDown',
+      icon: 'icon-box',
+      sub: [
+        { icon: 'icon-book-open', name: 'Capturar proforma', state: '/proforma', type: 'link' },
+        { icon: 'icon-pie-chart1', name: 'Resumen de Trámites', state: '/proforma', type: 'link' },
+      ]
+    },
+    {
       name: 'UI kits',
       type: 'dropDown',
       icon: 'icon-layers1',

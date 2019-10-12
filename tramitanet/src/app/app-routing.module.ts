@@ -71,6 +71,10 @@ const routes: Routes = [
       {
         path: 'tables',
         loadChildren: './views/data-tables/data-tables.module#DataTablesModule'
+      },
+      {
+        path: 'proforma',
+        loadChildren: './views/proforma/proforma.module#ProformaModule'
       }
     ]
   },

@@ -15,7 +15,7 @@ import * as $ from 'jquery';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
