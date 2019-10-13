@@ -75,6 +75,10 @@ const routes: Routes = [
       {
         path: 'proforma',
         loadChildren: './views/proforma/proforma.module#ProformaModule'
+      },
+      {
+        path: 'resumen-tramite',
+        loadChildren: './views/resumen-tramite/resumen-tramite.module#ResumenTramiteModule'
       }
     ]
   },
