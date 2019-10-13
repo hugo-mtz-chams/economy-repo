@@ -3,6 +3,7 @@ import { SharedAnimations } from 'src/app/shared/animations/shared-animations';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signin',
@@ -16,23 +17,30 @@ export class SigninComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     this.signinForm = this.fb.group({
-      email: ['test@example.com', Validators.required],
-      password: ['1234', Validators.required]
-    })
+      email: ['cliente', Validators.required],
+      password: ['cl13nt3', Validators.required]
+    });
   }
 
   signin() {
     this.loading = true;
 
     setTimeout(() => {
-      this.auth.signin();
-      this.router.navigateByUrl('/dashboard/v1');
+      if ( this.auth.signin(this.signinForm) ) {
+        this.toastr.success('Acceso correcto', 'Bienvenido', {progressBar: true});
+        this.router.navigateByUrl('/dashboard/v1');
+      } else {
+        this.toastr.error('Por favor verifica tu usuario y contraseña', 'Acceso denegado!', {progressBar: true});
+      }
+
       this.loading = false;
+
     }, 1500);
 
   }
