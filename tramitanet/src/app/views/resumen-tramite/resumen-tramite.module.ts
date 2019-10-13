@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomFormsModule } from 'ng2-validation';
 import {ResumenTramiteCreateComponent} from './resumen-tramite-create/resumen-tramite-create.component';
 import {ResumenTramiteRoutingModule} from './resumen-tramite-routing.module';
+import {SharedComponentsModule} from '../../shared/components/shared-components.module';
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {ResumenTramiteRoutingModule} from './resumen-tramite-routing.module';
         ReactiveFormsModule,
         CustomFormsModule,
         NgbModule,
-        ResumenTramiteRoutingModule
+        ResumenTramiteRoutingModule,
+        SharedComponentsModule
     ],
     declarations: [ResumenTramiteCreateComponent]
 })
