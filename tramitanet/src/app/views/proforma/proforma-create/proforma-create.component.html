@@ -23,253 +23,363 @@
       </li>
     </ol>
 </nav>
-<form [formGroup]="form" >
-  <div class="row mb-4">
-    <div class="col-md-2">
-      <input type="text" class="form-control" formControlName="numProforma" placeholder="Número de proforma">  
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.numProforma.errors?.required">
-        <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-      </p>
-    </div>
-    <div class="col-md-2">
-      <input type="text" class="form-control" formControlName="numReferencia" placeholder="Número de referencia">  
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.numReferencia.errors?.required">
-          <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-      </p>
-    </div>
-    <div class="col-md-2">
-      <div class="input-group">
-        <input id="picker1" class="form-control" formControlName="fechaIngreso" placeholder="Fecha ingreso" name="dp" ngbDatepicker #dp="ngbDatepicker">
-        <div class="input-group-append">
-          <button class="btn btn-secondary" (click)="dp.toggle()" type="button">
-            <i class="icon-calendar2 mr-0"></i>
-          </button>
-        </div>
-      </div>
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.fechaIngreso.errors?.required">
-        <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-      </p>  
-    </div>
-    <div class="col-md-3">
-      <input type="textarea" class="form-control" formControlName="descripcion" placeholder="Descripción">  
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.descripcion.errors?.required">
-        <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-      </p> 
-    </div>
-    <div class="col-md-3">
-      <input type="text" class="form-control" formControlName="numModelo" placeholder="Número de modelo">  
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.numModelo.errors?.required">
-        <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-      </p> 
-    </div>
-  </div>
 
-  <div class="row mb-4">
-    <div class="col-md-2">
-        <select class="form-control" aria-placeholder="Aduana" formControlName="aduana">
-            <option>Marítima</option>
-            <option>Otras</option>
-          </select>
-          <p class="form-alert alert-danger m-1" *ngIf="form.controls.aduana.errors?.required">
-              <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-            </p> 
-    </div>
-    <div class="col-md-2">
-      <input type="text" class="form-control" formControlName="fraccion" placeholder="Fracción"> 
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.fraccion.errors?.required">
-        <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-      </p>  
-    </div>
-    <div class="col-md-2">
-      <input type="text" class="form-control" formControlName="numFactura" placeholder="Número de factura">  
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.numFactura.errors?.required">
-        <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-      </p> 
-    </div>
-    <div class="col-md-2">
-      <div class="input-group">
-        <input id="fechaFactura" class="form-control" formControlName="fechaFactura" placeholder="Fecha factura" name="ff" ngbDatepicker #ff="ngbDatepicker">
-        <div class="input-group-append">
-          <button class="btn btn-secondary" (click)="ff.toggle()" type="button">
-            <i class="icon-calendar2 mr-0"></i>
-          </button>
-        </div>
-      </div>
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.fechaFactura.errors?.required">
-        <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-      </p> 
-    </div>
-    
-  </div>
-  <div class="row mb-4">
-    <div class="col-md-2">
-        <select class="form-control" aria-placeholder="UMC" formControlName="umc">
-          <option>PACK</option>
-          <option>SET </option>
-        </select>
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.umc.errors?.required">
-          <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-        </p> 
-    </div>
-    <div class="col-md-2">
-      <input type="text" class="form-control" formControlName="cantidadUMC" placeholder="Cantidad de UMC">  
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.cantidadUMC.errors?.required">
-          <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-        </p> 
-    </div>
-    <div class="col-md-2">
-      <input type="text" class="form-control" formControlName="factorConv" placeholder="Factor conv">  
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.factorConv.errors?.required">
-          <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-        </p> 
-    </div>
-    <div class="col-md-2">
-      <input type="text" class="form-control" formControlName="cantidadUMT" placeholder="Cantidad de UMT">    
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.cantidadUMT.errors?.required">
-          <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-        </p> 
-    </div>
-    <div class="col-md-2">
-      <input type="text" class="form-control" formControlName="valorAntDesc" placeholder="Valor ant. desc.">  
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.valorAntDesc.errors?.required">
-        <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-      </p> 
-    </div>
-    <div class="col-md-2">
-      <input type="text" class="form-control" formControlName="factorDesc" placeholder="Factor desc">
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.factorDesc.errors?.required">
-          <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-        </p>   
-    </div>
-  </div>
+<div class="separator-breadcrumb border-top"></div>
 
-  <div class="row mb-4">
-      <div class="col-md-2">
-          <select class="form-control" formControlName="moneda" >
-              <option>USD</option>
-              <option>MXN </option>
-          </select>
-          <p class="form-alert alert-danger m-1" *ngIf="form.controls.moneda.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p> 
-      </div>
-      <div class="col-md-2">
-        <input type="text" class="form-control" formControlName="valorMercancia" placeholder="Valor mercancía">  
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.valorMercancia.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p> 
-      </div>
-      <div class="col-md-2">
-        <input type="text" class="form-control" formControlName="precioUnitario" placeholder="Precio unitario">  
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.precioUnitario.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p> 
-      </div>
-      <div class="col-md-2">
-        <input type="text" class="form-control" formControlName="paisExportador" placeholder="País exportador">    
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.paisExportador.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p> 
-      </div>
-      <div class="col-md-2">
-        <input type="text" class="form-control" formControlName="paisOrigen" placeholder="País origen">  
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.paisOrigen.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p> 
-      </div>
-      <div class="col-md-2">
-        <input type="text" class="form-control" formControlName="valorTotal" placeholder="Valor total">  
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.valorTotal.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p> 
-      </div>
-    </div>
-
-    <div class="row mb-4">
-      <div class="col-md-2">
-          <input type="text" class="form-control" formControlName="valorPrecioTotal" placeholder="Valor precio total">  
-          <p class="form-alert alert-danger m-1" *ngIf="form.controls.valorPrecioTotal.errors?.required">
-              <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-            </p> 
-      </div>
-      <div class="col-md-2">
-        <input type="text" class="form-control" formControlName="nombreExportador" placeholder="Nombre exportador">  
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.nombreExportador.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p> 
-      </div>
-      <div class="col-md-2">
-        <input type="textarea" class="form-control" formControlName="domicilio" placeholder="Domicilio"> 
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.domicilio.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p>  
-      </div>
-      <div class="col-md-2">
-        <input type="text" class="form-control" formControlName="observaciones" placeholder="Observaciones">    
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.observaciones.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p> 
-      </div>
-      <div class="col-md-2">
-        <input type="text" class="form-control" formControlName="fraccionMala" placeholder="Fracción mala">  
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.fraccionMala.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p> 
-      </div>
-      <div class="col-md-2">
-        <input type="text" class="form-control" formControlName="precioMinimo" placeholder="Precio minimo">  
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.precioMinimo.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p> 
-      </div>
-    </div>
-
-    <div class="row mb-4">
-      <div class="col-md-2">
-          <input type="text" class="form-control" formControlName="faVetada" placeholder="FA Vetada"> 
-          <p class="form-alert alert-danger m-1" *ngIf="form.controls.faVetada.errors?.required">
-              <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-            </p>  
-      </div>
-      <div class="col-md-2">
-        <input type="text" class="form-control" formControlName="precioEstimado" placeholder="Precio estimado">  
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.precioEstimado.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p> 
-      </div>
-      <div class="col-md-2">
-        <input type="textarea" class="form-control" formControlName="preDictamen" placeholder="PRE DICTAMEN">  
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.preDictamen.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p> 
-      </div>
-      <div class="col-md-2">
-        <input type="text" class="form-control" formControlName="numSolicitud" placeholder="Número de solicitud">    
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.numSolicitud.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p> 
-      </div>
-      <div class="col-md-2">
-        <input type="text" class="form-control" formControlName="permiso" placeholder="Permiso">
-        <p class="form-alert alert-danger m-1" *ngIf="form.controls.permiso.errors?.required">
-            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-          </p>   
-      </div>
-      <div class="col-md-2">
-        <div class="input-group">
-          <input id="fechaFactura" class="form-control" formControlName="inicioVigencia" placeholder="Inicio Vigencia" name="iv" ngbDatepicker #iv="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-secondary" (click)="iv.toggle()" type="button">
-              <i class="icon-calendar2 mr-0"></i>
-            </button>
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card eg-card-1 o-hidden mb-4">
+          <div class="card-header justify-content-between mb-3">
+              <div class="info">
+                  <p class="title text-15 font-family-1 font-weight-500 line-height-1 mt-0 mb-1">Captura de Datos de Proforma</p>
+              </div>
           </div>
-        </div>
+          <div class="card-body pt-3">
+              <form [formGroup]="form" >
+                  <div class="row mb-4">
+                    <div class="col-md-2">
+                      <label for="numProforma">Número de proforma</label>
+                      <input type="text" class="form-control" formControlName="numProforma" placeholder="Número de proforma">  
+                      <div *ngIf="form.controls.numProforma.dirty || form.controls.numProforma.touched">
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.numProforma.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <label for="numReferencia">Número de referencia</label>
+                      <input type="text" class="form-control" formControlName="numReferencia" placeholder="Número de referencia">  
+                      <div *ngIf="form.controls.numReferencia.dirty || form.controls.numReferencia.touched">
+                        <p class="form-alert alert-danger m-1" *ngIf="form.controls.numReferencia.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <label for="fechaIngreso">Fecha de Ingreso</label>
+                      <div class="input-group">
+                        <input id="picker1" class="form-control" formControlName="fechaIngreso" placeholder="Fecha ingreso" name="dp" ngbDatepicker #dp="ngbDatepicker">
+                        <div class="input-group-append">
+                          <button class="btn btn-secondary" (click)="dp.toggle()" type="button">
+                            <i class="icon-calendar2 mr-0"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div *ngIf="form.controls.fechaIngreso.dirty || form.controls.fechaIngreso.touched">
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.fechaIngreso.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p>  
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label for="descripcion">Descripción</label>
+                      <input type="textarea" class="form-control" formControlName="descripcion" placeholder="Descripción">  
+                      <div *ngIf="form.controls.descripcion.dirty || form.controls.descripcion.touched">
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.descripcion.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p> 
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label for="numModelo">Número de modelo</label>
+                      <input type="text" class="form-control" formControlName="numModelo" placeholder="Número de modelo">  
+                      <div *ngIf="form.controls.numModelo.dirty || form.controls.numModelo.touched">
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.numModelo.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p> 
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="row mb-4">
+                    <div class="col-md-2">
+                        <label for="aduana">Aduana</label>
+                        <select class="form-control" aria-placeholder="Aduana" formControlName="aduana">
+                            <option>Marítima</option>
+                            <option>Otras</option>
+                          </select>
+                          <div *ngIf="form.controls.aduana.dirty || form.controls.aduana.touched">
+                            <p class="form-alert alert-danger m-1" *ngIf="form.controls.aduana.errors?.required">
+                              <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                            </p> 
+                          </div>
+                    </div>
+                    <div class="col-md-2">
+                      <label for="fraccion">Fracción</label>
+                      <input type="text" class="form-control" formControlName="fraccion" placeholder="Fracción"> 
+                      <div *ngIf="form.controls.fraccion.dirty || form.controls.fraccion.touched">
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.fraccion.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p>  
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <label for="numFactura">Número de factura</label>
+                      <input type="text" class="form-control" formControlName="numFactura" placeholder="Número de factura">  
+                      <div *ngIf="form.controls.numFactura.dirty || form.controls.numFactura.touched">
+                        <p class="form-alert alert-danger m-1" *ngIf="form.controls.numFactura.errors?.required">
+                          <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                        </p> 
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <label for="fechaFactura">Fecha de factura</label>
+                      <div class="input-group">
+                        <input id="fechaFactura" class="form-control" formControlName="fechaFactura" placeholder="Fecha factura" name="ff" ngbDatepicker #ff="ngbDatepicker">
+                        <div class="input-group-append">
+                          <button class="btn btn-secondary" (click)="ff.toggle()" type="button">
+                            <i class="icon-calendar2 mr-0"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div *ngIf="form.controls.fechaFactura.dirty || form.controls.fechaFactura.touched">
+                        <p class="form-alert alert-danger m-1" *ngIf="form.controls.fechaFactura.errors?.required">
+                          <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                        </p> 
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-md-2">
+                        <label for="umc">UMC</label>
+                        <select class="form-control" aria-placeholder="UMC" formControlName="umc">
+                          <option>PACK</option>
+                          <option>SET </option>
+                        </select>
+                        <div *ngIf="form.controls.umc.dirty || form.controls.umc.touched">
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.umc.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p> 
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                      <label for="cantidadUMC">Cantidad UMC</label>
+                      <input type="text" class="form-control" formControlName="cantidadUMC" placeholder="Cantidad de UMC">  
+                      <div *ngIf="form.controls.cantidadUMC.dirty || form.controls.cantidadUMC.touched">
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.cantidadUMC.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p> 
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                      <label for="factorConv">Factor de conversión</label>
+                      <input type="text" class="form-control" formControlName="factorConv" placeholder="Factor conv">  
+                      <div *ngIf="form.controls.factorConv.dirty || form.controls.factorConv.touched">
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.factorConv.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <label for="cantidadUMT">Cantidad UMT</label>
+                      <input type="text" class="form-control" formControlName="cantidadUMT" placeholder="Cantidad de UMT">    
+                      <div *ngIf="form.controls.cantidadUMT.dirty || form.controls.cantidadUMT.touched">
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.cantidadUMT.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p> 
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <label for="valorAntDesc">Valor antes desc</label>
+                      <input type="text" class="form-control" formControlName="valorAntDesc" placeholder="Valor ant. desc.">  
+                      <div *ngIf="form.controls.valorAntDesc.dirty || form.controls.valorAntDesc.touched">
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.valorAntDesc.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p> 
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <label for="factorDesc">Factor desc</label>
+                      <input type="text" class="form-control" formControlName="factorDesc" placeholder="Factor desc">
+                      <div *ngIf="form.controls.factorDesc.dirty || form.controls.factorDesc.touched">
+                        <p class="form-alert alert-danger m-1" *ngIf="form.controls.factorDesc.errors?.required">
+                          <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="row mb-4">
+                      <div class="col-md-2">
+                          <label for="moneda">Moneda</label>
+                          <select class="form-control" formControlName="moneda" >
+                              <option>USD</option>
+                              <option>MXN </option>
+                          </select>
+                          <div *ngIf="form.controls.moneda.dirty || form.controls.moneda.touched">
+                              <p class="form-alert alert-danger m-1" *ngIf="form.controls.moneda.errors?.required">
+                                <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                              </p> 
+                          </div>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="valorMercancia">Valor mercancía</label>
+                        <input type="text" class="form-control" formControlName="valorMercancia" placeholder="Valor mercancía">  
+                        <div *ngIf="form.controls.valorMercancia.dirty || form.controls.valorMercancia.touched">
+                            <p class="form-alert alert-danger m-1" *ngIf="form.controls.valorMercancia.errors?.required">
+                              <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                            </p> 
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="precioUnitario">Precio unitario</label>
+                        <input type="text" class="form-control" formControlName="precioUnitario" placeholder="Precio unitario">  
+                        <div *ngIf="form.controls.precioUnitario.dirty || form.controls.precioUnitario.touched">
+                            <p class="form-alert alert-danger m-1" *ngIf="form.controls.precioUnitario.errors?.required">
+                              <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                            </p>
+                        </div> 
+                      </div>
+                      <div class="col-md-2">
+                        <label for="paisExportador">País exportador</label>
+                        <input type="text" class="form-control" formControlName="paisExportador" placeholder="País exportador">    
+                        <div *ngIf="form.controls.paisExportador.dirty || form.controls.paisExportador.touched">
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.paisExportador.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p> 
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="paisOrigen">País origen</label>
+                        <input type="text" class="form-control" formControlName="paisOrigen" placeholder="País origen">  
+                        <div *ngIf="form.controls.paisOrigen.dirty || form.controls.paisOrigen.touched">  
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.paisOrigen.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="valorTotal">Valor total</label>
+                        <input type="text" class="form-control" formControlName="valorTotal" placeholder="Valor total">  
+                        <div *ngIf="form.controls.valorTotal.dirty || form.controls.valorTotal.touched">  
+                            <p class="form-alert alert-danger m-1" *ngIf="form.controls.valorTotal.errors?.required">
+                              <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                            </p>
+                        </div> 
+                      </div>
+                    </div>
+                
+                    <div class="row mb-4">
+                      <div class="col-md-2">
+                          <label for="valorPrecioTotal">Precio total valido</label>
+                          <input type="text" class="form-control" formControlName="valorPrecioTotal" placeholder="válido/inválido">  
+                          <div *ngIf="form.controls.valorPrecioTotal.dirty || form.controls.valorPrecioTotal.touched">  
+                            <p class="form-alert alert-danger m-1" *ngIf="form.controls.valorPrecioTotal.errors?.required">
+                              <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                            </p> 
+                          </div>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="nombreExportador">Nombre exportador</label>
+                        <input type="text" class="form-control" formControlName="nombreExportador" placeholder="Nombre exportador">  
+                        <div *ngIf="form.controls.nombreExportador.dirty || form.controls.nombreExportador.touched">  
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.nombreExportador.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p> 
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="domicilio">Domicilio exportador</label>
+                        <input type="textarea" class="form-control" formControlName="domicilio" placeholder="Domicilio"> 
+                        <div *ngIf="form.controls.domicilio.dirty || form.controls.domicilio.touched">  
+                            <p class="form-alert alert-danger m-1" *ngIf="form.controls.domicilio.errors?.required">
+                              <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                            </p>  
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="observaciones">Observaciones</label>
+                        <input type="text" class="form-control" formControlName="observaciones" placeholder="Observaciones">    
+                        <div *ngIf="form.controls.observaciones.dirty || form.controls.observaciones.touched">  
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.observaciones.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p>
+                        </div> 
+                      </div>
+                      <div class="col-md-2">
+                        <label for="fraccionMala">Fracción mala</label>
+                        <input type="text" class="form-control" formControlName="fraccionMala" placeholder="Fracción mala">  
+                        <div *ngIf="form.controls.fraccionMala.dirty || form.controls.fraccionMala.touched">  
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.fraccionMala.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p> 
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="precioMinimo">Precio mínimo</label>
+                        <input type="text" class="form-control" formControlName="precioMinimo" placeholder="Precio minimo">  
+                        <div *ngIf="form.controls.precioMinimo.dirty || form.controls.precioMinimo.touched">  
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.precioMinimo.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p> 
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div class="row mb-4">
+                      <div class="col-md-2">
+                          <label for="faVetada">FA Vetada</label>
+                          <input type="text" class="form-control" formControlName="faVetada" placeholder="FA Vetada"> 
+                          <div *ngIf="form.controls.faVetada.dirty || form.controls.faVetada.touched">  
+                            <p class="form-alert alert-danger m-1" *ngIf="form.controls.faVetada.errors?.required">
+                              <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                            </p>  
+                          </div>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="precioEstimado">Precio estimado</label>
+                        <input type="text" class="form-control" formControlName="precioEstimado" placeholder="Precio estimado">  
+                        <div *ngIf="form.controls.precioEstimado.dirty || form.controls.precioEstimado.touched">  
+                            <p class="form-alert alert-danger m-1" *ngIf="form.controls.precioEstimado.errors?.required">
+                              <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                            </p> 
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="preDictamen">Predictamen</label>
+                        <input type="textarea" class="form-control" formControlName="preDictamen" placeholder="PRE DICTAMEN">  
+                        <div *ngIf="form.controls.preDictamen.dirty || form.controls.preDictamen.touched">  
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.preDictamen.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p>
+                        </div> 
+                      </div>
+                      <div class="col-md-2">
+                        <label for="numSolicitud">Número de solicitud</label>
+                        <input type="text" class="form-control" formControlName="numSolicitud" placeholder="Número de solicitud">    
+                          <p class="form-alert alert-danger m-1" *ngIf="form.controls.numSolicitud.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p> 
+                      </div>
+                      <div class="col-md-2">
+                        <label for="permiso">Permiso</label>
+                        <input type="text" class="form-control" formControlName="permiso" placeholder="Permiso">
+                        <p class="form-alert alert-danger m-1" *ngIf="form.controls.permiso.errors?.required">
+                            <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                          </p>   
+                      </div>
+                      <div class="col-md-2">
+                        <label for="inicioVigencia">Inicio vigencia</label>
+                        <div class="input-group">
+                          <input id="fechaFactura" class="form-control" formControlName="inicioVigencia" placeholder="Inicio Vigencia" name="iv" ngbDatepicker #iv="ngbDatepicker">
+                          <div class="input-group-append">
+                            <button class="btn btn-secondary" (click)="iv.toggle()" type="button">
+                              <i class="icon-calendar2 mr-0"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="form-alert alert-danger m-1" *ngIf="form.controls.inicioVigencia.errors?.required">
+                          <i class="icon-close-solid mr-1 align-middle"></i>Requerido
+                        </p> 
+                    </div>
+                
+                    <button class="btn btn-primary" [disabled]="!form.valid" type="submit">Guardar</button>
+                
+                </form>
+          </div>
       </div>
-      <p class="form-alert alert-danger m-1" *ngIf="form.controls.inicioVigencia.errors?.required">
-          <i class="icon-close-solid mr-1 align-middle"></i>Requerido
-        </p> 
+
     </div>
-
-    <button class="btn btn-primary" [disabled]="!form.valid" type="submit">Guardar</button>
-
-</form>
+</div>
