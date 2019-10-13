@@ -1,19 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
+import { ProformaService } from 'src/app/shared/services/proforma.service';
+import { Proforma } from 'src/app/shared/models/proforma';
 
 @Component({
   selector: 'app-resumen-tramite-create',
   templateUrl: './resumen-tramite-create.component.html',
-  styleUrls: ['./resumen-tramite-create.component.scss']
+  styleUrls: ['./resumen-tramite-create.component.scss'],
+  providers: [ProformaService]
 })
 export class ResumenTramiteCreateComponent implements OnInit {
 
   formBasic: FormGroup;
   loading: boolean;
+  listaProformas: Proforma[];
   constructor(
       private fb: FormBuilder,
-      private toastr: ToastrService
+      private toastr: ToastrService,
+      private proformaService: ProformaService
   ) { }
 
   ngOnInit() {
@@ -23,7 +28,13 @@ export class ResumenTramiteCreateComponent implements OnInit {
   buildFormBasic() {
     this.formBasic = this.fb.group({
       experience: []
-    })
+    });
+
+    this.proformaService.getProformas().subscribe(
+      (data: Proforma[]) => {
+        this.listaProformas = data;
+      }
+    );
   }
 
   submit() {
@@ -31,7 +42,7 @@ export class ResumenTramiteCreateComponent implements OnInit {
     setTimeout(() => {
       this.loading = false;
       this.toastr.success('Registro Exitoso!', 'Procesando datos.', {progressBar: true});
-    }, 3000)
+    }, 3000);
   }
 
 }

@@ -32,16 +32,16 @@
               </tr>
               </thead>
               <tbody>
-              <tr class="">
-                <td class="text-left">1</td>
-                <td class="text-left font-weight-500">8562000000</td>
-                <td class="text-center font-weight-500">09/11/2019</td>
-                <td class="text-left font-weight-500">CAMISA PARA NIÑO</td>
+              <tr class="" *ngFor="let p of listaProformas">
+                <td class="text-left">{{p.numProforma}}</td>
+                <td class="text-left font-weight-500">{{p.numReferencia}}</td>
+                <td class="text-center font-weight-500">{{p.fechaIngreso}}</td>
+                <td class="text-left font-weight-500">{{p.descripcion}}</td>
                 <td class="text-left">
-                  <p class="text-14 text-primary font-weight-500 m-0">MARCA: H</p>
+                  <p class="text-14 text-primary font-weight-500 m-0">{{p.numModelo}}</p>
                 </td>
               </tr>
-              <tr class="">
+              <!--tr class="">
                   <td class="text-left">2</td>
                   <td class="text-left font-weight-500">8562000000</td>
                   <td class="text-center font-weight-500">09/11/2019</td>
@@ -58,7 +58,7 @@
                   <td class="text-left">
                       <p class="text-14 text-primary font-weight-500 m-0">MARCA: H</p>
                   </td>
-              </tr>
+              </tr-->
 
               </tbody>
             </table>
