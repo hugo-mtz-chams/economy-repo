@@ -14,6 +14,12 @@ export class ResumenClienteShowComponent implements OnInit {
 
   listaResumenCliente: ResumenCliente;
   user: any;
+  aceptadas:number;
+  rechazadas: number;
+  proceso: number;
+  espera: number;
+
+
 
   constructor(
     private auth: AuthService,
@@ -23,16 +29,15 @@ export class ResumenClienteShowComponent implements OnInit {
    }
 
   ngOnInit() {
-   
+    console.log(this.user);
     this.resumenClienteService.getResumenCliente(this.user.claveCliente).subscribe(
       (data: any) => {
-       console.log(data);
+        this.InitGraf();
       }
     );
 
-    this.InitGraf();
-    
-
+   
+  
   }
 
   InitGraf() {
