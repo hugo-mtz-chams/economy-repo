@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { AuthService } from './auth.service';
+import { RoleEnum } from '../enums/role.enum';
 
 export interface IMenuItem {
   type: string,       // Possible values: link/dropDown/icon/separator/extLink
@@ -38,8 +40,8 @@ export class NavigationService {
   public sidebarState: ISidebarState = {
     sidenavOpen: true,
     childnavOpen: false
-  }
-  constructor() { }
+  };
+  constructor(authService: AuthService) { }
 
   defaultMenu: IMenuItem[] = [
     {
@@ -166,7 +168,49 @@ export class NavigationService {
         { icon: 'icon-window', name: 'Not found', state: '/others/404', type: 'link' }
       ]
     }
-  ]
+  ];
+
+  clientMenu: IMenuItem[] = [
+    {
+      name: 'Dashboard',
+      type: 'dropDown',
+      icon: 'icon-home',
+      sub: [
+        { icon: 'icon-activity', name: 'Analytics', state: '/dashboard/v1', type: 'link' },
+      ]
+    },
+    {
+      name: 'Application',
+      type: 'dropDown',
+      icon: 'icon-box',
+      sub: [
+        { icon: 'icon-list1', name: 'Resumen de Trámites', state: '/resumen-tramite', type: 'link' },
+      ]
+    }
+  ];
+
+  analystMenu: IMenuItem[] = [
+    {
+      name: 'Application',
+      type: 'dropDown',
+      icon: 'icon-box',
+      sub: [
+        { icon: 'icon-book-open', name: 'Capturar proforma', state: '/proforma', type: 'link' },
+        { icon: 'icon-list1', name: 'Resumen de Trámites', state: '/resumen-tramite', type: 'link' },
+      ]
+    }
+  ];
+
+  capturistaMenu: IMenuItem[] = [
+    {
+      name: 'Application',
+      type: 'dropDown',
+      icon: 'icon-box',
+      sub: [
+        { icon: 'icon-list1', name: 'Resumen de Trámites', state: '/resumen-tramite', type: 'link' },
+      ]
+    }
+  ];
 
 
   // sets iconMenu as default;
@@ -177,16 +221,22 @@ export class NavigationService {
 
   // You can customize this method to supply different menu for
   // different user type.
-  // publishNavigationChange(menuType: string) {
-  //   switch (userType) {
-  //     case 'admin':
-  //       this.menuItems.next(this.adminMenu);
-  //       break;
-  //     case 'user':
-  //       this.menuItems.next(this.userMenu);
-  //       break;
-  //     default:
-  //       this.menuItems.next(this.defaultMenu);
-  //   }
-  // }
+  publishNavigationChange(userType: number) {
+     switch (userType) {
+        case RoleEnum.Cliente:
+          this.menuItems.next(this.clientMenu);
+          break;
+        case RoleEnum.Administrador:
+          this.menuItems.next(this.defaultMenu);
+          break;
+        case RoleEnum.Analista:
+          this.menuItems.next(this.analystMenu);
+          break;
+        case RoleEnum.Capturista:
+          this.menuItems.next(this.capturistaMenu);
+          break;
+       default:
+         this.menuItems.next(this.defaultMenu);
+     }
+   }
 }

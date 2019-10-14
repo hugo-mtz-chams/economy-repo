@@ -6,6 +6,8 @@ import { Utils } from '../../utils';
 
 import * as $ from 'jquery';
 import { Subscription } from 'rxjs';
+import { LocalStoreService } from '../../services/local-store.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
 	selector: 'app-sidebar',
@@ -19,7 +21,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
 	constructor(
 		public router: Router,
-		public navService: NavigationService
+		public navService: NavigationService,
+		private authService: AuthService
 	) {
         if(window && !window['routerEvent']) {
             window['routerEvent'] = new EventEmitter();
@@ -116,6 +119,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
 		} else {
 			this.navService.sidebarState.sidenavOpen = true;
 		}
+		const user: any = this.authService.decode();
+		this.navService.publishNavigationChange(user.role);
 	}
 
 	@HostListener('window:resize', ['$event'])
