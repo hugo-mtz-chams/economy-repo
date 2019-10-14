@@ -3,6 +3,7 @@ import { EChartOption } from 'echarts';
 import { ResumenClienteService } from 'src/app/shared/services/resumen-cliente.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ResumenCliente } from 'src/app/shared/models/resumen-cliente.model';
+import { EstatusProformaEnum } from 'src/app/shared/enums/estatus.proforma.enum';
 
 @Component({
   selector: 'app-resumen-cliente-show',
@@ -18,6 +19,7 @@ export class ResumenClienteShowComponent implements OnInit {
   rechazadas: number;
   proceso: number;
   espera: number;
+  tramitesTotales: number;
 
 
 
@@ -33,9 +35,27 @@ export class ResumenClienteShowComponent implements OnInit {
     this.resumenClienteService.getResumenCliente(this.user.claveCliente).subscribe(
       (data: any[]) => {
         const dataSeries: any[] = [];
+        let total: number = 0;
         for ( const element of data ) {
+          total += element.numeroTramites;
+          switch ( element.estatus ) {
+            case EstatusProformaEnum.APROBADO:
+              this.aceptadas = element.numeroTramites;
+              break;
+            case EstatusProformaEnum.EN_ESPERA:
+                this.espera = element.numeroTramites;
+                break;
+            case EstatusProformaEnum.RECHAZADO:
+                this.rechazadas = element.numeroTramites;
+                break;
+            case EstatusProformaEnum.EN_PROCESO:
+                this.proceso = element.numeroTramites;
+                break;
+          }
+
           dataSeries.push({value: element.numeroTramites, name: element.estatus});
         }
+        this.tramitesTotales = total;
         this.InitGraf(dataSeries);
       }
     );
