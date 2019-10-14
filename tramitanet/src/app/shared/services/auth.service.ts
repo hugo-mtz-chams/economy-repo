@@ -29,11 +29,12 @@ export class AuthService {
 
   signin(jsecurityForm: FormGroup) {
 
-    const loggedUser: any[] = this.users.active.filter( user => {
+    const loggedUser: any = this.users.active.filter( user => {
       if ( user.username === jsecurityForm.controls.email.value  &&
           user.password === jsecurityForm.controls.password.value
           || user.email === jsecurityForm.controls.email.value  &&
           user.password === jsecurityForm.controls.password.value ) {
+            this.store.setItem( 'loggedUser' , user);
         return user;
       }
     });
@@ -47,7 +48,12 @@ export class AuthService {
   }
   signout() {
     this.authenticated = false;
+    this.store.clear();
     this.store.setItem('isAuthenticated', false);
     this.router.navigateByUrl('/sessions/signin');
+  }
+
+  decode() {
+    return this.store.getItem('loggedUser');
   }
 }
