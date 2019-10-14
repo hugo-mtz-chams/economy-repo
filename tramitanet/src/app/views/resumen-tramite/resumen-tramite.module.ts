@@ -7,6 +7,8 @@ import { CustomFormsModule } from 'ng2-validation';
 import {ResumenTramiteCreateComponent} from './resumen-tramite-create/resumen-tramite-create.component';
 import {ResumenTramiteRoutingModule} from './resumen-tramite-routing.module';
 import {SharedComponentsModule} from '../../shared/components/shared-components.module';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
     imports: [
@@ -17,7 +19,9 @@ import {SharedComponentsModule} from '../../shared/components/shared-components.
         CustomFormsModule,
         NgbModule,
         ResumenTramiteRoutingModule,
-        SharedComponentsModule
+        SharedComponentsModule,
+        NgxPaginationModule,
+        NgxDatatableModule
     ],
     declarations: [ResumenTramiteCreateComponent]
 })

@@ -1,25 +1,68 @@
 <div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <input id="busqueda" placeholder="Búsqueda de proformas" [formControl]="searchControl" class="form-control" type="text">
+    </div>
+  </div>
+</div>
+<div class="row">
 <div class="col-lg-8 col-md-12">
       <div class="card eg-card-1 o-hidden mb-4">
 
         <div class="card-header justify-content-between mb-4">
 
-          <div class="info">
-            <p class="title text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-1">TRAMITES</p>
-            <p class="subtitle text-13 font-family-1 font-weight-400 line-height-1 mb-0">Resumen de tramites</p>
-          </div>
+            <div class="info">
+              <p class="title text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-1">TRAMITES</p>
+              <p class="subtitle text-13 font-family-1 font-weight-400 line-height-1 mb-0">Resumen de tramites</p>
+            </div>
 
-          <div class="action">
-            <a class="text-muted link-primary" href="" id="dropdownMenuButton" type="button">
-              <i class="icon-reload align-middle mr-0"></i>
-            </a>
-          </div>
+            <div class="action">
+              <a class="text-muted link-primary" href="" id="dropdownMenuButton" type="button">
+                <i class="icon-reload align-middle mr-0"></i>
+              </a>
+            </div>
 
-      </div>
+        </div>
+      
+      <ngx-datatable
+        style="box-shadow: none"
+        class="bootstrap fullscreen"
+        [rows]="listaProformas"
+        [columnMode]="'Standard'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        rowHeight="auto"
+        [limit]="10">
+        
+        <ngx-datatable-column name="No. proforma" width="90" >
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.numProforma}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Referencia" width="90">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.numReferencia}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Ingreso" width="100">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.fechaIngreso | date: 'dd/MM/yyyy'}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Descripcion" width="290">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.descripcion}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Modelo"width="290">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.numModelo}}
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
 
-      <div class="card-body text-left pt-0">
+      <!--div class="card-body text-left pt-0">
         <div class="content">
-
           <div class="data-list-5 table-responsive">
             <table class="table table-striped">
               <thead>
@@ -41,30 +84,13 @@
                   <p class="text-14 text-primary font-weight-500 m-0">{{p.numModelo}}</p>
                 </td>
               </tr>
-              <!--tr class="">
-                  <td class="text-left">2</td>
-                  <td class="text-left font-weight-500">8562000000</td>
-                  <td class="text-center font-weight-500">09/11/2019</td>
-                  <td class="text-left font-weight-500">CAMISA PARA NIÑO</td>
-                  <td class="text-left">
-                      <p class="text-14 text-primary font-weight-500 m-0">MARCA: H</p>
-                  </td>
-              </tr>
-              <tr class="">
-                  <td class="text-left">3   </td>
-                  <td class="text-left font-weight-500">8562000000</td>
-                  <td class="text-center font-weight-500">09/11/2019</td>
-                  <td class="text-left font-weight-500">CAMISA PARA NIÑO</td>
-                  <td class="text-left">
-                      <p class="text-14 text-primary font-weight-500 m-0">MARCA: H</p>
-                  </td>
-              </tr-->
+              
 
               </tbody>
             </table>
           </div>
       </div>
-    </div>
+    </div-->
 </div>
 </div>
 
