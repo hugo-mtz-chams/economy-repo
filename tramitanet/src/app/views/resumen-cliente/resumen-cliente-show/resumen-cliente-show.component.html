@@ -19,7 +19,7 @@
         <div class="content">
 
           <i class="icon-box text-orange text-50"></i>
-          <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">213</p>
+          <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">{{tramitesTotales}}</p>
           <p class="text-gray text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-0 ">Total tramites</p>
 
         </div>
@@ -39,7 +39,7 @@
         <div class="content">
 
           <i class="icon-users1 text-orange text-50"></i>
-          <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">4,155</p>
+          <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">{{aceptadas}}</p>
           <p class="text-gray text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-0 ">Tramites aceptados</p>
 
         </div>
@@ -59,7 +59,7 @@
         <div class="content">
 
           <i class="icon-layers text-orange text-50"></i>
-          <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">15,136<span
+          <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">{{rechazadas}}<span
               class="text-13 ml-1">Pcs</span></p>
           <p class="text-gray text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-0 ">Tramites rechazados</p>
 
@@ -80,7 +80,7 @@
         <div class="content">
 
           <i class="icon-home1 text-orange text-50"></i>
-          <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">585</p>
+          <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">{{proceso}}</p>
           <p class="text-gray text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-0 ">Tramites en proceso</p>
 
         </div>
@@ -100,7 +100,7 @@
         <div class="content">
 
           <i class="icon-home1 text-orange text-50"></i>
-          <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">585</p>
+          <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">{{espera}}</p>
           <p class="text-gray text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-0 ">Tramites en espera</p>
 
         </div>
@@ -135,19 +135,19 @@
         <div class="content">
          <div echarts [options]="chartDelivery" [autoResize]="true" style="height: 300px;"></div>
         <!--<div echarts  style="height: 300px;"></div> --> 
-          <p class="text-30 text-center text-orange font-family-1 font-weight-600 line-height-1 mt-0 mb-0">$14,572</p>
+          <p class="text-30 text-center text-orange font-family-1 font-weight-600 line-height-1 mt-0 mb-0">{{totalTramites}}</p>
           <div class="row mt-3">
             <div class="col-lg-6">
               <p class="text-15 text-center font-family-1 font-weight-500 line-height-1 mt-0 mb-1 text-gray">
                 <i class="icon-package text-orange align-top"></i>
-                Delivered:
-                <span class="text-orange font-family-1 font-weight-600 ml-2">$7,454</span></p>
+                Aceptadas:
+                <span class="text-orange font-family-1 font-weight-600 ml-2">{{aceptadas}}</span></p>
             </div>
             <div class="col-lg-6">
               <p class="text-15 text-center font-family-1 font-weight-500 line-height-1 mt-0 mb-1 text-gray">
                 <i class="icon-box text-orange align-top"></i>
-                Estimated:
-                <span class="text-orange font-family-1 font-weight-600 ml-2">$7,454</span></p>
+                Rechazadas:
+                <span class="text-orange font-family-1 font-weight-600 ml-2">{{rechazadas}}</span></p>
             </div>
           </div>
         </div>
