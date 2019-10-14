@@ -84,6 +84,8 @@ public class Proforma {
 	private Double valorTotal;
 	
 	private String claveCliente;
+	
+	private String estatus;
 
 	/**
 	 * @return the idProforma
@@ -601,6 +603,20 @@ public class Proforma {
 	 */
 	public void setClaveCliente(String claveCliente) {
 		this.claveCliente = claveCliente;
+	}
+
+	/**
+	 * @return the estatus
+	 */
+	public String getEstatus() {
+		return estatus;
+	}
+
+	/**
+	 * @param estatus the estatus to set
+	 */
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
 	}
 
 }

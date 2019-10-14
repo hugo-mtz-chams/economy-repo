@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tramitanet.entities.ProformaEntity;
+import com.tramitanet.model.EstatusTramiteCliente;
 import com.tramitanet.model.Proforma;
 import com.tramitanet.repositories.ProformaRepository;
 
@@ -66,6 +67,11 @@ public class ProformaDAO {
 			return p;
 		}
 		return null;
+	}
+	
+	public List<EstatusTramiteCliente> findTramitesByClient(String claveCliente){
+		List<EstatusTramiteCliente> resumenTramites = proformaRepository.findTramitesByEstatusAndCliente(claveCliente);
+		return resumenTramites;
 	}
 	
 	/**

@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tramitanet.dao.ProformaDAO;
+import com.tramitanet.model.EstatusTramiteCliente;
 import com.tramitanet.model.Proforma;
 
 /**
@@ -93,5 +95,14 @@ public class ProformaController {
 		proforma = proformaService.saveOrUpdate(proforma);
 		
 		return ResponseEntity.ok().body(proforma); 
+	}
+	
+	@GetMapping("/proformas/cliente/{claveCliente}/resumen")
+	public List<EstatusTramiteCliente> findTotalsByClient(@PathVariable("claveCliente") String claveCliente) {
+		List<EstatusTramiteCliente> resumen = proformaService.findTramitesByClient(claveCliente);
+		if(CollectionUtils.isEmpty(resumen)) {
+			return null;
+		}
+		return resumen; 
 	}
 }

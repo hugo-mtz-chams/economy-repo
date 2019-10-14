@@ -134,6 +134,9 @@ public class ProformaEntity {
 	
 	@Column(name="clave_cliente")
 	private String claveCliente;
+	
+	@Column(name="estatus")
+	private String estatus;
 
 	public Long getIdProforma() {
 		return this.idProforma;
@@ -435,6 +438,20 @@ public class ProformaEntity {
 	 */
 	public void setClaveCliente(String claveCliente) {
 		this.claveCliente = claveCliente;
+	}
+
+	/**
+	 * @return the estatus
+	 */
+	public String getEstatus() {
+		return estatus;
+	}
+
+	/**
+	 * @param estatus the estatus to set
+	 */
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
 	}
 
 
