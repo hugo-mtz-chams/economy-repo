@@ -32,6 +32,7 @@ export class ResumenClienteShowComponent implements OnInit {
     console.log(this.user);
     this.resumenClienteService.getResumenCliente(this.user.claveCliente).subscribe(
       (data: any) => {
+        console.log(data);
         this.InitGraf();
       }
     );
