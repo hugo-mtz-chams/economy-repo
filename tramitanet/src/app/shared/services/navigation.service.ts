@@ -176,9 +176,10 @@ export class NavigationService {
       type: 'dropDown',
       icon: 'icon-home',
       sub: [
-        { icon: 'icon-activity', name: 'Analytics', state: '/dashboard/v1', type: 'link' },
+        { icon: 'icon-activity', name: 'Resumen cliente', state: '/resumen-cliente', type: 'link' }
       ]
-    },
+    }
+    /**
     {
       name: 'Application',
       type: 'dropDown',
@@ -187,6 +188,7 @@ export class NavigationService {
         { icon: 'icon-list1', name: 'Resumen de Trámites', state: '/resumen-tramite', type: 'link' },
       ]
     }
+    */
   ];
 
   analystMenu: IMenuItem[] = [
