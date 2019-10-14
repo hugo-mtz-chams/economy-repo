@@ -31,16 +31,17 @@ export class ResumenClienteShowComponent implements OnInit {
   ngOnInit() {
     console.log(this.user);
     this.resumenClienteService.getResumenCliente(this.user.claveCliente).subscribe(
-      (data: any) => {
-        this.InitGraf();
+      (data: any[]) => {
+        const dataSeries: any[]=[];
+        for ( let element of data ) {
+          dataSeries.push({value: element.numeroTramites, name: element.estatus});
+        }
+        this.InitGraf(dataSeries);
       }
     );
-
-   
-  
   }
 
-  InitGraf() {
+  InitGraf(myDataSeries: any[]) {
     this.chartDelivery ={
       color: ['#ff7110', '#fdb772', '#fcddbd'],
       tooltip: {
@@ -114,11 +115,7 @@ export class ResumenClienteShowComponent implements OnInit {
               show: false
             }
           },
-          data: [
-            { value: 335, name: 'Delivered' },
-            { value: 310, name: 'Packed' },
-            { value: 234, name: 'Remaining' },
-          ],
+          data: myDataSeries,
           itemStyle: {
             emphasis: {
               shadowBlur: 10,
