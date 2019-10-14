@@ -47,6 +47,7 @@ export class NavigationService {
       type: 'dropDown',
       icon: 'icon-home',
       sub: [
+        { icon: 'icon-activity', name: 'Resumen cliente', state: '/resumen-cliente', type: 'link' },
         { icon: 'icon-activity', name: 'Analytics', state: '/dashboard/v1', type: 'link' },
         { icon: 'icon-pie-chart1', name: 'Sales', state: '/dashboard/v2', type: 'link' },
         { icon: 'icon-bar-chart-2', name: 'Campaign', state: '/dashboard/v3', type: 'link' },
