@@ -9,12 +9,12 @@ import { ResumenCliente } from 'src/app/shared/models/resumen-cliente.model';
   templateUrl: './resumen-cliente-show.component.html'
 })
 export class ResumenClienteShowComponent implements OnInit {
-  
+
   chartDelivery: EChartOption;
 
   listaResumenCliente: ResumenCliente;
   user: any;
-  aceptadas:number;
+  aceptadas: number;
   rechazadas: number;
   proceso: number;
   espera: number;
@@ -32,8 +32,8 @@ export class ResumenClienteShowComponent implements OnInit {
     console.log(this.user);
     this.resumenClienteService.getResumenCliente(this.user.claveCliente).subscribe(
       (data: any[]) => {
-        const dataSeries: any[]=[];
-        for ( let element of data ) {
+        const dataSeries: any[] = [];
+        for ( const element of data ) {
           dataSeries.push({value: element.numeroTramites, name: element.estatus});
         }
         this.InitGraf(dataSeries);
