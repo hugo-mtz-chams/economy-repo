@@ -25,8 +25,8 @@ export class ResumenClienteService {
       private http: HttpClient
     ) { }
 
-    getResumenCliente(): Observable<ResumenCliente[]> {
-      return this.http.get<ResumenCliente[]>(this.baseurl + '/tramitanet/resumenCliente').pipe(
+    getResumenCliente(clave:any): Observable<ResumenCliente[]> {
+      return this.http.get<ResumenCliente[]>(this.baseurl + '/tramitanet/proformas/cliente/'+clave+'/resumen').pipe(
           retry(1), catchError(this.errorHandler)
       );
     }

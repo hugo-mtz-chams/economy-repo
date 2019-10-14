@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EChartOption } from 'echarts';
-import { ResumenClienteModule } from '../resumen-cliente.module';
 import { ResumenClienteService } from 'src/app/shared/services/resumen-cliente.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { ResumenCliente } from 'src/app/shared/models/resumen-cliente.model';
 
 @Component({
   selector: 'app-resumen-cliente-show',
@@ -11,14 +12,30 @@ export class ResumenClienteShowComponent implements OnInit {
   
   chartDelivery: EChartOption;
 
-  listaResumenCliente: ResumenClienteModule;
+  listaResumenCliente: ResumenCliente;
+  user: any;
 
   constructor(
+    private auth: AuthService,
     private resumenClienteService: ResumenClienteService
-  ) { }
+  ) {
+   this.user = this.auth.decode();
+   }
 
   ngOnInit() {
-  
+   
+    this.resumenClienteService.getResumenCliente(this.user.claveCliente).subscribe(
+      (data: any) => {
+       console.log(data);
+      }
+    );
+
+    this.InitGraf();
+    
+
+  }
+
+  InitGraf() {
     this.chartDelivery ={
       color: ['#ff7110', '#fdb772', '#fcddbd'],
       tooltip: {
@@ -109,6 +126,6 @@ export class ResumenClienteShowComponent implements OnInit {
       ]
 
     } 
+  }// fin metodo
 
-  }
 }

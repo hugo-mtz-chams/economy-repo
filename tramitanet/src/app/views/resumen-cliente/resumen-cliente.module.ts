@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     NgbModule,
     SharedComponentsModule,
     NgxPaginationModule,
+    NgxEchartsModule,
     NgxDatatableModule,
     ResumenClienteRoutingModule
   ],
