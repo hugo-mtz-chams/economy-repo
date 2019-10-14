@@ -69,7 +69,11 @@ export class ResumenClienteShowComponent implements OnInit {
         trigger: 'item',
         formatter: "{a} <br/>{b}: {c} ({d}%)"
       },
-
+      legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:['En proceso','En espera','Aprobado','Rechazado']
+      },
       grid: {
         top: '10%',
         left: '3%',
