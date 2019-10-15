@@ -23,7 +23,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     NgxPaginationModule,
     NgxEchartsModule,
     NgxDatatableModule,
-    ResumenClienteRoutingModule
+    ResumenClienteRoutingModule,
   ],
   declarations: [ResumenClienteShowComponent]
 })

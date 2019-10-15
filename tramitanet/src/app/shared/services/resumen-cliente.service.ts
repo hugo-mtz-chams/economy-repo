@@ -31,6 +31,13 @@ export class ResumenClienteService {
       );
     }
 
+    getResumenClienteFechaBusqueda(fecha:any): Observable<ResumenCliente>{
+        return this.http.get<ResumenCliente>(this.baseurl + '/tramitanet/proformas/cliente/'+fecha+'/fecha/resumen').pipe(
+            retry(1), catchError(this.errorHandler)
+        );
+    }
+
+
     // Error handling
     errorHandler ( error ) {
         let errorMessage = '';

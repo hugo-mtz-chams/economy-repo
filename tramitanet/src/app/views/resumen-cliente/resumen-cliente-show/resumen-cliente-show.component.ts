@@ -4,6 +4,10 @@ import { ResumenClienteService } from 'src/app/shared/services/resumen-cliente.s
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ResumenCliente } from 'src/app/shared/models/resumen-cliente.model';
 import { EstatusProformaEnum } from 'src/app/shared/enums/estatus.proforma.enum';
+import { DatePipe } from '@angular/common';
+import {formatDate} from '@angular/common';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-resumen-cliente-show',
@@ -11,6 +15,7 @@ import { EstatusProformaEnum } from 'src/app/shared/enums/estatus.proforma.enum'
 })
 export class ResumenClienteShowComponent implements OnInit {
 
+  startDate = new Date(2019, 0, 1);
   chartDelivery: EChartOption;
 
   listaResumenCliente: ResumenCliente;
@@ -21,13 +26,14 @@ export class ResumenClienteShowComponent implements OnInit {
   espera: number;
   tramitesTotales: number;
 
-
+  fechaActual = formatDate(new Date(), 'yyyy-MM-dd', 'en');
 
   constructor(
     private auth: AuthService,
-    private resumenClienteService: ResumenClienteService
+    private resumenClienteService: ResumenClienteService,
   ) {
    this.user = this.auth.decode();
+   console.log(this.fechaActual);
    }
 
   ngOnInit() {
@@ -57,8 +63,16 @@ export class ResumenClienteShowComponent implements OnInit {
         }
         this.tramitesTotales = total;
         this.InitGraf(dataSeries);
+
       }
     );
+  }
+
+
+  fechaChange(){
+    this.resumenClienteService.getResumenClienteFechaBusqueda(this.fechaActual).subscribe(data  =>{
+
+    });
   }
 
   InitGraf(myDataSeries: any[]) {
