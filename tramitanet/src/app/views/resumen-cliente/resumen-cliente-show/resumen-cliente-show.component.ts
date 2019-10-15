@@ -4,14 +4,16 @@ import { ResumenClienteService } from 'src/app/shared/services/resumen-cliente.s
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ResumenCliente } from 'src/app/shared/models/resumen-cliente.model';
 import { EstatusProformaEnum } from 'src/app/shared/enums/estatus.proforma.enum';
-import { DatePipe } from '@angular/common';
 import {formatDate} from '@angular/common';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Proforma } from 'src/app/shared/models/proforma';
+
 
 
 @Component({
   selector: 'app-resumen-cliente-show',
-  templateUrl: './resumen-cliente-show.component.html'
+  templateUrl: './resumen-cliente-show.component.html',
+  styleUrls: ['./resumen-cliente-show.component.scss'],
+
 })
 export class ResumenClienteShowComponent implements OnInit {
 
@@ -25,6 +27,12 @@ export class ResumenClienteShowComponent implements OnInit {
   proceso: number;
   espera: number;
   tramitesTotales: number;
+  columns: any[];
+
+  listaProformas: Proforma[];
+  completeProformas: Proforma[];
+
+  mostrarTablaReferencias: boolean = false;
 
   fechaActual = formatDate(new Date(), 'yyyy-MM-dd', 'en');
 
@@ -73,6 +81,10 @@ export class ResumenClienteShowComponent implements OnInit {
     this.resumenClienteService.getResumenClienteFechaBusqueda(this.fechaActual).subscribe(data  =>{
 
     });
+  }
+
+  mostrarReferencias(){
+    this.mostrarTablaReferencias = true;
   }
 
   InitGraf(myDataSeries: any[]) {
@@ -168,4 +180,39 @@ export class ResumenClienteShowComponent implements OnInit {
     } 
   }// fin metodo
 
+  buildColumns() {
+    this.columns = [
+      { name: 'No. Referencia', prop: 'numReferencia' },
+      { name: 'Fecha Ingreso', prop: 'fechaIngreso', pipe: 'date' },
+      { name: 'Aceptadas', prop: 'aceptadas'},
+      { name: 'Rechazadas', prop: 'rechazadas'},
+      { name: 'Proceso', prop: 'proceso'},
+      { name: 'Espera', prop: 'espera'}
+    ];
+  }
+  
+  filterData(val) {
+      if (val) {
+        val = val.toLowerCase();
+      } else {
+        return this.listaProformas = [...this.completeProformas];
+      }
+  
+      const columns = Object.keys(this.completeProformas[0]);
+  
+      if (!columns.length) {
+        return;
+      }
+  
+      const rows = this.completeProformas.filter(function (d) {
+        for (let i = 0; i <= columns.length; i++) {
+          let column = columns[i];
+          // console.log(d[column]);
+          if (d[column] && d[column].toString().toLowerCase().search(val) > -1) {
+              return true;
+          }
+        }
+      });
+      this.listaProformas = rows;
+    }
 }

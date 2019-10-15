@@ -9,26 +9,26 @@
 <div class="separator-breadcrumb border-top"></div>
 
 <div class="row">
-      <div class="col-lg-2">
-        <input class="form-control" type="date" [(ngModel)]="fechaActual" (change)="fechaChange()">
-      </div>
+  <div class="col-lg-2">
+    <input class="form-control" type="date" [(ngModel)]="fechaActual" (change)="fechaChange()">
+  </div>
 </div>
 
 <div class="separator-breadcrumb"></div>
 
 <div class="row">
 
-<div class="col-lg-2 col-md-6 col-sm-6">
+  <div class="col-lg-2 col-md-6 col-sm-6">
 
     <div class="card bm-card-10 o-hidden mb-4">
 
-      <div class="card-body text-center">
-
+      <div class="card-body text-center" (click)="mostrarReferencias()" (mouseover)="hover=true"
+        (mouseleave)="hover=false" [ngStyle]="{ backgroundColor: hover==true  ? 'grey' : 'lightgrey' }">
         <div class="content">
 
           <i class="icon-box text-orange text-50"></i>
           <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">{{tramitesTotales}}</p>
-          <p class="text-gray text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-0 ">Total Referenciaas</p>
+          <p class="text-gray text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-0 ">Total Referencias</p>
 
         </div>
 
@@ -160,9 +160,10 @@
 
       <div class="card-body pt-0">
         <div class="content">
-         <div echarts [options]="chartDelivery" [autoResize]="true" style="height: 300px;"></div>
-        <!--<div echarts  style="height: 300px;"></div> --> 
-          <p class="text-30 text-center text-orange font-family-1 font-weight-600 line-height-1 mt-0 mb-0">{{totalTramites}}</p>
+          <div echarts [options]="chartDelivery" [autoResize]="true" style="height: 300px;"></div>
+          <!--<div echarts  style="height: 300px;"></div> -->
+          <p class="text-30 text-center text-orange font-family-1 font-weight-600 line-height-1 mt-0 mb-0">
+            {{totalTramites}}</p>
           <div class="row mt-3">
             <div class="col-lg-6">
               <p class="text-15 text-center font-family-1 font-weight-500 line-height-1 mt-0 mb-1 text-gray">
@@ -183,5 +184,48 @@
     </div>
 
   </div>
+</div>
 
+<div class="row" *ngIf=mostrarTablaReferencias>
+  <div class="card-header justify-content-between mb-3">
+    <div class="info">
+      <p class="title text-gray text-16 font-family-1 font-weight-500 line-height-1 mt-0 mb-0">Lista de Referencias</p>
+    </div>
+    <div class="action">
+    </div>
+    <ngx-datatable style="box-shadow: none" class="bootstrap fullscreen" [rows]="listaProformas"
+      [columnMode]="'Standard'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10">
+
+      <ngx-datatable-column name="Referencia" width="150">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.numReferencia}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Fecha Captura" width="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.fechaIngreso | date: 'dd/MM/yyyy'}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Aceptadas" width="90">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.aceptadas}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Rechazadas" width="90">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.rechazadas}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Procesos" width="90">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.proceso}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Espera" width="90">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.espera}}
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
 </div>
