@@ -111,6 +111,15 @@ public class ProformaController {
 		return resumen; 
 	}
 	
+	@GetMapping("/proformas/cliente/{claveCliente}/resumen/{fechaIngreso}")
+	public List<EstatusTramiteCliente> findTotalsByClientAndDate(@PathVariable("claveCliente") String claveCliente) {
+		List<EstatusTramiteCliente> resumen = proformaService.findTramitesByClient(claveCliente);
+		if(CollectionUtils.isEmpty(resumen)) {
+			return null;
+		}
+		return resumen; 
+	}
+	
 	@GetMapping("/proformas/cliente/{claveCliente}/referencias/{fechaIngreso}")
 	public List<Reference> findTotalReferencesByClient(@PathVariable("claveCliente") String claveCliente, @PathVariable("fechaIngreso") String fechaIngreso) {
 		try {
