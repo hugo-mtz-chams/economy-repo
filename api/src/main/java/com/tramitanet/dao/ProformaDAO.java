@@ -3,7 +3,10 @@
  */
 package com.tramitanet.dao;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,8 +78,10 @@ public class ProformaDAO {
 		return resumenTramites;
 	}
 	
-	public List<Reference> findReferenceNumbersByClientAndDate(String claveCliente){
-		return proformaRepository.findReferenciasByCliente(claveCliente);
+	public List<Reference> findReferenceNumbersByClientAndDate(String claveCliente, Date fechaIngreso){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String fecha = dateFormat.format(fechaIngreso);
+		return proformaRepository.findReferenciasByCliente(claveCliente, fecha);
 	}
 	
 	/**

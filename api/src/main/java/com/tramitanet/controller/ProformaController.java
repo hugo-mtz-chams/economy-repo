@@ -3,6 +3,10 @@
  */
 package com.tramitanet.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -107,13 +111,22 @@ public class ProformaController {
 		return resumen; 
 	}
 	
-	@GetMapping("/proformas/cliente/{claveCliente}/referencias")
-	public List<Reference> findTotalReferencesByClient(@PathVariable("claveCliente") String claveCliente) {
-		List<Reference> resumen = proformaService.findReferenceNumbersByClientAndDate(claveCliente);
-		if(CollectionUtils.isEmpty(resumen)) {
-			return null;
+	@GetMapping("/proformas/cliente/{claveCliente}/referencias/{fechaIngreso}")
+	public List<Reference> findTotalReferencesByClient(@PathVariable("claveCliente") String claveCliente, @PathVariable("fechaIngreso") String fechaIngreso) {
+		try {
+			Date fecha = new SimpleDateFormat("dd-MM-yyyy").parse(fechaIngreso);
+			List<Reference> resumen = proformaService.findReferenceNumbersByClientAndDate(claveCliente, fecha);
+			if(CollectionUtils.isEmpty(resumen)) {
+				return null;
+			}
+			
+			return resumen; 
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
-		return resumen; 
+		
+		
+		return null; 
 	}
 	
 }
