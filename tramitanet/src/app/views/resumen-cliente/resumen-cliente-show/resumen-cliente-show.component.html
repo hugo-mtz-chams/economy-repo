@@ -193,14 +193,11 @@
     </div>
     <div class="action">
     </div>
-<<<<<<< HEAD
+
     <ngx-datatable style="box-shadow: none" class="bootstrap fullscreen" [rows]="listaProformas"
       [columnMode]="'Standard'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"
       (activate)="verReferencia($event)">
-=======
-    <ngx-datatable style="box-shadow: none" class="material fullscreen" [rows]="listaProformas"
-      [columnMode]="'Standard'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10">
->>>>>>> 372c89e52f7c6663228a24a845e58e4cbd5b0c64
+
 
       <ngx-datatable-column name="Referencia" width="150">
         <ng-template let-row="row" ngx-datatable-cell-template>
@@ -239,7 +236,7 @@
 <div class="separator-breadcrumb border-top"></div>
 
 <div class="row" *ngIf=mostrarTablaDetalleReferencia>
-  <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-arrow-left">Atras</button>
+  <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-arrow-left" (click)="atras()">Atras</button>
   <div class="col-md-4">
     <div class="form-group">
       <input id="email" placeholder="Search Products" [formControl]="searchControl" class="form-control" type="email">
