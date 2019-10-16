@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tramitanet.dao.ProformaDAO;
 import com.tramitanet.model.EstatusTramiteCliente;
 import com.tramitanet.model.Proforma;
+import com.tramitanet.model.Reference;
 
 /**
  * @author evomatik
@@ -105,4 +106,14 @@ public class ProformaController {
 		}
 		return resumen; 
 	}
+	
+	@GetMapping("/proformas/cliente/{claveCliente}/referencias")
+	public List<Reference> findTotalReferencesByClient(@PathVariable("claveCliente") String claveCliente) {
+		List<Reference> resumen = proformaService.findReferenceNumbersByClientAndDate(claveCliente);
+		if(CollectionUtils.isEmpty(resumen)) {
+			return null;
+		}
+		return resumen; 
+	}
+	
 }

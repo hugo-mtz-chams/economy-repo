@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.tramitanet.entities.ProformaEntity;
 import com.tramitanet.model.EstatusTramiteCliente;
 import com.tramitanet.model.Proforma;
+import com.tramitanet.model.Reference;
 import com.tramitanet.repositories.ProformaRepository;
 
 /**
@@ -72,6 +73,10 @@ public class ProformaDAO {
 	public List<EstatusTramiteCliente> findTramitesByClient(String claveCliente){
 		List<EstatusTramiteCliente> resumenTramites = proformaRepository.findTramitesByEstatusAndCliente(claveCliente);
 		return resumenTramites;
+	}
+	
+	public List<Reference> findReferenceNumbersByClientAndDate(String claveCliente){
+		return proformaRepository.findReferenciasByCliente(claveCliente);
 	}
 	
 	/**

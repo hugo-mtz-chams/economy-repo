@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tramitanet.entities.ProformaEntity;
 import com.tramitanet.model.EstatusTramiteCliente;
+import com.tramitanet.model.Reference;
 
 /**
  * @author evomatik
@@ -23,4 +24,14 @@ public interface ProformaRepository extends JpaRepository<ProformaEntity, Long>{
 	
 	@Query("SELECT new com.tramitanet.model.EstatusTramiteCliente( count(p.idProforma) as numeroTramites, p.estatus, p.claveCliente ) from ProformaEntity p where p.claveCliente = :claveCliente group by p.estatus, p.claveCliente")
 	public List<EstatusTramiteCliente> findTramitesByEstatusAndCliente(@Param("claveCliente") String claveCliente);
+	
+	@Query("SELECT new com.tramitanet.model.Reference (" + 
+			"  p.numReferencia, " + 
+			"  COUNT(1), " + 
+			"  sum(case when p.estatus = 'Aprobado' then 1 else 0 end) AS Aprobados, " + 
+			"  sum(case when p.estatus = 'Rechazado' then 1 else 0 end) AS Rechazados, " + 
+			"  sum(case when p.estatus = 'En proceso' then 1 else 0 end) AS EnProceso, " + 
+			"  sum(case when p.estatus = 'En espera' then 1 else 0 end) AS EnEspera )" + 
+			"FROM ProformaEntity p where p.claveCliente=:claveCliente group by num_referencia")
+	public List<Reference> findReferenciasByCliente(@Param("claveCliente") String claveCliente);
 }
