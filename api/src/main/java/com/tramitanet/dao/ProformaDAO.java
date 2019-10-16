@@ -73,15 +73,42 @@ public class ProformaDAO {
 		return null;
 	}
 	
+	
+	/**
+	 * Retorna todas las proformas del cliente
+	 * @param claveCliente
+	 * @return List<EstatusTramiteCliente>
+	 */
 	public List<EstatusTramiteCliente> findTramitesByClient(String claveCliente){
 		List<EstatusTramiteCliente> resumenTramites = proformaRepository.findTramitesByEstatusAndCliente(claveCliente);
 		return resumenTramites;
 	}
 	
+	/**
+	 * Retorna todos los numeros de referencia con lso totales de tramites y subtotales por estado de trámite
+	 * 
+	 * @param claveCliente
+	 * @param fechaIngreso
+	 * @return List<Reference>
+	 */
 	public List<Reference> findReferenceNumbersByClientAndDate(String claveCliente, Date fechaIngreso){
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String fecha = dateFormat.format(fechaIngreso);
 		return proformaRepository.findReferenciasByCliente(claveCliente, fecha);
+	}
+	
+	public List<Proforma> findTramitesByReferenceAndDate(String numReferencia, Date fechaIngreso){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String fecha = dateFormat.format(fechaIngreso);
+		List<ProformaEntity> resumenTramites = proformaRepository.findByNumReferenciaAndFechaIngreso(numReferencia, fecha);
+		
+		List<Proforma> proformas = new ArrayList<Proforma>();
+		for(ProformaEntity entity : resumenTramites) {
+			Proforma p = new Proforma();
+			BeanUtils.copyProperties(entity, p);
+			proformas.add(p);
+		}
+		return proformas;
 	}
 	
 	/**

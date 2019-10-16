@@ -129,4 +129,15 @@ public class ProformaController {
 		return null; 
 	}
 	
+	@GetMapping("/proformas/cliente/{claveCliente}/referencia/{numReferencia}/{fechaIngreso}")
+	public List<Proforma> findTramitesByReferenciaAndFechaIngreso(@PathVariable("claveCliente") String claveCliente, 
+			@PathVariable("numReferencia") String numReferencia,
+			@PathVariable("fechaIngreso") Date fechaIngreso) {
+		List<Proforma> resumen = proformaService.findTramitesByReferenceAndDate(numReferencia, fechaIngreso);
+		if(CollectionUtils.isEmpty(resumen)) {
+			return null;
+		}
+		return resumen;
+	}
+	
 }
