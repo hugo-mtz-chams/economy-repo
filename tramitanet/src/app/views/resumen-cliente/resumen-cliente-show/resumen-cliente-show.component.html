@@ -193,8 +193,11 @@
     </div>
     <div class="action">
     </div>
-    <ngx-datatable style="box-shadow: none" class="material fullscreen" [rows]="listaProformas"
-      [columnMode]="'Standard'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10">
+
+    <ngx-datatable style="box-shadow: none" class="bootstrap fullscreen" [rows]="listaProformas"
+      [columnMode]="'Standard'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"
+      (activate)="verReferencia($event)">
+
 
       <ngx-datatable-column name="Referencia" width="150">
         <ng-template let-row="row" ngx-datatable-cell-template>
@@ -227,5 +230,47 @@
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>
+  </div>
+</div>
+
+<div class="separator-breadcrumb border-top"></div>
+
+<div class="row" *ngIf=mostrarTablaDetalleReferencia>
+  <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-arrow-left" (click)="atras()">Atras</button>
+  <div class="col-md-4">
+    <div class="form-group">
+      <input id="email" placeholder="Search Products" [formControl]="searchControl" class="form-control" type="email">
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="card  o-hidden">
+      <ngx-datatable style="height: 500px; box-shadow: none" class="material fullscreen" [columnMode]="'force'"
+        [headerHeight]="50" [footerHeight]="50" [rowHeight]="60" [scrollbarV]="true" [rows]="filteredProducts">
+        <ngx-datatable-column name="photo" [maxWidth]="120">
+          <ng-template ngx-datatable-header-template>
+            Thumbnail
+          </ng-template>
+          <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+            <img height="32px" width="32px" style="border-radius: 4px" [src]="value" alt="">
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="name" [width]="300">
+          <ng-template ngx-datatable-header-template>
+            Title
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="category">
+          <ng-template ngx-datatable-header-template>
+            Category
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="subtitle">
+          <ng-template ngx-datatable-header-template>
+            Description
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
   </div>
 </div>

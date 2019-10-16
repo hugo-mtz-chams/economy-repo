@@ -24,15 +24,20 @@ export class ResumenClienteService {
     constructor(
       private http: HttpClient
     ) { }
-
-    getResumenCliente(clave:any): Observable<ResumenCliente[]> {
-      return this.http.get<ResumenCliente[]>(this.baseurl + '/tramitanet/proformas/cliente/'+clave+'/resumen').pipe(
+    getResumenCliente(clave:string, fecha:string): Observable<ResumenCliente[]> {
+      return this.http.get<ResumenCliente[]>(this.baseurl + '/tramitanet/proformas/cliente/'+clave+'/resumen/'+fecha).pipe(
           retry(1), catchError(this.errorHandler)
       );
     }
 
-    getResumenClienteFechaBusqueda(fecha:any): Observable<ResumenCliente>{
-        return this.http.get<ResumenCliente>(this.baseurl + '/tramitanet/proformas/cliente/'+fecha+'/fecha/resumen').pipe(
+    getResumenClienteFechaBusqueda(clave: string, fecha: string): Observable<ResumenCliente>{
+        return this.http.get<ResumenCliente>(this.baseurl + '/tramitanet/proformas/cliente/'+clave+'/referencias/'+fecha).pipe(
+            retry(1), catchError(this.errorHandler)
+        );
+    }
+
+    getFindTramitesByReferenciaAndFechaIngreso(fecha:string, clave:string, numReferencia: string): Observable<ResumenCliente>{
+        return this.http.get<ResumenCliente>(this.baseurl + '/tramitanet/proformas/cliente/' + clave + '/referencia/' + numReferencia + '/' + fecha).pipe(
             retry(1), catchError(this.errorHandler)
         );
     }
