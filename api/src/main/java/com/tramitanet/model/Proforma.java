@@ -17,7 +17,7 @@ public class Proforma {
 
 	private Integer cantidad;
 
-	private String cantidadUmt;
+	private Long cantidadUmt;
 
 	private String descripcion;
 
@@ -69,7 +69,7 @@ public class Proforma {
 
 	private Double precioMinimo;
 
-	private String precioUnitario;
+	private Double precioUnitario;
 
 	private String predictamen;
 
@@ -132,14 +132,14 @@ public class Proforma {
 	/**
 	 * @return the cantidadUmt
 	 */
-	public String getCantidadUmt() {
+	public Long getCantidadUmt() {
 		return cantidadUmt;
 	}
 
 	/**
 	 * @param cantidadUmt the cantidadUmt to set
 	 */
-	public void setCantidadUmt(String cantidadUmt) {
+	public void setCantidadUmt(Long cantidadUmt) {
 		this.cantidadUmt = cantidadUmt;
 	}
 
@@ -496,14 +496,14 @@ public class Proforma {
 	/**
 	 * @return the precioUnitario
 	 */
-	public String getPrecioUnitario() {
+	public Double getPrecioUnitario() {
 		return precioUnitario;
 	}
 
 	/**
 	 * @param precioUnitario the precioUnitario to set
 	 */
-	public void setPrecioUnitario(String precioUnitario) {
+	public void setPrecioUnitario(Double precioUnitario) {
 		this.precioUnitario = precioUnitario;
 	}
 

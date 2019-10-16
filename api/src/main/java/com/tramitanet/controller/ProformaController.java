@@ -3,7 +3,6 @@
  */
 package com.tramitanet.controller;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,6 +27,7 @@ import com.tramitanet.dao.ProformaDAO;
 import com.tramitanet.model.EstatusTramiteCliente;
 import com.tramitanet.model.Proforma;
 import com.tramitanet.model.Reference;
+import com.tramitanet.service.FileProcesorService;
 
 /**
  * @author evomatik
@@ -40,6 +40,9 @@ public class ProformaController {
 
 	@Autowired
 	ProformaDAO proformaService;
+	
+	@Autowired
+	FileProcesorService fileProcesorService;
 	
 	/**
 	 * Retorna la lista de formas de un cliente, no se filtra por fecha
@@ -156,4 +159,9 @@ public class ProformaController {
 		return resumen;
 	}
 	
+	
+	@GetMapping("/proformas/procesaArchivo")
+	public void procesaArchivo(){
+		fileProcesorService.procesar();
+	}
 }
