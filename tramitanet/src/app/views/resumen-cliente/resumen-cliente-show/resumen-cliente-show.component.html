@@ -194,7 +194,7 @@
     <div class="action">
     </div>
 
-    <ngx-datatable style="box-shadow: none" class="bootstrap fullscreen" [rows]="listaProformas"
+    <ngx-datatable style="box-shadow: none" class="bootstrap fullscreen" [rows]="listaTotalReferencias"
       [columnMode]="'Standard'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"
       (activate)="verReferencia($event)">
 
@@ -204,29 +204,29 @@
           {{row.numReferencia}}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Fecha Captura" width="100">
+      <ngx-datatable-column name="Tramites" width="100">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.fechaIngreso | date: 'dd/MM/yyyy'}}
+          {{row.totalTramites}}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Aceptadas" width="90">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.aceptadas}}
+          {{row.tramitesAceptados}}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Rechazadas" width="90">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.rechazadas}}
+          {{row.tramitesRechazados}}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Procesos" width="90">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.proceso}}
+          {{row.tramitesProceso}}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Espera" width="90">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.espera}}
+          {{row.tramitesEspera}}
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>

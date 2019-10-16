@@ -40,6 +40,7 @@ export class ResumenClienteShowComponent implements OnInit {
 
   columns: any[];
 
+  listaTotalReferencias: any[];
   listaProformas: Proforma[];
   completeProformas: Proforma[];
 
@@ -105,6 +106,7 @@ export class ResumenClienteShowComponent implements OnInit {
 
 
   fechaChange() {
+    this.mostrarTablaReferencias = false;
       this.resetValores();
     this.fecha = formatDate(this.fechaActual, 'dd-MM-yyyy', 'en');
     this.resumenClienteService.getResumenCliente(this.user.claveCliente, this.fecha).subscribe(
@@ -144,6 +146,11 @@ export class ResumenClienteShowComponent implements OnInit {
 
   mostrarReferencias() {
     this.mostrarTablaReferencias = true;
+    this.resumenClienteService.getResumenClienteFechaBusqueda(this.user.claveCliente, this.fecha).subscribe(
+      (data: any[]) => {
+         console.log(data);
+         this.listaTotalReferencias = data;
+      });
   }
 
   atras(){
@@ -276,7 +283,7 @@ export class ResumenClienteShowComponent implements OnInit {
     if (val) {
       val = val.toLowerCase();
     } else {
-      return this.listaProformas = [...this.completeProformas];
+      return this.listaTotalReferencias = [...this.completeProformas];
     }
 
     const columns = Object.keys(this.completeProformas[0]);
@@ -294,7 +301,7 @@ export class ResumenClienteShowComponent implements OnInit {
         }
       }
     });
-    this.listaProformas = rows;
+    this.listaTotalReferencias = rows;
   }
 
   columnDefs = [

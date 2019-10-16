@@ -30,8 +30,8 @@ export class ResumenClienteService {
       );
     }
 
-    getResumenClienteFechaBusqueda(clave: string, fecha: string): Observable<ResumenCliente>{
-        return this.http.get<ResumenCliente>(this.baseurl + '/tramitanet/proformas/cliente/'+clave+'/referencias/'+fecha).pipe(
+    getResumenClienteFechaBusqueda(clave: string, fecha: string): Observable<any>{
+        return this.http.get<any>(this.baseurl + '/tramitanet/proformas/cliente/'+clave+'/referencias/'+fecha).pipe(
             retry(1), catchError(this.errorHandler)
         );
     }
