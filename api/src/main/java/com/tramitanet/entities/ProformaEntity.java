@@ -7,6 +7,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -32,6 +34,7 @@ public class ProformaEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_proforma")
 	private Long idProforma;
 
@@ -40,7 +43,7 @@ public class ProformaEntity {
 	private Integer cantidad;
 
 	@Column(name="cantidad_umt")
-	private String cantidadUmt;
+	private Long cantidadUmt;
 
 	private String descripcion;
 
@@ -114,7 +117,7 @@ public class ProformaEntity {
 	private Double precioMinimo;
 
 	@Column(name="precio_unitario")
-	private String precioUnitario;
+	private Double precioUnitario;
 
 	private String predictamen;
 
@@ -162,11 +165,11 @@ public class ProformaEntity {
 		this.cantidad = cantidad;
 	}
 
-	public String getCantidadUmt() {
+	public Long getCantidadUmt() {
 		return this.cantidadUmt;
 	}
 
-	public void setCantidadUmt(String cantidadUmt) {
+	public void setCantidadUmt(Long cantidadUmt) {
 		this.cantidadUmt = cantidadUmt;
 	}
 
@@ -370,11 +373,11 @@ public class ProformaEntity {
 		this.precioMinimo = precioMinimo;
 	}
 
-	public String getPrecioUnitario() {
+	public Double getPrecioUnitario() {
 		return this.precioUnitario;
 	}
 
-	public void setPrecioUnitario(String precioUnitario) {
+	public void setPrecioUnitario(Double precioUnitario) {
 		this.precioUnitario = precioUnitario;
 	}
 
