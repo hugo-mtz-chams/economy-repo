@@ -85,6 +85,28 @@ public class ProformaDAO {
 	}
 	
 	/**
+	 * Retorna todas las proformas del cliente
+	 * @param claveCliente
+	 * @return List<EstatusTramiteCliente>
+	 */
+	public List<EstatusTramiteCliente> findTramitesByClientAndFechaIngreso(String claveCliente, Date fechaIngreso){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String fechaIngresoStr = sdf.format(fechaIngreso);
+		List<EstatusTramiteCliente> resumenTramites = proformaRepository.findTramitesByEstatusAndClienteAndFechaIngreso(claveCliente, fechaIngresoStr);
+		
+		//Se agrega un elemento con el total de referencias
+		long totalReferenceByDate = proformaRepository.findTotalReferenciasByDate(claveCliente, fechaIngresoStr);
+		EstatusTramiteCliente totalReferencia = new EstatusTramiteCliente(totalReferenceByDate, "Referencias", claveCliente);
+		resumenTramites.add(totalReferencia);
+		
+		long totaltramitesByDate = proformaRepository.findTotalTramitesByDate(claveCliente, fechaIngresoStr);
+		EstatusTramiteCliente totalTramites = new EstatusTramiteCliente(totaltramitesByDate, "Tramites", claveCliente);
+		resumenTramites.add(totalTramites);
+
+		return resumenTramites;
+	}
+	
+	/**
 	 * Retorna todos los numeros de referencia con lso totales de tramites y subtotales por estado de trámite
 	 * 
 	 * @param claveCliente

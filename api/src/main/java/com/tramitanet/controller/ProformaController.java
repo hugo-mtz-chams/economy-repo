@@ -112,12 +112,19 @@ public class ProformaController {
 	}
 	
 	@GetMapping("/proformas/cliente/{claveCliente}/resumen/{fechaIngreso}")
-	public List<EstatusTramiteCliente> findTotalsByClientAndDate(@PathVariable("claveCliente") String claveCliente) {
-		List<EstatusTramiteCliente> resumen = proformaService.findTramitesByClient(claveCliente);
-		if(CollectionUtils.isEmpty(resumen)) {
-			return null;
+	public List<EstatusTramiteCliente> findTotalsByClientAndDate(@PathVariable("claveCliente") String claveCliente, @PathVariable("fechaIngreso") String fechaIngreso) {
+		Date fecha;
+		try {
+			fecha = new SimpleDateFormat("dd-MM-yyyy").parse(fechaIngreso);
+			List<EstatusTramiteCliente> resumen = proformaService.findTramitesByClientAndFechaIngreso(claveCliente, fecha);
+			if(CollectionUtils.isEmpty(resumen)) {
+				return null;
+			}
+			return resumen; 
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
-		return resumen; 
+		return null; 
 	}
 	
 	@GetMapping("/proformas/cliente/{claveCliente}/referencias/{fechaIngreso}")

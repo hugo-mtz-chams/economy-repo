@@ -20,7 +20,21 @@ import com.tramitanet.model.Reference;
  */
 @Repository
 public interface ProformaRepository extends JpaRepository<ProformaEntity, Long>{
+	
 	public List<ProformaEntity> findByClaveCliente(String claveCliente);
+	
+	@Query(value = "SELECT COUNT(DISTINCT(num_referencia)) FROM Proforma p " +
+			"where p.clave_cliente=:claveCliente and fecha_ingreso = :fechaIngreso ", nativeQuery = true)
+	public long findTotalReferenciasByDate(@Param("claveCliente") String claveCliente, @Param("fechaIngreso") String fechaIngreso);
+	
+	@Query(value = "SELECT COUNT(1) FROM Proforma p " +
+			"where p.clave_cliente=:claveCliente and fecha_ingreso = :fechaIngreso ", nativeQuery = true)
+	public long findTotalTramitesByDate(@Param("claveCliente") String claveCliente, @Param("fechaIngreso") String fechaIngreso);
+	
+	
+	@Query("SELECT new com.tramitanet.model.EstatusTramiteCliente( count(p.idProforma) as numeroTramites, p.estatus, p.claveCliente ) from ProformaEntity p where p.claveCliente = :claveCliente and fecha_ingreso = :fechaIngreso group by p.estatus, p.claveCliente")
+	public List<EstatusTramiteCliente> findTramitesByEstatusAndClienteAndFechaIngreso(@Param("claveCliente") String claveCliente, @Param("fechaIngreso")  String fechaIngreso);
+	
 	
 	@Query("SELECT new com.tramitanet.model.EstatusTramiteCliente( count(p.idProforma) as numeroTramites, p.estatus, p.claveCliente ) from ProformaEntity p where p.claveCliente = :claveCliente group by p.estatus, p.claveCliente")
 	public List<EstatusTramiteCliente> findTramitesByEstatusAndCliente(@Param("claveCliente") String claveCliente);
