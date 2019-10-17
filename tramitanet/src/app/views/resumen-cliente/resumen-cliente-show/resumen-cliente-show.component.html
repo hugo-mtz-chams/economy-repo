@@ -387,20 +387,16 @@
 
 <!-- tabla de detalle de la referencia seleccionada -->
 <div class="row" *ngIf=mostrarTablaDetalleReferencia>
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-xs-2">
-              <button type="button" class="btn btn-info btn-sm glyphicon glyphicon-arrow-left" (click)="atras()">Atras</button>    
-          </div>
+          
           <div class="col-md-6">
               <div class="form-group">
-                  <input id="busqueda" placeholder="Datos de proforma" [formControl]="searchControl" class="form-control"
+                  <input id="busqueda" placeholder="Introduce el texto que deseas buscar y te proporcionaré los resultados rápidamente" [formControl]="searchControl" class="form-control"
                     type="text">
                 </div>
           </div>
-      </div>
-    
-  </div>
+          <div class="col-md-2">
+              <button type="button" class="btn btn-info btn-sm glyphicon glyphicon-arrow-left" (click)="atras()">Atras</button>    
+          </div>
     
 
   <div class="col-md-12">
