@@ -119,10 +119,10 @@ public class ProformaDAO {
 		return proformaRepository.findReferenciasByCliente(claveCliente, fecha);
 	}
 	
-	public List<Proforma> findTramitesByReferenceAndDate(String numReferencia, Date fechaIngreso){
+	public List<Proforma> findTramitesByReferenceAndDate(String numReferencia, Date fechaIngreso, String claveCliente){
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String fecha = dateFormat.format(fechaIngreso);
-		List<ProformaEntity> resumenTramites = proformaRepository.findByNumReferenciaAndFechaIngreso(numReferencia, fecha);
+		List<ProformaEntity> resumenTramites = proformaRepository.findByNumReferenciaAndFechaIngreso(numReferencia, fecha, claveCliente);
 		
 		List<Proforma> proformas = new ArrayList<Proforma>();
 		for(ProformaEntity entity : resumenTramites) {

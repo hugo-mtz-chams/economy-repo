@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -86,7 +88,15 @@ public class FileProcesorService {
 						p.setNumReferencia(processAndReturnValueAsString(cell));
 						break;
 					case FECHA_CAPTURA: 
-						p.setFechaIngreso(cell.getDateCellValue());
+						Date fechaIngreso = cell.getDateCellValue();
+						Calendar cal = Calendar.getInstance();
+						cal.setTime(fechaIngreso);
+						cal.set(Calendar.HOUR_OF_DAY,0);
+						cal.set(Calendar.MINUTE,0);
+						cal.set(Calendar.SECOND,0);
+						cal.set(Calendar.MILLISECOND,0);
+						
+						p.setFechaIngreso(cal.getTime());
 						break;
 					case DESCRIPCION: 
 						p.setDescripcion(cell.getStringCellValue());
