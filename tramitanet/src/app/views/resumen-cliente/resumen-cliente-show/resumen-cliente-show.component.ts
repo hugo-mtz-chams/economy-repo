@@ -67,7 +67,7 @@ export class ResumenClienteShowComponent implements OnInit {
       (data: any[]) => {
 
         const dataSeries: any[] = [];
-        let total: number = 0;
+        //let total: number = 0;
         for (const element of data) {
           switch (element.estatus) {
             case EstatusProformaEnum.APROBADO:
