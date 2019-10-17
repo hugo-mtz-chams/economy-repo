@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { ResumenCliente } from '../models/resumen-cliente.model';
 import { catchError, retry } from 'rxjs/operators';
+import { Proforma } from '../models/proforma';
 
 @Injectable({
     providedIn: 'root'
@@ -25,19 +26,20 @@ export class ResumenClienteService {
       private http: HttpClient
     ) { }
     getResumenCliente(clave:string, fecha:string): Observable<ResumenCliente[]> {
-      return this.http.get<ResumenCliente[]>(this.baseurl + '/tramitanet/proformas/cliente/'+clave+'/resumen/'+fecha).pipe(
+      return this.http.get<ResumenCliente[]>(this.baseurl + '/tramitanet/proformas/cliente/' + clave + '/resumen/' + fecha).pipe(
           retry(1), catchError(this.errorHandler)
       );
     }
 
     getResumenClienteFechaBusqueda(clave: string, fecha: string): Observable<any>{
-        return this.http.get<any>(this.baseurl + '/tramitanet/proformas/cliente/'+clave+'/referencias/'+fecha).pipe(
+        return this.http.get<any>(this.baseurl + '/tramitanet/proformas/cliente/' + clave + '/referencias/' + fecha).pipe(
             retry(1), catchError(this.errorHandler)
         );
     }
 
-    getFindTramitesByReferenciaAndFechaIngreso(fecha:string, clave:string, numReferencia: string): Observable<ResumenCliente>{
-        return this.http.get<ResumenCliente>(this.baseurl + '/tramitanet/proformas/cliente/' + clave + '/referencia/' + numReferencia + '/' + fecha).pipe(
+    getFindTramitesByReferenciaAndFechaIngreso(fecha: string, clave: string, numReferencia: string): Observable<Proforma[]> {
+        // tslint:disable-next-line: max-line-length
+        return this.http.get<Proforma[]>(this.baseurl + '/tramitanet/proformas/cliente/' + clave + '/referencia/' + numReferencia + '/' + fecha).pipe(
             retry(1), catchError(this.errorHandler)
         );
     }

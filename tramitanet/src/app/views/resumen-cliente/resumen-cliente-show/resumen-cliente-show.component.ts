@@ -44,11 +44,12 @@ export class ResumenClienteShowComponent implements OnInit {
   listaProformas: Proforma[];
   completeProformas: Proforma[];
 
-  mostrarTablaReferencias: boolean = false;
-  mostrarTablaDetalleReferencia: boolean = false;
+  mostrarTablaReferencias = false;
+  mostrarTablaDetalleReferencia = false;
 
   fechaActual: string;
   fecha: string;
+  fechaCorrecta: string;
 
   constructor(
     private auth: AuthService,
@@ -98,10 +99,10 @@ export class ResumenClienteShowComponent implements OnInit {
       }
     );
 
-    this.proformaService.getProformas().subscribe(data => {
+    /*this.proformaService.getProformas().subscribe(data => {
       this.listaProformas = data;
       this.completeProformas = data;
-    });
+    });*/
   }
 
 
@@ -109,6 +110,7 @@ export class ResumenClienteShowComponent implements OnInit {
     this.mostrarTablaReferencias = false;
       this.resetValores();
     this.fecha = formatDate(this.fechaActual, 'dd-MM-yyyy', 'en');
+    this.fechaCorrecta = formatDate(this.fechaActual, 'yyyy-MM-dd', 'en');
     this.resumenClienteService.getResumenCliente(this.user.claveCliente, this.fecha).subscribe(
       (data: any[]) => {
         const dataSeries: any[] = [];
@@ -137,7 +139,6 @@ export class ResumenClienteShowComponent implements OnInit {
               this.referencias = element.numeroTramites;
               break;
             }
-            
         }
         this.InitGraf(dataSeries);
 
@@ -162,11 +163,17 @@ export class ResumenClienteShowComponent implements OnInit {
     if (event.type == 'click') {
       console.log(event.row);
       this.mostrarTablaDetalleReferencia = true;
+      this.resumenClienteService.getFindTramitesByReferenciaAndFechaIngreso(
+        this.fecha, this.user.claveCliente, event.row.numReferencia).subscribe(
+          (response: any[]) => {
+            this.listaProformas = response;
+            this.completeProformas = response;
+          });
       this.mostrarTablaReferencias = false;
     }
   }
 
-  resetValores(){
+  resetValores() {
     this.aceptadas = 0;
     this.rechazadas = 0;
     this.proceso = 0;
@@ -294,7 +301,7 @@ export class ResumenClienteShowComponent implements OnInit {
 
     const rows = this.completeProformas.filter(function (d) {
       for (let i = 0; i <= columns.length; i++) {
-        let column = columns[i];
+        const column = columns[i];
         // console.log(d[column]);
         if (d[column] && d[column].toString().toLowerCase().search(val) > -1) {
           return true;
@@ -303,17 +310,5 @@ export class ResumenClienteShowComponent implements OnInit {
     });
     this.listaTotalReferencias = rows;
   }
-
-  columnDefs = [
-    { headerName: 'Make', field: 'make' },
-    { headerName: 'Model', field: 'model' },
-    { headerName: 'Price', field: 'price' }
-  ];
-
-  rowData = [
-    { make: 'Toyota', model: 'Celica', price: 35000 },
-    { make: 'Ford', model: 'Mondeo', price: 32000 },
-    { make: 'Porsche', model: 'Boxter', price: 72000 }
-  ];
 
 }

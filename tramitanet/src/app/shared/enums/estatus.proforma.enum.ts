@@ -3,6 +3,6 @@ export enum EstatusProformaEnum {
     RECHAZADO = 'Rechazado',
     APROBADO = 'Aprobado',
     EN_PROCESO = 'En proceso',
-    REFERENCIA = 'Referencia',
+    REFERENCIA = 'Referencias',
     TRAMITE = 'Tramites'
 }

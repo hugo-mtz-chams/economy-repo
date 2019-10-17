@@ -16,7 +16,8 @@
 
 <div class="separator-breadcrumb"></div>
 
-<div class="row">
+<!-- fila columnas viejas -->
+<!-- <div class="row">
 
   <div class="col-lg-2 col-md-6 col-sm-6">
 
@@ -138,12 +139,13 @@
 
   </div>
 
-</div>
+</div> -->
 
 <div class="row">
 
   <div class="col-lg-6 col-md-12 col-sm-12">
 
+    <!-- Grafica circular de tramites -->
     <div class="card eg-card-1 o-hidden mb-4">
 
       <div class="card-header justify-content-between mb-3">
@@ -184,8 +186,148 @@
     </div>
 
   </div>
+
+  <!-- columna de las tarjetas a la derecha -->
+  <div class="col-lg-6 col-md-12 col-sm-12">
+
+    <!--primera fila tarjetas -->
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-6">
+
+        <div class="card bm-card-10 o-hidden mb-4">
+
+          <div class="card-body text-center" (click)="mostrarReferencias()" (mouseover)="hover=true"
+            (mouseleave)="hover=false" [ngStyle]="{ backgroundColor: hover==true  ? 'grey' : 'lightgrey' }">
+            <div class="content">
+
+              <i class="icon-box text-orange text-50"></i>
+              <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">{{referencias}}
+              </p>
+              <p class="text-gray text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-0 ">Total Referencias</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-6">
+
+        <div class="card bm-card-10 o-hidden mb-4">
+
+          <div class="card-body text-center">
+
+            <div class="content">
+
+              <i class="icon-box text-orange text-50"></i>
+              <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">{{tramitesTotales}}
+              </p>
+              <p class="text-gray text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-0 ">Total tramites</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-6">
+
+        <div class="card bm-card-10 o-hidden mb-4">
+
+          <div class="card-body text-center">
+
+            <div class="content">
+
+              <i class="icon-layers text-orange text-50"></i>
+              <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">{{aceptadas}}</p>
+              <p class="text-gray text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-0 ">Tramites aceptados</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- segunda fila tarjetas -->
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-6">
+
+        <div class="card bm-card-10 o-hidden mb-4">
+
+          <div class="card-body text-center">
+
+            <div class="content">
+
+              <i class="icon-layers text-orange text-50"></i>
+              <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">{{rechazadas}}</p>
+              <p class="text-gray text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-0 ">Tramites rechazados
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-6">
+
+        <div class="card bm-card-10 o-hidden mb-4">
+
+          <div class="card-body text-center">
+
+            <div class="content">
+
+              <i class="icon-layers text-orange text-50"></i>
+              <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">{{proceso}}</p>
+              <p class="text-gray text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-0 ">Tramites en proceso
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-6">
+
+        <div class="card bm-card-10 o-hidden mb-4">
+
+          <div class="card-body text-center">
+
+            <div class="content">
+
+              <i class="icon-layers text-orange text-50"></i>
+              <p class="text-orange text-25 font-family-1 font-weight-500 line-height-1 mt-2 mb-1">{{espera}}</p>
+              <p class="text-gray text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-0 ">Tramites en espera</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
 
+
+<!-- tabla de referencias -->
 <div class="row" *ngIf=mostrarTablaReferencias>
   <div class="card-header justify-content-between mb-3">
     <div class="info">
@@ -235,6 +377,7 @@
 
 <div class="separator-breadcrumb border-top"></div>
 
+<!-- tabla de detalle de la referencia seleccionada -->
 <div class="row" *ngIf=mostrarTablaDetalleReferencia>
   <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-arrow-left" (click)="atras()">Atras</button>
   <div class="col-md-4">
@@ -246,30 +389,105 @@
   <div class="col-md-12">
     <div class="card  o-hidden">
       <ngx-datatable style="height: 500px; box-shadow: none" class="material fullscreen" [columnMode]="'force'"
-        [headerHeight]="50" [footerHeight]="50" [rowHeight]="60" [scrollbarV]="true" [rows]="filteredProducts">
+        [headerHeight]="50" [footerHeight]="50" [rowHeight]="60" [scrollbarV]="true" [rows]="listaProformas">
         <ngx-datatable-column name="photo" [maxWidth]="120">
           <ng-template ngx-datatable-header-template>
-            Thumbnail
+            Analista
           </ng-template>
           <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
             <img height="32px" width="32px" style="border-radius: 4px" [src]="value" alt="">
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="name" [width]="300">
+        <ngx-datatable-column name="capturista">
           <ng-template ngx-datatable-header-template>
-            Title
+            Capturista
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="category">
+        <ngx-datatable-column name="proforma">
           <ng-template ngx-datatable-header-template>
-            Category
+            Proforma
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="subtitle">
+        <ngx-datatable-column name="referencia">
           <ng-template ngx-datatable-header-template>
-            Description
+            No.Referencia
           </ng-template>
         </ngx-datatable-column>
+        <ngx-datatable-column name="fechaCaptura">
+          <ng-template ngx-datatable-header-template>
+            fechaCaptura
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="descripcion">
+          <ng-template ngx-datatable-header-template>
+            Descripcion
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="modelo">
+          <ng-template ngx-datatable-header-template>
+            No.Modelo
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="aduana">
+          <ng-template ngx-datatable-header-template>
+            Aduana
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="fraccion">
+          <ng-template ngx-datatable-header-template>
+            Fracción
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="factura">
+          <ng-template ngx-datatable-header-template>
+            No.Factura
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="fechaFactura">
+          <ng-template ngx-datatable-header-template>
+            Fecha Factura
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="umc">
+          <ng-template ngx-datatable-header-template>
+            UMC
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="cantidadUmc">
+          <ng-template ngx-datatable-header-template>
+            Cantidad UMC
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="factor">
+          <ng-template ngx-datatable-header-template>
+            Factor conv
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="cantidadUmt">
+          <ng-template ngx-datatable-header-template>
+            Cantidad UMT
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="valorAntDesc">
+            <ng-template ngx-datatable-header-template>
+              Valor ant. Desc.
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="factorDesc">
+              <ng-template ngx-datatable-header-template>
+                Factor Desc.
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="moneda">
+                <ng-template ngx-datatable-header-template>
+                  Moneda Comercialización
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="valorMercancia">
+                  <ng-template ngx-datatable-header-template>
+                    Valor Mercancia
+                  </ng-template>
+                </ngx-datatable-column>
       </ngx-datatable>
     </div>
   </div>
