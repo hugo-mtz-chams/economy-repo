@@ -3,6 +3,7 @@
  */
 package com.tramitanet.repositories;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -39,7 +40,8 @@ public interface ProformaRepository extends JpaRepository<ProformaEntity, Long>{
 	@Query("SELECT new com.tramitanet.model.EstatusTramiteCliente( count(p.idProforma) as numeroTramites, p.estatus, p.claveCliente ) from ProformaEntity p where p.claveCliente = :claveCliente group by p.estatus, p.claveCliente")
 	public List<EstatusTramiteCliente> findTramitesByEstatusAndCliente(@Param("claveCliente") String claveCliente);
 	
-	public List<ProformaEntity> findByNumReferenciaAndFechaIngreso(String numReferencia, String fechaIngreso);
+	@Query("SELECT p from ProformaEntity p where p.numReferencia = :numReferencia and fecha_ingreso = :fechaIngreso")
+	public List<ProformaEntity> findByNumReferenciaAndFechaIngreso(@Param("numReferencia") String numReferencia, @Param("fechaIngreso") String fechaIngreso);
 	
 	@Query("SELECT new com.tramitanet.model.Reference (" + 
 			"  p.numReferencia, " + 
