@@ -14,6 +14,7 @@ import { SearchModule } from './search/search.module';
 import { SharedDirectivesModule } from '../directives/shared-directives.module';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { FooterComponent } from './footer/footer.component';
+import { UploaderComponent } from './uploader/uploader.component';
 
 
 const components = [
@@ -25,7 +26,7 @@ const components = [
   AdminLayoutComponent,
   AuthLayoutComponent,
   BlankLayoutComponent
-]
+];
 
 @NgModule({
   imports: [

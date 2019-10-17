@@ -6,6 +6,7 @@ import { ProformaCreateComponent } from './proforma-create/proforma-create.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomFormsModule } from 'ng2-validation';
+import { FilePickerModule } from 'ngx-awesome-uploader';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { CustomFormsModule } from 'ng2-validation';
     ReactiveFormsModule,
     CustomFormsModule,
     NgbModule,
-    ProformaRoutingModule
+    ProformaRoutingModule,
+    FilePickerModule,
   ],
   declarations: [ProformaCreateComponent]
 })

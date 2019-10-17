@@ -16,6 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.tramitanet.CeldaProformaEnum;
 import com.tramitanet.dao.ProformaDAO;
@@ -31,11 +32,12 @@ public class FileProcesorService {
 	@Autowired
 	ProformaDAO proformaService;
 	
-	public void procesar() {
+	public void procesar(MultipartFile multipartFile) {
 		
 		try {
 			
-			FileInputStream file = new FileInputStream(new File("/Users/evomatik/Proformas/Mascara_11_OCT.xlsx"));
+			FileInputStream file =(FileInputStream) multipartFile.getInputStream();
+					//new FileInputStream(new File("/Users/evomatik/Proformas/Mascara_11_OCT.xlsx"));
 			
 			//Get the workbook instance for XLS file 
 			XSSFWorkbook workbook = new XSSFWorkbook(file);

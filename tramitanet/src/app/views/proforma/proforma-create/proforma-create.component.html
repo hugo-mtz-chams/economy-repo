@@ -27,14 +27,38 @@
 <div class="separator-breadcrumb border-top"></div>
 
 <div class="row">
+
+    
+
     <div class="col-lg-12">
       <div class="card eg-card-1 o-hidden mb-4">
           <div class="card-header justify-content-between mb-3">
-              <div class="info">
-                  <p class="title text-15 font-family-1 font-weight-500 line-height-1 mt-0 mb-1">Captura de Datos de Proforma</p>
+              <div class="info" *ngIf="!manual">
+                  <h5 class="m-0 font-weight-bold text-muted">Registrar Trámites</h5>
+                  <p class="subtitle text-13 font-family-1 font-weight-400 line-height-1 mb-0">
+                    Para agilizar el proceso de registro te damos la opción de cargar la mascara de registros. Esta será procesada de forma inmedianta y listada en la parte inferior una vez que el proceso haya culminado
+                  </p>
+                  <div (click)="changeManual()" style="text-align: center; color: rgb(47, 74, 161);"><b>Si prefieres hacer el registro manual de la información de un trámite presiona aquí</b></div>
+              </div>
+              <div class="info" *ngIf="manual">
+                  <h5 class="m-0 font-weight-bold text-muted">Captura de Datos de Proforma</h5><br>
+                  <div (click)="changeManual()" style="text-align: center; color: rgb(47, 74, 161);"><b>Prefieres cargar tu mascara pre-capturada presiona aquí.</b></div>
               </div>
           </div>
-          <div class="card-body pt-3">
+          <div class="card-body pt-3" *ngIf="!manual">
+              <div class="row">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-4">
+                      <ngx-file-picker
+                      [adapter]="adapter"  
+                      [enableCropper]="true"
+                    >
+                    </ngx-file-picker>
+                  </div>
+                  <div class="col-md-4"></div>
+              </div>
+          </div>
+          <div class="card-body pt-3" *ngIf="manual">
               <form [formGroup]="form" >
                   <div class="row mb-4">
                     <div class="col-md-2">
@@ -383,3 +407,4 @@
 
     </div>
 </div>
+

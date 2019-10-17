@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { CustomFilePickerAdapter } from 'src/app/shared/components/uploader/custom-file-picker-adapter';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-proforma-create',
@@ -7,10 +9,11 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
   styleUrls: ['./proforma-create.component.scss']
 })
 export class ProformaCreateComponent implements OnInit {
-
+  adapter = new CustomFilePickerAdapter(this.http);
+  manual = false;
   form: FormGroup;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -57,6 +60,8 @@ export class ProformaCreateComponent implements OnInit {
   }
 
 
-
+  changeManual() {
+    this.manual = !this.manual;
+  }
 
 }
