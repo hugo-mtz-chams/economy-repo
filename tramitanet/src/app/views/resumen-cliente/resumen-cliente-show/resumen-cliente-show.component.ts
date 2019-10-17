@@ -8,9 +8,7 @@ import { formatDate } from '@angular/common';
 import { Proforma } from 'src/app/shared/models/proforma';
 import { ProformaService } from 'src/app/shared/services/proforma.service';
 import { FormControl } from '@angular/forms';
-import { forEach } from '@angular/router/src/utils/collection';
-
-
+import { debounceTime } from 'rxjs/operators';
 
 
 @Component({
@@ -24,7 +22,7 @@ export class ResumenClienteShowComponent implements OnInit {
   searchControl: FormControl = new FormControl();
 
   products;
-  filteredProducts;
+
 
   startDate = new Date(2019, 0, 1);
   chartDelivery: EChartOption;
@@ -41,6 +39,8 @@ export class ResumenClienteShowComponent implements OnInit {
   columns: any[];
 
   listaTotalReferencias: any[];
+  listaReferencias: any[];
+
   listaProformas: Proforma[];
   completeProformas: Proforma[];
 
@@ -61,6 +61,14 @@ export class ResumenClienteShowComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+    this.searchControl.valueChanges
+      .pipe(debounceTime(200))
+      .subscribe(value => {
+        this.filterData(value);
+    });
+
+
     this.resetValores();
     this.fecha = formatDate(this.fechaActual, 'dd-MM-yyyy', 'en');
     this.resumenClienteService.getResumenCliente(this.user.claveCliente, this.fecha).subscribe(
@@ -151,6 +159,7 @@ export class ResumenClienteShowComponent implements OnInit {
       (data: any[]) => {
          console.log(data);
          this.listaTotalReferencias = data;
+         this.listaReferencias = data;
       });
   }
 
@@ -182,6 +191,7 @@ export class ResumenClienteShowComponent implements OnInit {
     this.tramitesTotales = 0;
   }
 
+  // datos de la grafica
   InitGraf(myDataSeries: any[]) {
     this.chartDelivery = {
       color: ['#ff7110', '#fdb772', '#fcddbd'],
@@ -275,40 +285,73 @@ export class ResumenClienteShowComponent implements OnInit {
     }
   }// fin metodo
 
-  buildColumns() {
-    this.columns = [
-      { name: 'No. Referencia', prop: 'numReferencia' },
-      { name: 'Fecha Ingreso', prop: 'fechaIngreso', pipe: 'date' },
-      { name: 'Aceptadas', prop: 'aceptadas' },
-      { name: 'Rechazadas', prop: 'rechazadas' },
-      { name: 'Proceso', prop: 'proceso' },
-      { name: 'Espera', prop: 'espera' }
-    ];
-  }
+  // buildColumns() {
+  //   this.columns = [
+  //     { name: 'No. Referencia', prop: 'numReferencia' },
+  //     { name: 'Fecha Ingreso', prop: 'fechaIngreso', pipe: 'date' },
+  //     { name: 'Aceptadas', prop: 'aceptadas' },
+  //     { name: 'Rechazadas', prop: 'rechazadas' },
+  //     { name: 'Proceso', prop: 'proceso' },
+  //     { name: 'Espera', prop: 'espera' }
+  //   ];
+  // }
 
   filterData(val) {
-    if (val) {
-      val = val.toLowerCase();
-    } else {
-      return this.listaTotalReferencias = [...this.completeProformas];
-    }
 
-    const columns = Object.keys(this.completeProformas[0]);
-
-    if (!columns.length) {
-      return;
-    }
-
-    const rows = this.completeProformas.filter(function (d) {
-      for (let i = 0; i <= columns.length; i++) {
-        const column = columns[i];
-        // console.log(d[column]);
-        if (d[column] && d[column].toString().toLowerCase().search(val) > -1) {
-          return true;
-        }
+    if(this.mostrarTablaReferencias){
+      if (val) {
+        val = val.toLowerCase();
+      } else {
+        return this.listaTotalReferencias = [...this.listaReferencias];
       }
-    });
-    this.listaTotalReferencias = rows;
-  }
+  
+      const columns = Object.keys(this.listaReferencias[0]);
+  
+      if (!columns.length) {
+        return;
+      }
+  
+      const rows = this.listaReferencias.filter(function (d) {
+        for (let i = 0; i <= columns.length; i++) {
+          const column = columns[i];
+          // console.log(d[column]);
+          if (d[column] && d[column].toString().toLowerCase().search(val) > -1) {
+            return true;
+          }
+        }
+      });
+      this.listaTotalReferencias = rows;
+    }
+
+
+
+    if(this.mostrarTablaDetalleReferencia){
+      if (val) {
+        val = val.toLowerCase();
+      } else {
+        return this.listaProformas = [...this.completeProformas];
+      }
+  
+      const columns = Object.keys(this.completeProformas[0]);
+  
+      if (!columns.length) {
+        return;
+      }
+  
+      const rows = this.completeProformas.filter(function (d) {
+        for (let i = 0; i <= columns.length; i++) {
+          const column = columns[i];
+          // console.log(d[column]);
+          if (d[column] && d[column].toString().toLowerCase().search(val) > -1) {
+            return true;
+          }
+        }
+      });
+      this.listaProformas = rows;
+    }
+  
+
+    }
+
 
 }
