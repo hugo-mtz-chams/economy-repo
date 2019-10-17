@@ -3,7 +3,6 @@
  */
 package com.tramitanet.repositories;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;

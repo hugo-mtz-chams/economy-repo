@@ -93,7 +93,7 @@ export class ResumenClienteShowComponent implements OnInit {
               this.referencias = element.numeroTramites;
               break;
           }
-          dataSeries.push({value: element.numeroTramites, name: element.estatus});
+          // dataSeries.push({value: element.numeroTramites, name: element.estatus});
         }
         this.InitGraf(dataSeries);
       }
