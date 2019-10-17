@@ -97,3 +97,11 @@ bootstrap table theme
   }
 
   */
+
+   .my-custom-class .tooltip-inner {
+    background-color: rgb(4, 165, 165);
+    font-size: 125%;
+  }
+  .my-custom-class .arrow::before {
+    border-top-color:  rgb(4, 165, 165);
+  }
