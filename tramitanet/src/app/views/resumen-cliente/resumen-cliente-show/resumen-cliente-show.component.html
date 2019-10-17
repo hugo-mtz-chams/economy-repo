@@ -331,20 +331,21 @@
 
 <!-- tabla de referencias -->
 <div class="row" *ngIf=mostrarTablaReferencias>
-  <div class="info col-md-2">
+  <!--div class="info col-md-2">
     <p class="title text-orange text-18 font-family-2 font-weight-500 line-height-1 mt-0 mb-0">Lista de Referencias</p>
-  </div>
+  </div-->
 
   <div class="col-md-6">
       <div class="form-group">
-          <input id="busqueda" placeholder="Datos de proforma" [formControl]="searchControl" class="form-control"
+          <label for="numProforma"><b>Filtro de Búsqueda:</b></label>
+          <input id="busqueda" placeholder="Ingresa la información que deseas buscar y te mostraré los datos rápidamente" [formControl]="searchControl" class="form-control"
             type="text">
         </div>
   </div>
 
   <div class="col-md-12">
       <div class="card  o-hidden">
-    <ngx-datatable style="height: 500px; box-shadow: none" class="material fullscreen" [rows]="listaTotalReferencias"
+    <ngx-datatable style="box-shadow: none" class="material fullscreen" [rows]="listaTotalReferencias"
       [columnMode]="'spacer'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10" 
       (activate)="verReferencia($event)" [scrollbarH]="true">
       <ngx-datatable-column name="Referencia" width="150">
@@ -401,8 +402,8 @@
 
   <div class="col-md-12">
     <div class="card  o-hidden">
-      <ngx-datatable style="height: 500px; box-shadow: none" class="material fullscreen" [columnMode]="'force'"
-        [headerHeight]="50" [footerHeight]="50" [rowHeight]="60" [scrollbarV]="true" [rows]="listaProformas"
+      <ngx-datatable style=" box-shadow: none" class="material fullscreen" [columnMode]="'force'"
+        [headerHeight]="50" [limit]="10" [footerHeight]="50" [rowHeight]="50" [scrollbarV]="false" [rows]="listaProformas"
         [scrollbarH]="true">
 
         <ngx-datatable-column name="numProforma" [width]="autoResize">
@@ -411,11 +412,11 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="idProforma" [width]="autoResize">
+        <!--ngx-datatable-column name="idProforma" [width]="autoResize">
           <ng-template ngx-datatable-header-template>
             Proforma
           </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column-->
 
         <ngx-datatable-column name="numFactura" [width]="autoResize">
           <ng-template ngx-datatable-header-template>
@@ -423,10 +424,10 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="fechaFactura" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            Fecha Factura
-          </ng-template>
+        <ngx-datatable-column name="Fecha Factura" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.fechaFactura | date: 'dd/MM/yyyy'}}
+            </ng-template>
         </ngx-datatable-column>
 
         <ngx-datatable-column name="numeroSolicitud" [width]="autoResize">
@@ -464,11 +465,12 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="fechaIngreso" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            fechaCaptura
-          </ng-template>
-        </ngx-datatable-column>
+        <!--ngx-datatable-column name="Fecha ingreso" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.fechaIngreso | date: 'dd/MM/yyyy'}}
+            </ng-template>
+          
+        </ngx-datatable-column-->
 
         <ngx-datatable-column name="descripcion" [width]="autoResize">
           <ng-template ngx-datatable-header-template>
@@ -620,10 +622,10 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="inicioVigencia" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            Inicio Vigencia
-          </ng-template>
+        <ngx-datatable-column name="Inicio Vigencia" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.inicioVigencia | date: 'dd/MM/yyyy'}}
+            </ng-template>
         </ngx-datatable-column>
 
       </ngx-datatable>
