@@ -157,7 +157,7 @@ public class ProformaController {
 		
 		try {
 			Date fecha = new SimpleDateFormat("dd-MM-yyyy").parse(fechaIngreso);
-			List<Proforma> resumen = proformaService.findTramitesByReferenceAndDate(numReferencia, fecha);
+			List<Proforma> resumen = proformaService.findTramitesByReferenceAndDate(numReferencia, fecha, claveCliente);
 			if(CollectionUtils.isEmpty(resumen)) {
 				return null;
 			}
