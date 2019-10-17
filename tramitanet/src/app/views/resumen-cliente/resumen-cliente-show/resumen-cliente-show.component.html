@@ -329,9 +329,17 @@
 
 <!-- tabla de referencias -->
 <div class="row" *ngIf=mostrarTablaReferencias>
-  <div class="info">
-    <p class="title text-gray text-16 font-family-1 font-weight-500 line-height-1 mt-0 mb-0">Lista de Referencias</p>
+  <div class="info col-md-2">
+    <p class="title text-orange text-18 font-family-2 font-weight-500 line-height-1 mt-0 mb-0">Lista de Referencias</p>
   </div>
+
+  <div class="col-md-6">
+      <div class="form-group">
+          <input id="busqueda" placeholder="Datos de proforma" [formControl]="searchControl" class="form-control"
+            type="text">
+        </div>
+  </div>
+
   <div class="col-md-12">
       <div class="card  o-hidden">
     <ngx-datatable style="height: 500px; box-shadow: none" class="material fullscreen" [rows]="listaTotalReferencias"
