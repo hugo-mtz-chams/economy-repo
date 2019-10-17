@@ -69,6 +69,11 @@
     </div>
     <div style="margin: auto"></div>
     <div class="header-part-right">
+            <div ngbDropdown [placement]="'bottom-right'" class="d-sm-inline-block">
+                <div style="text-align: center; color: rgb(47, 74, 161);" >
+                    <b>{{principal.razonSocial}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                </div>
+            </div>
         <div ngbDropdown [placement]="'bottom-right'" class="d-sm-inline-block">
             <i class="icon-search1 text-muted header-icon" role="button" (click)="searchService.searchOpen = true"></i>
             <i ngbDropdownToggle class="icon-layers text-muted header-icon" role="button"></i>

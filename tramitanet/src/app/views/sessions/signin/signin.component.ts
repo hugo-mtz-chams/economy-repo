@@ -34,7 +34,7 @@ export class SigninComponent implements OnInit {
     setTimeout(() => {
       if ( this.auth.signin(this.signinForm) ) {
         this.toastr.success('Acceso correcto', 'Bienvenido', {progressBar: true});
-        this.router.navigateByUrl('/dashboard/v1');
+        this.router.navigateByUrl('/resumen-cliente');
       } else {
         this.toastr.error('Por favor verifica tu usuario y contraseña', 'Acceso denegado!', {progressBar: true});
       }

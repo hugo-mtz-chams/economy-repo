@@ -9,7 +9,7 @@ import { RoleEnum } from './shared/enums/role.enum';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard/v1',
+    redirectTo: 'resumen-cliente',
     pathMatch: 'full'
   },
   {

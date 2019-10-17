@@ -9,11 +9,13 @@
 <div class="separator-breadcrumb border-top"></div>
 
 <div class="row">
-  <div class="col-lg-2">
-    <input class="form-control" type="date" [(ngModel)]="fechaActual" (change)="fechaChange()">
+    
+  <div class="col-md-3 form-group mb-3">
+      <label for="fecha" >Fecha de ingreso</label>
+      <input class="form-control" type="date" [(ngModel)]="fechaActual" (change)="fechaChange()">
   </div>
+  
 </div>
-
 <div class="separator-breadcrumb"></div>
 
 <!-- fila columnas viejas -->

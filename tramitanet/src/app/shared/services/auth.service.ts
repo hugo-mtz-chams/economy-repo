@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   getuser() {
-    return of({});
+    return this.store.getItem('loggedUser');
   }
 
   signin(jsecurityForm: FormGroup) {
