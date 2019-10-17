@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { EChartOption } from 'echarts';
 import { ResumenClienteService } from 'src/app/shared/services/resumen-cliente.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -14,7 +14,17 @@ import { debounceTime } from 'rxjs/operators';
 @Component({
   selector: 'app-resumen-cliente-show',
   templateUrl: './resumen-cliente-show.component.html',
-  styleUrls: ['./resumen-cliente-show.component.scss'],
+  // styleUrls: ['./resumen-cliente-show.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  styles: [`
+  .my-custom-class .tooltip-inner {
+    background-color: rgb(4, 165, 165);
+    font-size: 125%;
+  }
+  .my-custom-class .arrow::before {
+    border-top-color: rgb(4, 165, 165);
+  }
+  `]
 
 })
 export class ResumenClienteShowComponent implements OnInit {

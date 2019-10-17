@@ -12,7 +12,8 @@
     
   <div class="col-md-3 form-group mb-3">
       <label for="fecha" >Fecha de ingreso</label>
-      <input class="form-control" type="date" [(ngModel)]="fechaActual" (change)="fechaChange()">
+      <input class="form-control" type="date" [(ngModel)]="fechaActual" (change)="fechaChange()"
+       ngbTooltip="¡Busca las referencias por fecha!" tooltipClass="my-custom-class" placement="right">
   </div>
   
 </div>
@@ -196,7 +197,7 @@
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-6">
 
-        <div class="card bm-card-10 o-hidden mb-4">
+        <div class="card bm-card-10 o-hidden mb-4" ngbTooltip="Ver el total de referencias capturadas" tooltipClass="my-custom-class">
 
           <div class="card-body text-center" (click)="mostrarReferencias()" (mouseover)="hover=true"
             (mouseleave)="hover=false" [ngStyle]="{ backgroundColor: hover==true  ? 'grey' : 'lightgrey' }">
@@ -337,8 +338,8 @@
 
   <div class="col-md-6">
       <div class="form-group">
-          <input id="busqueda" placeholder="Datos de proforma" [formControl]="searchControl" class="form-control"
-            type="text">
+          <input id="busqueda" placeholder="Buscar referencia" [formControl]="searchControl" class="form-control"
+            type="text" ngbTooltip="¡Ingresa el texto que deseas buscar!" tooltipClass="my-custom-class" placement="right">
         </div>
   </div>
 
@@ -346,8 +347,8 @@
       <div class="card  o-hidden">
     <ngx-datatable style="height: 500px; box-shadow: none" class="material fullscreen" [rows]="listaTotalReferencias"
       [columnMode]="'spacer'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10" 
-      (activate)="verReferencia($event)" [scrollbarH]="true">
-      <ngx-datatable-column name="Referencia" width="150">
+      (activate)="verReferencia($event)" [scrollbarH]="true" >
+      <ngx-datatable-column name="Referencia" width="150" >
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{row.numReferencia}}
         </ng-template>
@@ -391,11 +392,12 @@
           <div class="col-md-6">
               <div class="form-group">
                   <input id="busqueda" placeholder="Introduce el texto que deseas buscar y te proporcionaré los resultados rápidamente" [formControl]="searchControl" class="form-control"
-                    type="text">
+                    type="text"  >
                 </div>
           </div>
           <div class="col-md-2">
-              <button type="button" class="btn btn-info btn-sm glyphicon glyphicon-arrow-left" (click)="atras()">Atras</button>    
+              <button type="button" class="btn btn-info btn-sm glyphicon glyphicon-arrow-left" (click)="atras()"
+              ngbTooltip="¡Vuelve a la búsqueda de referencias!" tooltipClass="my-custom-class" placement="right">Atras</button>    
           </div>
     
 
