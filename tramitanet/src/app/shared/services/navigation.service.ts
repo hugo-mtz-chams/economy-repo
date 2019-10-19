@@ -198,7 +198,7 @@ export class NavigationService {
       icon: 'icon-box',
       sub: [
         { icon: 'icon-book-open', name: 'Capturar proforma', state: '/proforma', type: 'link' },
-        { icon: 'icon-list1', name: 'Resumen de Trámites', state: '/resumen-tramite', type: 'link' },
+        // { icon: 'icon-list1', name: 'Resumen de Trámites', state: '/resumen-tramite', type: 'link' },
       ]
     }
   ];

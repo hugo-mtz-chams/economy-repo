@@ -11,5 +11,9 @@ export class Users {
         { username: 'cliente', email: 'gm_motors@gmail.com', claveCliente: 'CLI0001', password: '   ', role: 1 },
         { username: 'analista', email: 'ernesto_trejo@hotmail.com', password: '4n4l1st4', role: 2 },
         { username: 'capturista', email: 'j.m.r@hotmail.com', password: 'c4ptur1st4', role: 3 },
+        // se agregan usuarios de prueba
+        { username: 'cliente', email: 'cliente', claveCliente: 'CLI0002', password: 'cliente', role: 1 },
+        { username: 'analista', email: 'analista', password: 'analista', role: 2 },
+        { username: 'capturista', email: 'capturista', password: 'capturista', role: 3 },
     ];
 }
