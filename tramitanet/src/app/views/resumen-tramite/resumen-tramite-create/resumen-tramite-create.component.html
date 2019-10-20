@@ -300,27 +300,41 @@
 <!-- div para importar archivo -->
 <div class="card eg-card-1 o-hidden mb-4">
   <div class="row" *ngIf="importar">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="card-body pt-3" >
-        <ngx-file-picker [adapter]="adapter" [enableCropper]="true">
+        <ngx-file-picker  [adapter]="adapter" [enableCropper]="true"
+                          (validationError)= "onValidationError($event)"
+                          [fileExtensions]="['xlsx']">
         </ngx-file-picker>
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-8">
       <div class="card-header justify-content-between mb-3">
         <div class="info">
-          <h5 class="m-0 font-weight-bold text-muted">Registrar Trámites</h5>
-          <p class="subtitle text-13 font-family-1 font-weight-400 line-height-1 mb-0">
+          <h4 class="m-0 font-weight-bold text-muted">Registrar datos de solicitud</h4>
+          <br>
+          <p class="subtitle text-13 font-family-1 font-weight-500 line-height-1 mb-0">
             Para agilizar el proceso de actualizacion de registro te damos la opción de cargar el archivo
-            de registros previamente descargado. Este será procesado de forma inmedianta
-            y actualizara los datos correspondientes de forma automatica.
+            de registros previamente descargado. Este será procesado de forma inmediata y actualizará los datos correspondientes de forma automática.
           </p>
-          <div (click)="cargarArchivo()" style="text-align: center; color: rgb(62, 228, 56); cursor: pointer">
-            <b>
-                ¡¡Regresa a ver la informacion completa!!
-            </b>
-          </div>
+          <br>
+          <p class="subtitle text-13 font-family-1 font-weight-500 line-height-1 mb-0">
+            Recuerda que únicamente se actualizará la siguiente información:
+          </p>
+          <br>
+            <ul class="subtitle text-13 font-family-1 font-weight-500 line-height-1 mb-0">
+              <li class="subtitle text-13 font-family-1 font-weight-500 line-height-1 mb-0">Número de solicitud</li>
+              <li class="subtitle text-13 font-family-1 font-weight-500 line-height-1 mb-0">Permiso</li>
+              <li class="subtitle text-13 font-family-1 font-weight-500 line-height-1 mb-0">Fecha de inicio de vigencia</li>
+            </ul>
+            <br>
+            <div>
+              <div class="col-md-1">
+                <button type="button" class="btn btn-outline-success btn-sm" (click)="cargarArchivo()"
+                  ngbTooltip="Presioname para regresar a tu lista de trámites" tooltipClass="my-custom-class" placement="right">Regresar</button>
+              </div>
+            </div>
         </div>
       </div>
 

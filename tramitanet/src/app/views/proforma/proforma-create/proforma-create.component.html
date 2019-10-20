@@ -27,35 +27,50 @@
 <div class="separator-breadcrumb border-top"></div>
 
 <div class="row">
-
-    
-
     <div class="col-lg-12">
       <div class="card eg-card-1 o-hidden mb-4">
-          <div class="card-header justify-content-between mb-3">
-              <div class="info" *ngIf="!manual">
-                  <h5 class="m-0 font-weight-bold text-muted">Registrar Trámites</h5>
-                  <p class="subtitle text-13 font-family-1 font-weight-400 line-height-1 mb-0">
-                    Para agilizar el proceso de registro te damos la opción de cargar la mascara de registros. Esta será procesada de forma inmedianta y listada en la parte inferior una vez que el proceso haya culminado
-                  </p>
-                  <div (click)="changeManual()" style="text-align: center; color: rgb(47, 74, 161);"><b>Si prefieres hacer el registro manual de la información de un trámite presiona aquí</b></div>
-              </div>
-              <div class="info" *ngIf="manual">
+          <div class="card-header justify-content-between mb-3" *ngIf="manual">
+              <div class="info" >
                   <h5 class="m-0 font-weight-bold text-muted">Captura de Datos de Proforma</h5><br>
                   <div (click)="changeManual()" style="text-align: center; color: rgb(47, 74, 161);"><b>Prefieres cargar tu mascara pre-capturada presiona aquí.</b></div>
               </div>
           </div>
           <div class="card-body pt-3" *ngIf="!manual">
               <div class="row">
-                  <div class="col-md-4"></div>
+                  
                   <div class="col-md-4">
                       <ngx-file-picker
                       [adapter]="adapter"  
-                      [enableCropper]="true"
+                      [enableCropper]="false"
+                      (validationError)= "onValidationError($event)"
+                      [fileExtensions]="['xlsx']"
                     >
                     </ngx-file-picker>
                   </div>
-                  <div class="col-md-4"></div>
+                  <div class="col-md-8">
+                    <div class="info" *ngIf="!manual">
+                        <div class="card-header justify-content-between mb-3">
+                          <div class="info">
+                            <h4 class="m-0 font-weight-bold text-muted">Registrar trámites</h4>
+                            <br>
+                            <p class="subtitle text-13 font-family-1 font-weight-500 line-height-1 mb-0">
+                              Para agilizar el proceso de registro te damos la opción de cargar tu mascara de capturada en tu archivo de excel. 
+                              Este documento será procesado de forma inmediata y almacenará los datos correspondientes de forma automática e inmediantemente
+                              podrás ver la información cargada en la sección "Trámites capurados"                              
+                            </p>
+                            <br>
+                            <p class="subtitle text-13 font-family-1 font-weight-500 line-height-1 mb-0">
+                              Recuerda que únicamente se actualizará la siguiente información:
+                            </p>
+                            <br>
+                              <div>
+                                  <button type="button" class="btn btn-outline-success btn-sm" (click)="changeManual()"
+                                    ngbTooltip="Presioname para ir a la plantilla de registro de trámite" tooltipClass="my-custom-class" placement="right">Registrar</button>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
               </div>
           </div>
           <div class="card-body pt-3" *ngIf="manual">

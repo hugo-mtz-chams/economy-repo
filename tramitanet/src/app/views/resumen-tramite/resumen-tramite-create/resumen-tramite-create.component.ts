@@ -10,6 +10,9 @@ import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CapturistFilePickerAdapter } from 'src/app/shared/components/uploader/capturist-file-uploader';
+import { ValidationError } from 'ngx-awesome-uploader';
+import { UploadValidationErrorEnum } from 'src/app/shared/enums/upload.enum';
+import { ErrorMessages } from 'src/app/shared/constants/error.messages';
 
 
 
@@ -42,7 +45,6 @@ export class ResumenTramiteCreateComponent implements OnInit {
   searchControl: FormControl = new FormControl();
 
   importar = false;
-  adapter = new CapturistFilePickerAdapter(this.http);
 
   fechaActual: string;
   fecha: string;
@@ -52,7 +54,6 @@ export class ResumenTramiteCreateComponent implements OnInit {
       private fb: FormBuilder,
       private toastr: ToastrService,
       private proformaService: ProformaService,
-      private datePipe: DatePipe,
       private http: HttpClient,
     private auth: AuthService
 
@@ -62,6 +63,8 @@ export class ResumenTramiteCreateComponent implements OnInit {
     this.fecha = formatDate(this.fechaActual, 'dd-MM-yyyy', 'en');
     this.cargarProformas(this.fecha,this.user.claveCapturista);
   }
+
+  adapter = new CapturistFilePickerAdapter(this.http, this.toastr);
 
   ngOnInit() {
 
@@ -188,6 +191,15 @@ filterData(val) {
     }
     console.log(errorMessage);
     return errorMessage;
-}
+  }
+
+  onValidationError(error: ValidationError) {
+    if ( error.error === UploadValidationErrorEnum.EXTENSIONS ) {
+      this.toastr.error( ErrorMessages.INVALID_EXTENSION, 'Documento inválido', { progressBar: true } );
+    } else {
+      this.toastr.error('Se presentado un error: ', error.error, {progressBar: true});
+    }
+  }
+
 
 }

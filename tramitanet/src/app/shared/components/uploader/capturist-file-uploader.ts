@@ -2,10 +2,11 @@ import { FilePickerAdapter, FilePreviewModel } from 'ngx-awesome-uploader';
 import { HttpClient, HttpEvent, HttpEventType, HttpRequest } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 export class CapturistFilePickerAdapter extends FilePickerAdapter {
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private toast: ToastrService) {
         super();
     }
     public uploadFile(fileItem: FilePreviewModel) {
@@ -16,14 +17,17 @@ export class CapturistFilePickerAdapter extends FilePickerAdapter {
         return this.http.request(req)
         .pipe(
         map( (res: HttpEvent<any>) => {
-            if (res.type === HttpEventType.Response) {
-            return '200';
-            } else if (res.type ===  HttpEventType.UploadProgress) {
-                // Compute and show the % done:
-                const UploadProgress = +Math.round((100 * res.loaded) / res.total);
-                return UploadProgress;
-            }
-        })
+                if (res.type === HttpEventType.Response) {
+                    return '200';
+                } else if (res.type ===  HttpEventType.UploadProgress) {
+                    // Compute and show the % done:
+                    const UploadProgress = +Math.round((100 * res.loaded) / res.total);
+                    return UploadProgress;
+                }
+            }, error => {
+                this.toast.error('Error al procesar el archivo');
+                }
+        )
         );
     }
     public removeFile(fileItem): Observable<any> {

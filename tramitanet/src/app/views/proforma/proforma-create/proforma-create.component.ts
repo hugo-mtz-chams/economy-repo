@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { CustomFilePickerAdapter } from 'src/app/shared/components/uploader/custom-file-picker-adapter';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { ValidationError } from 'ngx-awesome-uploader';
+import { UploadValidationErrorEnum } from 'src/app/shared/enums/upload.enum';
+import { ErrorMessages } from 'src/app/shared/constants/error.messages';
 
 @Component({
   selector: 'app-proforma-create',
@@ -13,7 +17,7 @@ export class ProformaCreateComponent implements OnInit {
   manual = false;
   form: FormGroup;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toaster: ToastrService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -59,6 +63,13 @@ export class ProformaCreateComponent implements OnInit {
     });
   }
 
+  onValidationError(error: ValidationError) {
+    if ( error.error === UploadValidationErrorEnum.EXTENSIONS ) {
+      this.toaster.error( ErrorMessages.INVALID_EXTENSION, 'Documento inválido',{progressBar: true});
+    } else {
+      this.toaster.error('Se presentado un error: ', error.error, {progressBar: true});
+    }
+  }
 
   changeManual() {
     this.manual = !this.manual;

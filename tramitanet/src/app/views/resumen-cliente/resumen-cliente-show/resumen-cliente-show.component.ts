@@ -72,7 +72,7 @@ export class ResumenClienteShowComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.searchControl.valueChanges
       .pipe(debounceTime(200))
       .subscribe(value => {
