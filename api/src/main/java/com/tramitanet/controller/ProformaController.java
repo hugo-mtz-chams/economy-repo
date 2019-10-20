@@ -4,7 +4,6 @@
 package com.tramitanet.controller;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -169,7 +168,6 @@ public class ProformaController {
 			}
 			return resumen;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -187,7 +185,6 @@ public class ProformaController {
 				fechaIngresoStr = sdf.format(fecha);
 				
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -211,11 +208,15 @@ public class ProformaController {
 			fechaIngresoStr = sdf.format(fecha);
 			
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		ByteArrayInputStream in = fileProcesorService.generarArchivoProformasParaCapturista(claveCapturista, fechaIngresoStr);
+		ByteArrayInputStream in = null;
+		try {
+			in = fileProcesorService.generarArchivoProformasParaCapturista(claveCapturista, fechaIngresoStr);
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
 		String fechaDescarga = new SimpleDateFormat("dd-MM-yyyyHHmmss").format(Calendar.getInstance().getTime());
 		String fileName = claveCapturista+"_"+fechaIngreso+"_"+fechaDescarga;
 		HttpHeaders headers = new HttpHeaders();

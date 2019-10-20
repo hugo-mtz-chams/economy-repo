@@ -55,8 +55,8 @@ export class ResumenTramiteCreateComponent implements OnInit {
       private datePipe: DatePipe,
       private http: HttpClient,
     private auth: AuthService
-      
-  ) { 
+
+  ) {
     this.fechaActual = formatDate(new Date(), 'yyyy-MM-dd', 'en');
     this.user = this.auth.getuser();
     this.fecha = formatDate(this.fechaActual, 'dd-MM-yyyy', 'en');
@@ -65,7 +65,7 @@ export class ResumenTramiteCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.buildColumns();
     this.buildFormBasic();
     this.searchControl.valueChanges
@@ -148,10 +148,14 @@ filterData(val) {
 
   exportarArchivo() {
     this.proformaService.downloadCapturistFile( this.user.claveCapturista , this.fecha ).subscribe(
-      (data) => {
-        const myBlob: Blob = new Blob([(<any>data)._body]);
+      (data: ArrayBuffer) => {
+        const myBlob: Blob = new Blob([ data]);
         this.downloadFile(myBlob);
       }, error => {
+        if ( error.status === 400 ) {
+          this.toastr.error('No se cuenta con información para exportar en la fecha seleccionada', 
+                            'Ups tuvimos un problema', {progressBar: true});
+        }
         console.log('Error downloading the file.', error);
       }, () => { console.log('Error.'); }
     );
@@ -166,7 +170,10 @@ filterData(val) {
      document.body.appendChild(a);
      a.setAttribute('style', 'display: none');
      a.href = url;
-     a.download = 'Articulos.xlsx';
+     const currentDate = formatDate(Date.now(), 'dd-MM-yyyyHHmmss', 'en');
+
+     const fileName = this.user.claveCapturista + '_' + this.fecha + '_' + currentDate + '.xlsx';
+     a.download = fileName;
      a.click();
      window.URL.revokeObjectURL(url);
      a.remove(); // remove the element

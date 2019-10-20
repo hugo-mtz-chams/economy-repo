@@ -5,12 +5,9 @@ package com.tramitanet.service;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -28,6 +25,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -295,9 +293,13 @@ public class FileProcesorService {
 	return value;
 	}
 	
-	public ByteArrayInputStream generarArchivoProformasParaCapturista(String claveCapturista, String fecha) {
+	public ByteArrayInputStream generarArchivoProformasParaCapturista(String claveCapturista, String fecha) throws Exception {
 		List<Proforma> tramites = proformaService.findTramitesByCapturistaAndDate(fecha, claveCapturista);
-		File archivo = new File("reporte.xlsx");
+		
+		if(CollectionUtils.isEmpty(tramites)) {
+			throw new Exception("No se cuenta con datos que exportar para la fecha seleccionada");
+		}
+		
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
         // Creamos el libro de trabajo de Excel formato OOXML
         Workbook workbook = new XSSFWorkbook();
@@ -366,13 +368,7 @@ public class FileProcesorService {
             // Excel via ese 
             // flujo de datos
             workbook.write(out);
-            File f = new File("/Users/evomatik/Proformas/MyFile.xlsx");
-            OutputStream 
-            os 
-            = new FileOutputStream(f); 
             
-            os.write(out.toByteArray()); 
-
             // Cerramos el libro para concluir operaciones
             workbook.close();
 
