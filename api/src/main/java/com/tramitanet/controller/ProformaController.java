@@ -172,9 +172,20 @@ public class ProformaController {
 	
 	@GetMapping("/proformas/capturista/{claveCapturista}/{fechaIngreso}")
 	public List<Proforma> findTramitesByCapturistaAndFechaIngreso(@PathVariable("claveCapturista") String claveCapturista, 
-			@PathVariable("numReferencia") String numReferencia,
 			@PathVariable("fechaIngreso") String fechaIngreso) {
-			List<Proforma> resumen = proformaService.findTramitesByCapturistaAndDate(claveCapturista, fechaIngreso);
+			Date fecha = null;
+			String fechaIngresoStr = "";
+			try {
+				fecha = new SimpleDateFormat("dd-MM-yyyy").parse(fechaIngreso);
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				fechaIngresoStr = sdf.format(fecha);
+				
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			List<Proforma> resumen = proformaService.findTramitesByCapturistaAndDate(fechaIngresoStr,claveCapturista);
 			if(CollectionUtils.isEmpty(resumen)) {
 				return null;
 			}
