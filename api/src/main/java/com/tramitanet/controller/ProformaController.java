@@ -3,14 +3,19 @@
  */
 package com.tramitanet.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
@@ -191,6 +196,33 @@ public class ProformaController {
 			}
 			return resumen;
 		
+	}
+	
+	@GetMapping("/proformas/capturista/archivo/{claveCapturista}/{fechaIngreso}")
+	public ResponseEntity<InputStreamResource> generaArchivoCapturista(@PathVariable("claveCapturista") String claveCapturista, 
+			@PathVariable("fechaIngreso") String fechaIngreso){
+		
+		Date fecha = null;
+		String fechaIngresoStr = "";
+		try {
+			fecha = new SimpleDateFormat("dd-MM-yyyy").parse(fechaIngreso);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			fechaIngresoStr = sdf.format(fecha);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ByteArrayInputStream in = fileProcesorService.generarArchivoProformasParaCapturista(claveCapturista, fechaIngresoStr);
+		String fechaDescarga = new SimpleDateFormat("dd-MM-yyyyHHmmss").format(Calendar.getInstance().getTime());
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "attachment; filename="+claveCapturista+"_"+fechaIngreso+"_"+fechaDescarga);
+    
+     return ResponseEntity
+                  .ok()
+                  .headers(headers)
+                  .body(new InputStreamResource(in));
 	}
 	
 	
