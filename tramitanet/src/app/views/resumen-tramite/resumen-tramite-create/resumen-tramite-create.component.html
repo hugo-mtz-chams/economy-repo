@@ -16,10 +16,15 @@
         type="text">
     </div>
   </div>
-  <div class="col-md-2">
-    <button type="button" class="btn btn-outline-success btn-sm" (click)="cargarArchivo()"
-      ngbTooltip="¡Carga un archivo excel!" tooltipClass="my-custom-class" placement="right">Importar</button>
+  <div class="col-md-1">
+    <button type="button" class="btn btn-outline-success btn-sm" (click)="exportarArchivo()"
+      ngbTooltip="¡Descarga el archivo de trámites!" tooltipClass="my-custom-class" placement="right">Exportar</button>
   </div>
+  <div class="col-md-1">
+    <button type="button" class="btn btn-outline-success btn-sm" (click)="cargarArchivo()"
+      ngbTooltip="¡Carga el archivo de trámites actualizado!" tooltipClass="my-custom-class" placement="right">Importar</button>
+  </div>
+  
 </div>
 
 <!-- div de la tabla de preformas -->

@@ -38,27 +38,14 @@ export class ProformaService {
         );
     }
 
-    downloadCapturistFile(clave: string, fecha: string): any {
+    downloadCapturistFile(clave: string, fecha: string) {
         const api = this.baseurl + '/tramitanet/proformas/capturista/archivo/' + clave + '/' + fecha;
-        return this.http.get<Blob>(api).subscribe(
-            (data: Blob) => this.downloadFile(data),
-            error => console.log('Error downloading the file.'),
-            () => console.log( 'Error' )
-        );
+        const httpOptions = {
+            headers: new HttpHeaders({ 'responseType':  'ResponseContentType.Blob',
+            'Content-Type':  'application/vnd.ms-excel'}), responseType: 'arraybuffer' as 'json'
+            };
+        return this.http.get(api, httpOptions);
     }
-
-    downloadFile(data: Blob){
-        var url = window.URL.createObjectURL(new Blob([data]));
-         // Debe haber una manera mejor de hacer esto...
-         var a = document.createElement('a');
-         document.body.appendChild(a);
-         a.setAttribute('style', 'display: none');
-         a.href = url;
-         a.download = 'Articulos.xlsx';
-         a.click();
-         window.URL.revokeObjectURL(url);
-         a.remove(); // remove the element
-       }
 
     // Error handling
     errorHandler ( error ) {

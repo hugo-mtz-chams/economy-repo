@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -295,7 +296,7 @@ public class FileProcesorService {
 	}
 	
 	public ByteArrayInputStream generarArchivoProformasParaCapturista(String claveCapturista, String fecha) {
-		List<Proforma> tramites = proformaService.findTramitesByCapturistaAndDate(claveCapturista, fecha);
+		List<Proforma> tramites = proformaService.findTramitesByCapturistaAndDate(fecha, claveCapturista);
 		File archivo = new File("reporte.xlsx");
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
         // Creamos el libro de trabajo de Excel formato OOXML
@@ -346,7 +347,7 @@ public class FileProcesorService {
             
             for (Map.Entry<String, Object> entry : celdas.entrySet()) {
             	CeldaProformaEnum enumCelda = CeldaProformaEnum.getByColumnName(entry.getKey());
-            	numCelda=enumCelda.getId();
+            	numCelda=enumCelda.getId()+1;
             	// Creamos una celda en esa fila, en la
                 // posicion indicada por el contador del ciclo
                 Cell celda = fila.createCell(numCelda);
@@ -365,6 +366,12 @@ public class FileProcesorService {
             // Excel via ese 
             // flujo de datos
             workbook.write(out);
+            File f = new File("/Users/evomatik/Proformas/MyFile.xlsx");
+            OutputStream 
+            os 
+            = new FileOutputStream(f); 
+            
+            os.write(out.toByteArray()); 
 
             // Cerramos el libro para concluir operaciones
             workbook.close();

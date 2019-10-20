@@ -125,25 +125,63 @@ filterData(val) {
   fechaChange() {
     this.fecha = formatDate(this.fechaActual, 'dd-MM-yyyy', 'en');
     // this.fechaCorrecta = formatDate(this.fechaActual, 'yyyy-MM-dd', 'en');
-    this.cargarProformas(this.fecha,this.user.claveCapturista);
+    this.cargarProformas(this.fecha, this.user.claveCapturista);
   }
 
-  cargarProformas(fecha: any, claveCapturista: any){
+  cargarProformas(fecha: any, claveCapturista: any) {
 
-    this.proformaService.getFindProformasByFechaAndCapturista(fecha,claveCapturista).subscribe(
+    this.proformaService.getFindProformasByFechaAndCapturista( fecha, claveCapturista).subscribe(
       (data: Proforma[]) => {
-this.listaProformas = data;
-this.completeProformas = data;
-
+          this.listaProformas = data;
+          this.completeProformas = data;
       });
 }
 
 
   // funcionalidad para importar archivo
 
-  cargarArchivo(){
+  cargarArchivo() {
     this.importar = !this.importar;
   }
 
+  exportarArchivo() {
+    this.proformaService.downloadCapturistFile( this.user.claveCapturista , this.fecha ).subscribe(
+      (data) => {
+        const myBlob: Blob = new Blob([(<any>data)._body]);
+        this.downloadFile(myBlob);
+      }, error => {
+        console.log('Error downloading the file.', error);
+      }, () => { console.log('Error.'); }
+    );
+  }
+
+
+
+  downloadFile(data: Blob) {
+    var url = window.URL.createObjectURL(new Blob([data]));
+     // Debe haber una manera mejor de hacer esto...
+     var a = document.createElement('a');
+     document.body.appendChild(a);
+     a.setAttribute('style', 'display: none');
+     a.href = url;
+     a.download = 'Articulos.xlsx';
+     a.click();
+     window.URL.revokeObjectURL(url);
+     a.remove(); // remove the element
+   }
+
+   // Error handling
+   errorHandler ( error ) {
+    let errorMessage = '';
+    if ( error.error instanceof ErrorEvent ) {
+        // Get client-side error
+        errorMessage = error.error.message;
+    } else {
+        // Get server-side error
+        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return errorMessage;
+}
 
 }

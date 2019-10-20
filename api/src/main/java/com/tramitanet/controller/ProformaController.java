@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
@@ -198,7 +199,7 @@ public class ProformaController {
 		
 	}
 	
-	@GetMapping("/proformas/capturista/archivo/{claveCapturista}/{fechaIngreso}")
+	@GetMapping( path =  "/proformas/capturista/archivo/{claveCapturista}/{fechaIngreso}", produces = "application/vnd.ms-excel;charset=UTF-8")
 	public ResponseEntity<InputStreamResource> generaArchivoCapturista(@PathVariable("claveCapturista") String claveCapturista, 
 			@PathVariable("fechaIngreso") String fechaIngreso){
 		
@@ -216,9 +217,12 @@ public class ProformaController {
 		
 		ByteArrayInputStream in = fileProcesorService.generarArchivoProformasParaCapturista(claveCapturista, fechaIngresoStr);
 		String fechaDescarga = new SimpleDateFormat("dd-MM-yyyyHHmmss").format(Calendar.getInstance().getTime());
+		String fileName = claveCapturista+"_"+fechaIngreso+"_"+fechaDescarga;
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Disposition", "attachment; filename="+claveCapturista+"_"+fechaIngreso+"_"+fechaDescarga);
-    
+		headers.add("Content-Disposition", "attachment; filename="+fileName);
+		headers.setContentType(MediaType.parseMediaType("application/vnd.ms-excel"));
+
+
      return ResponseEntity
                   .ok()
                   .headers(headers)
