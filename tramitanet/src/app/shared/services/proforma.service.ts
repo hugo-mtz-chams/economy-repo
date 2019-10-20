@@ -1,9 +1,10 @@
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { Proforma } from '../models/proforma';
 import { catchError, retry } from 'rxjs/operators';
+import { ResponseContentType } from '@angular/http';
 
 @Injectable({
     providedIn: 'root'
@@ -36,6 +37,28 @@ export class ProformaService {
             retry(1), catchError(this.errorHandler)
         );
     }
+
+    downloadCapturistFile(clave: string, fecha: string): any {
+        const api = 'http://localhost:8080/tramitanet/proformas/capturista/archivo/' + clave + '/' + fecha;
+        return this.http.get<Blob>(api).subscribe(
+            (data: Blob) => this.downloadFile(data),
+            error => console.log('Error downloading the file.'),
+            () => console.log( 'Error' )
+        );
+    }
+
+    downloadFile(data: Blob){
+        var url = window.URL.createObjectURL(new Blob([data]));
+         // Debe haber una manera mejor de hacer esto...
+         var a = document.createElement('a');
+         document.body.appendChild(a);
+         a.setAttribute('style', 'display: none');
+         a.href = url;
+         a.download = 'Articulos.xlsx';
+         a.click();
+         window.URL.revokeObjectURL(url);
+         a.remove(); // remove the element
+       }
 
     // Error handling
     errorHandler ( error ) {

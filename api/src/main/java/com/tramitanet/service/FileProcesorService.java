@@ -3,9 +3,12 @@
  */
 package com.tramitanet.service;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -291,10 +294,10 @@ public class FileProcesorService {
 	return value;
 	}
 	
-	public void generarArchivoProformasParaCapturista(String claveCapturista, String fecha) {
+	public ByteArrayInputStream generarArchivoProformasParaCapturista(String claveCapturista, String fecha) {
 		List<Proforma> tramites = proformaService.findTramitesByCapturistaAndDate(claveCapturista, fecha);
 		File archivo = new File("reporte.xlsx");
-
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
         // Creamos el libro de trabajo de Excel formato OOXML
         Workbook workbook = new XSSFWorkbook();
 
@@ -353,27 +356,26 @@ public class FileProcesorService {
         }
 
         // Ahora guardaremos el archivo
-        //try {
+        try {
             // Creamos el flujo de salida de datos,
             // apuntando al archivo donde queremos 
             // almacenar el libro de Excel
-          //  FileOutputStream salida = new FileOutputStream(archivo);
 
             // Almacenamos el libro de 
             // Excel via ese 
             // flujo de datos
-            //workbook.write(salida);
+            workbook.write(out);
 
             // Cerramos el libro para concluir operaciones
-          //  workbook.close();
+            workbook.close();
 
-//            LOGGER.log(Level.INFO, "Archivo creado existosamente en {0}", archivo.getAbsolutePath());
-
-  //      } catch (FileNotFoundException ex) {
-    //        LOGGER.log(Level.SEVERE, "Archivo no localizable en sistema de archivos");
-       // } catch (IOException ex) {
-      ///      LOGGER.log(Level.SEVERE, "Error de entrada/salida");
-        //}
+        } catch (FileNotFoundException ex) {
+        	ex.printStackTrace();
+        } catch (IOException ex) {
+        	ex.printStackTrace();
+        }
+        
+        return new ByteArrayInputStream(out.toByteArray());
 	}
 	
 	
