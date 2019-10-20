@@ -46,8 +46,7 @@ export class ResumenTramiteCreateComponent implements OnInit {
 
   fechaActual: string;
   fecha: string;
-  // fechaCorrecta: string;
-  user; any;
+  user;
 
   constructor(
       private fb: FormBuilder,
@@ -61,7 +60,6 @@ export class ResumenTramiteCreateComponent implements OnInit {
     this.fechaActual = formatDate(new Date(), 'yyyy-MM-dd', 'en');
     this.user = this.auth.getuser();
     this.fecha = formatDate(this.fechaActual, 'dd-MM-yyyy', 'en');
-    // this.fechaCorrecta = formatDate(this.fechaActual, 'yyyy-MM-dd', 'en');
     this.cargarProformas(this.fecha,this.user.claveCapturista);
   }
 
@@ -127,7 +125,6 @@ filterData(val) {
 
   fechaChange() {
     this.fecha = formatDate(this.fechaActual, 'dd-MM-yyyy', 'en');
-    // this.fechaCorrecta = formatDate(this.fechaActual, 'yyyy-MM-dd', 'en');
     this.cargarProformas(this.fecha, this.user.claveCapturista);
   }
 
@@ -142,7 +139,6 @@ filterData(val) {
 
 
   // funcionalidad para importar archivo
-
   cargarArchivo() {
     this.importar = !this.importar;
   }
