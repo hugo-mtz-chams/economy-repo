@@ -205,7 +205,7 @@ export class ResumenClienteShowComponent implements OnInit {
   // datos de la grafica
   InitGraf(myDataSeries: any[]) {
     this.chartDelivery = {
-      color: ['#ff7110', '#fdb772', '#fcddbd', '#ffd757'],
+      color: ['#459406', '#B0F07D', '#8FBB6B', '#D9EDCA'],
       tooltip: {
         show: false,
         trigger: 'item',
@@ -271,7 +271,7 @@ export class ResumenClienteShowComponent implements OnInit {
               textStyle: {
                 fontSize: '15',
                 fontWeight: 'bold',
-                color: '#ff7110'
+                color: '#858585'
               },
               formatter: "{b} \n{c} ({d}%)",
             }
