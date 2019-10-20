@@ -9,6 +9,7 @@ import { CustomFilePickerAdapter } from 'src/app/shared/components/uploader/cust
 import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { CapturistFilePickerAdapter } from 'src/app/shared/components/uploader/capturist-file-uploader';
 
 
 
@@ -40,8 +41,8 @@ export class ResumenTramiteCreateComponent implements OnInit {
   columns: any[];
   searchControl: FormControl = new FormControl();
 
-  importar: boolean = false;
-  adapter = new CustomFilePickerAdapter(this.http);
+  importar = false;
+  adapter = new CapturistFilePickerAdapter(this.http);
 
   fechaActual: string;
   fecha: string;
@@ -137,7 +138,7 @@ filterData(val) {
           this.listaProformas = data;
           this.completeProformas = data;
       });
-}
+  }
 
 
   // funcionalidad para importar archivo
