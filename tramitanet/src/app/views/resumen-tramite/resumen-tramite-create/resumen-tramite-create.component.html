@@ -3,7 +3,7 @@
   <div class="col-md-3 form-group mb-3">
     <label for="fecha">Fecha de ingreso</label>
     <input class="form-control" type="date" [(ngModel)]="fechaActual" (change)="fechaChange()"
-      ngbTooltip="¡Busca las referencias por fecha!" tooltipClass="my-custom-class" placement="right">
+      ngbTooltip="Busca las referencias por fecha" tooltipClass="my-custom-class" placement="right">
   </div>
 
 </div>
@@ -18,7 +18,7 @@
   </div>
   <div class="col-md-2">
     <button type="button" class="btn btn-outline-success btn-sm" (click)="cargarArchivo()"
-      ngbTooltip="¡Carga un archivo excel!" tooltipClass="my-custom-class" placement="right">Importar</button>
+      ngbTooltip="Carga el archivo de tramites actualizado" tooltipClass="my-custom-class" placement="right">Importar</button>
   </div>
 </div>
 
@@ -183,7 +183,7 @@
 
         <ngx-datatable-column name="Valor total" [width]="autoResize">
           <ng-template let-row=" row" ngx-datatable-cell-template>
-          {{row.valorTotal}}
+            {{row.valorTotal}}
           </ng-template>
         </ngx-datatable-column>
 
@@ -294,25 +294,41 @@
 
 <!-- div para importar archivo -->
 <div class="card eg-card-1 o-hidden mb-4">
-  <div class="info" *ngIf="importar">
-    <h4 class="m-0 font-weight-bold text-muted">Carga de Datos de Proforma</h4><br>
-    <div (click)="cargarArchivo()" style="text-align: center; color: rgb(47, 74, 161);">
-      <b>
-        ¡¡Regresa a ver la informacion completa!!
-      </b>
-    </div>
-  </div>
-
-  <div class="card-body pt-3" *ngIf="importar">
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
+  <div class="row" *ngIf="importar">
+    <div class="col-md-6">
+      <div class="card-body pt-3" >
         <ngx-file-picker [adapter]="adapter" [enableCropper]="true">
         </ngx-file-picker>
       </div>
-      <div class="col-md-4">
-
-      </div>
     </div>
+
+    <div class="col-md-4">
+      <div class="card-header justify-content-between mb-3">
+        <div class="info">
+          <h5 class="m-0 font-weight-bold text-muted">Registrar Trámites</h5>
+          <p class="subtitle text-13 font-family-1 font-weight-400 line-height-1 mb-0">
+            Para agilizar el proceso de actualizacion de registro te damos la opción de cargar el archivo
+            de registros previamente descargado. Este será procesado de forma inmedianta
+            y actualizara los datos correspondientes de forma automatica.
+          </p>
+          <div (click)="cargarArchivo()" style="text-align: center; color: rgb(62, 228, 56); cursor: pointer">
+            <b>
+                ¡¡Regresa a ver la informacion completa!!
+            </b>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="info" *ngIf="importar">
+        <h4 class="m-0 font-weight-bold text-muted">Carga de Datos de Proforma</h4><br>
+        <div (click)="cargarArchivo()" style="text-align: center; color: rgb(47, 74, 161);">
+          <b>
+            ¡¡Regresa a ver la informacion completa!!
+          </b>
+        </div>
+      </div> -->
+    </div>
+
   </div>
+
 </div>
