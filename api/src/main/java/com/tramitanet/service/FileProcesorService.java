@@ -10,9 +10,16 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +27,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tramitanet.CeldaProformaEnum;
 import com.tramitanet.dao.ProformaDAO;
 import com.tramitanet.model.Proforma;
@@ -282,6 +290,94 @@ public class FileProcesorService {
 		
 	return value;
 	}
+	
+	public void generarArchivoProformasParaCapturista(String claveCapturista, String fecha) {
+		List<Proforma> tramites = proformaService.findTramitesByCapturistaAndDate(claveCapturista, fecha);
+		File archivo = new File("reporte.xlsx");
+
+        // Creamos el libro de trabajo de Excel formato OOXML
+        Workbook workbook = new XSSFWorkbook();
+
+        // La hoja donde pondremos los datos
+        Sheet pagina = workbook.createSheet("Reporte de productos");
+
+        // Creamos el estilo paga las celdas del encabezado
+        CellStyle style = workbook.createCellStyle();
+        // Indicamos que tendra un fondo azul aqua
+        // con patron solido del color indicado
+        style.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+        String[] titulos = {"ID","Analista","Capturista",
+        		"No. Proforma","Número referencia","fecha captura","Descripcion","Número de Modelo","Aduana","Fracción","Número de factura",
+        		"Fecha de Factura","UMC","Cantidad UMC","Factor conv","Cantidad UMT","Valor ant. Desc.","Factor desc.","Moneda Comerciallización",
+        		"Valor mercancía","Precio Unitario","País Exportador","Pais Origen","Valor Total Valid.","PRECIO TOTAL","Nombre exportador","Domicilio",
+        		"Observaciones","Fracción","PRECIO MINIMO","FA VETADA","PRECIO ESTIMADO","PRE-DICTAMEN","Númerodesolicitud","Permiso","Inicio vigencia",
+        		"Clave Cliente","Estatus"};
+        
+
+        // Creamos una fila en la hoja en la posicion 0
+        Row fila = pagina.createRow(0);
+
+        // Creamos el encabezado
+        for (int i = 0; i < titulos.length; i++) {
+            // Creamos una celda en esa fila, en la posicion 
+            // indicada por el contador del ciclo
+            Cell celda = fila.createCell(i);
+
+            // Indicamos el estilo que deseamos 
+            // usar en la celda, en este caso el unico 
+            // que hemos creado
+            celda.setCellStyle(style);
+            celda.setCellValue(titulos[i]);
+        }
+
+        // Ahora creamos una fila en la posicion 1
+        int rowNum = 1;
+        
+        // Y colocamos los datos en esa fila
+        for ( Proforma t : tramites) {
+            fila = pagina.createRow(rowNum);
+            ObjectMapper mapper = new ObjectMapper();
+            Map<String,Object> celdas = mapper.convertValue(t, Map.class);
+            int numCelda=0;
+            for (Map.Entry<String, Object> entry : celdas.entrySet()) {
+            	 // Creamos una celda en esa fila, en la
+                // posicion indicada por el contador del ciclo
+                Cell celda = fila.createCell(numCelda);
+                celda.setCellValue(entry.getValue().toString());
+            }
+            
+           
+            rowNum++;
+        }
+
+        // Ahora guardaremos el archivo
+        //try {
+            // Creamos el flujo de salida de datos,
+            // apuntando al archivo donde queremos 
+            // almacenar el libro de Excel
+          //  FileOutputStream salida = new FileOutputStream(archivo);
+
+            // Almacenamos el libro de 
+            // Excel via ese 
+            // flujo de datos
+            //workbook.write(salida);
+
+            // Cerramos el libro para concluir operaciones
+          //  workbook.close();
+
+//            LOGGER.log(Level.INFO, "Archivo creado existosamente en {0}", archivo.getAbsolutePath());
+
+  //      } catch (FileNotFoundException ex) {
+    //        LOGGER.log(Level.SEVERE, "Archivo no localizable en sistema de archivos");
+       // } catch (IOException ex) {
+      ///      LOGGER.log(Level.SEVERE, "Error de entrada/salida");
+        //}
+	}
+	
+	
+	
 	
 	/**
 	 * 

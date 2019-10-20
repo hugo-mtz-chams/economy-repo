@@ -106,6 +106,8 @@ public class ProformaDAO {
 		return resumenTramites;
 	}
 	
+	
+	
 	/**
 	 * Retorna todos los numeros de referencia con lso totales de tramites y subtotales por estado de trámite
 	 * 
@@ -123,6 +125,25 @@ public class ProformaDAO {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String fecha = dateFormat.format(fechaIngreso);
 		List<ProformaEntity> resumenTramites = proformaRepository.findByNumReferenciaAndFechaIngreso(numReferencia, fecha, claveCliente);
+		
+		List<Proforma> proformas = new ArrayList<Proforma>();
+		for(ProformaEntity entity : resumenTramites) {
+			Proforma p = new Proforma();
+			BeanUtils.copyProperties(entity, p);
+			proformas.add(p);
+		}
+		return proformas;
+	}
+	
+	/**
+	 * Retorna los registros de tabla proforma asignados a un capturista con base en la fecha seleccionada
+	 * @param numReferencia 
+	 * @param fechaIngreso
+	 * @param claveCliente
+	 * @return
+	 */
+	public List<Proforma> findTramitesByCapturistaAndDate(String fechaIngreso, String claveCapturista){
+		List<ProformaEntity> resumenTramites = proformaRepository.findByCapturistaAndFechaIngreso(claveCapturista, fechaIngreso);
 		
 		List<Proforma> proformas = new ArrayList<Proforma>();
 		for(ProformaEntity entity : resumenTramites) {

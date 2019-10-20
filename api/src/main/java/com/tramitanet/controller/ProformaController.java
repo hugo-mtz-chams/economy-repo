@@ -170,6 +170,22 @@ public class ProformaController {
 	}
 	
 	
+	@GetMapping("/proformas/capturista/{claveCapturista}/{fechaIngreso}")
+	public List<Proforma> findTramitesByCapturistaAndFechaIngreso(@PathVariable("claveCapturista") String claveCapturista, 
+			@PathVariable("numReferencia") String numReferencia,
+			@PathVariable("fechaIngreso") String fechaIngreso) {
+		
+		
+			
+			List<Proforma> resumen = proformaService.findTramitesByCapturistaAndDate(claveCapturista, fechaIngreso);
+			if(CollectionUtils.isEmpty(resumen)) {
+				return null;
+			}
+			return resumen;
+		
+	}
+	
+	
 	@PostMapping("/proformas/procesaArchivo")
 	public void procesaArchivo(@RequestParam("file") MultipartFile file){
 		fileProcesorService.procesar(file);
