@@ -33,7 +33,7 @@ export class ProformaService {
     }
 
     downloadCapturistFile(clave: string, fecha: string): any {
-        const api = 'http://localhost:8080/tramitanet/proformas/capturista/archivo/' + clave + '/' + fecha;
+        const api = this.baseurl + '/tramitanet/proformas/capturista/archivo/' + clave + '/' + fecha;
         return this.http.get<Blob>(api).subscribe(
             (data: Blob) => this.downloadFile(data),
             error => console.log('Error downloading the file.'),
