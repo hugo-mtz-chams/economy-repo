@@ -1,16 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import { ProformaService } from 'src/app/shared/services/proforma.service';
 import { Proforma } from 'src/app/shared/models/proforma';
 import { DatePipe } from '@angular/common';
 import { debounceTime } from 'rxjs/operators';
+import { CustomFilePickerAdapter } from 'src/app/shared/components/uploader/custom-file-picker-adapter';
+import { HttpClient } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-resumen-tramite-create',
   templateUrl: './resumen-tramite-create.component.html',
   styleUrls: ['./resumen-tramite-create.component.scss'],
-  providers: [ProformaService, DatePipe]
+  providers: [ProformaService, DatePipe],
+  encapsulation: ViewEncapsulation.None,
+  styles: [`
+  .my-custom-class .tooltip-inner {
+    background-color: rgb(4, 165, 165);
+    font-size: 125%;
+  }
+  .my-custom-class .arrow::before {
+    border-top-color: rgb(4, 165, 165);
+  }
+  `]
 })
 export class ResumenTramiteCreateComponent implements OnInit {
 
@@ -21,11 +35,17 @@ export class ResumenTramiteCreateComponent implements OnInit {
   columns: any[];
   searchControl: FormControl = new FormControl();
 
+  importar: boolean = false;
+  adapter = new CustomFilePickerAdapter(this.http);
+
+
+
   constructor(
       private fb: FormBuilder,
       private toastr: ToastrService,
       private proformaService: ProformaService,
-      private datePipe: DatePipe
+      private datePipe: DatePipe,
+      private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -92,5 +112,13 @@ filterData(val) {
       }
     });
     this.listaProformas = rows;
+  }
+
+
+
+  // funcionalidad para importar archivo
+
+  cargarArchivo(){
+    this.importar = !this.importar;
   }
 }

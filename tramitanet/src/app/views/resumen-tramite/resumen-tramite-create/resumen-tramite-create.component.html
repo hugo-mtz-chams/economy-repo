@@ -5,8 +5,12 @@
         type="text">
     </div>
   </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-outline-warning" (click)="cargarArchivo()"
+      ngbTooltip="¡Carga un archivo excel!" tooltipClass="my-custom-class" placement="right">Importar</button>
+  </div>
 </div>
-<div class="row">
+<div class="row" *ngIf=!importar>
   <!-- <div class="col-lg-8 col-md-12"> -->
   <div class="col-md-12">
     <div class="card eg-card-1 o-hidden mb-4">
@@ -200,7 +204,7 @@
             {{row.precioEstimado}}
           </ng-template>
         </ngx-datatable-column>
-        
+
       </ngx-datatable>
 
     </div>
@@ -262,3 +266,34 @@
  </div> -->
 
 </div>
+
+<!-- div para importar archivo -->
+
+<div class="card eg-card-1 o-hidden mb-4">
+  <div class="info" *ngIf="importar">
+    <h5 class="m-0 font-weight-bold text-muted">Captura de Datos de Proforma</h5><br>
+    <div (click)="cargarArchivo()" style="text-align: center; color: rgb(47, 74, 161);">
+      <b>
+      Quiere regresar a ver la informacion completa.?
+    </b>
+  </div>
+  </div>
+  
+  <div class="card-body pt-3" *ngIf="importar">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <ngx-file-picker 
+        [adapter]="adapter"
+         [enableCropper]="true">
+        </ngx-file-picker>
+      </div>
+      <div class="col-md-4">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
