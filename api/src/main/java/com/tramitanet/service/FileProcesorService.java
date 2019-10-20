@@ -334,21 +334,21 @@ public class FileProcesorService {
 
         // Ahora creamos una fila en la posicion 1
         int rowNum = 1;
-        
+        int numCelda=0;
         // Y colocamos los datos en esa fila
         for ( Proforma t : tramites) {
             fila = pagina.createRow(rowNum);
             ObjectMapper mapper = new ObjectMapper();
             Map<String,Object> celdas = mapper.convertValue(t, Map.class);
-            int numCelda=0;
+            
             for (Map.Entry<String, Object> entry : celdas.entrySet()) {
-            	 // Creamos una celda en esa fila, en la
+            	CeldaProformaEnum enumCelda = CeldaProformaEnum.getByColumnName(entry.getKey());
+            	numCelda=enumCelda.getId();
+            	// Creamos una celda en esa fila, en la
                 // posicion indicada por el contador del ciclo
                 Cell celda = fila.createCell(numCelda);
                 celda.setCellValue(entry.getValue().toString());
             }
-            
-           
             rowNum++;
         }
 
