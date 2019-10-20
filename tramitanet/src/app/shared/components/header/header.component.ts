@@ -11,6 +11,9 @@ import { AuthService } from '../../services/auth.service';
 export class HeaderComponent implements OnInit {
   notifications: any[];
   principal: any;
+
+  megaMenu: boolean = true;
+
   constructor(
     private navService: NavigationService,
     public searchService: SearchService,
@@ -84,6 +87,13 @@ export class HeaderComponent implements OnInit {
 
   signout() {
     this.auth.signout();
+  }
+
+  get verMenu(){
+    if(this.auth.getuser().role == 4){
+      return true;
+    }
+    return false;
   }
 
 }
