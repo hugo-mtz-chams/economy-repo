@@ -18,11 +18,12 @@ import { debounceTime } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   styles: [`
   .my-custom-class .tooltip-inner {
-    background-color: rgb(4, 165, 165);
+    background-color: rgb(141, 223, 76);
     font-size: 125%;
+    color: grey;
   }
   .my-custom-class .arrow::before {
-    border-top-color: rgb(4, 165, 165);
+    border-top-color: rgb(141, 223, 76);
   }
   `]
 
