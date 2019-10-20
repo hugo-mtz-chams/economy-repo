@@ -7,6 +7,9 @@ import { DatePipe } from '@angular/common';
 import { debounceTime } from 'rxjs/operators';
 import { CustomFilePickerAdapter } from 'src/app/shared/components/uploader/custom-file-picker-adapter';
 import { HttpClient } from '@angular/common/http';
+import { formatDate } from '@angular/common';
+import { AuthService } from 'src/app/shared/services/auth.service';
+
 
 
 
@@ -38,17 +41,29 @@ export class ResumenTramiteCreateComponent implements OnInit {
   importar: boolean = false;
   adapter = new CustomFilePickerAdapter(this.http);
 
-
+  fechaActual: string;
+  fecha: string;
+  // fechaCorrecta: string;
+  user; any;
 
   constructor(
       private fb: FormBuilder,
       private toastr: ToastrService,
       private proformaService: ProformaService,
       private datePipe: DatePipe,
-      private http: HttpClient
-  ) { }
+      private http: HttpClient,
+    private auth: AuthService
+      
+  ) { 
+    this.fechaActual = formatDate(new Date(), 'yyyy-MM-dd', 'en');
+    this.user = this.auth.getuser();
+    this.fecha = formatDate(this.fechaActual, 'dd-MM-yyyy', 'en');
+    // this.fechaCorrecta = formatDate(this.fechaActual, 'yyyy-MM-dd', 'en');
+    this.cargarProformas(this.fecha,this.user.claveCapturista);
+  }
 
   ngOnInit() {
+    
     this.buildColumns();
     this.buildFormBasic();
     this.searchControl.valueChanges
@@ -62,13 +77,6 @@ export class ResumenTramiteCreateComponent implements OnInit {
     this.formBasic = this.fb.group({
       experience: []
     });
-
-    this.proformaService.getProformas().subscribe(
-      (data: Proforma[]) => {
-        this.listaProformas = data;
-        this.completeProformas = data;
-      }
-    );
   }
 
   submit() {
@@ -114,6 +122,21 @@ filterData(val) {
     this.listaProformas = rows;
   }
 
+  fechaChange() {
+    this.fecha = formatDate(this.fechaActual, 'dd-MM-yyyy', 'en');
+    // this.fechaCorrecta = formatDate(this.fechaActual, 'yyyy-MM-dd', 'en');
+    this.cargarProformas(this.fecha,this.user.claveCapturista);
+  }
+
+  cargarProformas(fecha: any, claveCapturista: any){
+
+    this.proformaService.getFindProformasByFechaAndCapturista(fecha,claveCapturista).subscribe(
+      (data: Proforma[]) => {
+this.listaProformas = data;
+this.completeProformas = data;
+
+      });
+}
 
 
   // funcionalidad para importar archivo
@@ -121,4 +144,6 @@ filterData(val) {
   cargarArchivo(){
     this.importar = !this.importar;
   }
+
+
 }

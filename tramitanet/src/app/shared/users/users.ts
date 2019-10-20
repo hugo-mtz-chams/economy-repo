@@ -14,6 +14,6 @@ export class Users {
         // se agregan usuarios de prueba
         { username: 'cliente', email: 'cliente', claveCliente: 'CLI0002', password: 'cliente', role: 1 },
         { username: 'analista', email: 'analista', password: 'analista', role: 2 },
-        { username: 'capturista', email: 'capturista', password: 'capturista', role: 3 },
+        { username: 'capturista', claveCapturista: "JESUS", email: 'capturista', password: 'capturista', role: 3 },
     ];
 }

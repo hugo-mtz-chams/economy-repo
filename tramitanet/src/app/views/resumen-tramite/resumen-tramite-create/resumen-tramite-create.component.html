@@ -1,4 +1,15 @@
-<div class="row">
+<!-- div de fecha -->
+<div class="row" *ngIf=!importar>
+    <div class="col-md-3 form-group mb-3">
+        <label for="fecha" >Fecha de ingreso</label>
+        <input class="form-control" type="date" [(ngModel)]="fechaActual" (change)="fechaChange()"
+         ngbTooltip="¡Busca las referencias por fecha!" tooltipClass="my-custom-class" placement="right">
+    </div>
+
+</div>
+
+<!-- div de filtro y boton importar -->
+<div class="row" *ngIf=!importar>
   <div class="col-md-4">
     <div class="form-group">
       <input id="busqueda" placeholder="Búsqueda de proformas" [formControl]="searchControl" class="form-control"
@@ -10,8 +21,9 @@
       ngbTooltip="¡Carga un archivo excel!" tooltipClass="my-custom-class" placement="right">Importar</button>
   </div>
 </div>
+
+<!-- div de la tabla de preformas -->
 <div class="row" *ngIf=!importar>
-  <!-- <div class="col-lg-8 col-md-12"> -->
   <div class="col-md-12">
     <div class="card eg-card-1 o-hidden mb-4">
 
@@ -268,13 +280,12 @@
 </div>
 
 <!-- div para importar archivo -->
-
 <div class="card eg-card-1 o-hidden mb-4">
   <div class="info" *ngIf="importar">
-    <h5 class="m-0 font-weight-bold text-muted">Captura de Datos de Proforma</h5><br>
+    <h4 class="m-0 font-weight-bold text-muted">Carga de Datos de Proforma</h4><br>
     <div (click)="cargarArchivo()" style="text-align: center; color: rgb(47, 74, 161);">
       <b>
-      Quiere regresar a ver la informacion completa.?
+      ¡¡Regresa a ver la informacion completa!!
     </b>
   </div>
   </div>
