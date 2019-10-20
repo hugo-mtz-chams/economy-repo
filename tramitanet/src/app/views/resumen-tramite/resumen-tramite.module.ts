@@ -9,6 +9,8 @@ import {ResumenTramiteRoutingModule} from './resumen-tramite-routing.module';
 import {SharedComponentsModule} from '../../shared/components/shared-components.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { FilePickerModule } from 'ngx-awesome-uploader';
+
 
 @NgModule({
     imports: [
@@ -21,7 +23,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
         ResumenTramiteRoutingModule,
         SharedComponentsModule,
         NgxPaginationModule,
-        NgxDatatableModule
+        NgxDatatableModule,
+        FilePickerModule,
     ],
     declarations: [ResumenTramiteCreateComponent]
 })
