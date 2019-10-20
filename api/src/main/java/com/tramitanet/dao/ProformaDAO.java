@@ -39,6 +39,18 @@ public class ProformaDAO {
 		return proforma;
 	}
 	
+	public Proforma updateDatosPermiso(Proforma proforma) {
+		Optional<ProformaEntity> entity = proformaRepository.findById(proforma.getIdProforma());
+		if(entity.isPresent()) {
+			ProformaEntity pe = entity.get();
+			pe.setNumeroSolicitud(proforma.getNumeroSolicitud());
+			pe.setPermiso(proforma.getPermiso());
+			pe.setInicioVigencia(proforma.getInicioVigencia());
+			proformaRepository.save(entity.get());
+		}
+		return proforma;
+	}
+	
 	public List<Proforma> findByClaveCliente(String claveCliente){
 		List<ProformaEntity> entities = proformaRepository.findByClaveCliente(claveCliente);
 		List<Proforma> proformas = new ArrayList<Proforma>();

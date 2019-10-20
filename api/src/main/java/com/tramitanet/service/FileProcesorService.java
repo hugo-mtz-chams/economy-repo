@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
@@ -293,6 +294,114 @@ public class FileProcesorService {
 	return value;
 	}
 	
+	/**
+	 * Verifica si el tipo de dato es long o date para convertirlo y regresarlo en date
+	 * @param entry
+	 * @return Date
+	 */
+	private Date processAndReturnTypeAsDate(Map.Entry<String, Object> entry) {
+		Date fecFactura = null;
+		if(entry.getValue() instanceof Long) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis((Long)entry.getValue());
+			fecFactura = cal.getTime();
+		}else if(entry.getValue() instanceof Date) {
+			fecFactura = (Date)entry.getValue();
+		}
+		return fecFactura;
+	}
+	
+	/**
+	 * Procesa el archivo proporcionado actualizando solo los siguientes datos:
+	 * 
+	 * 1. Numero de solicitud
+	 * 2. Permiso
+	 * 3. Inicio de vigencia
+	 * 
+	 */
+	public void actualizaDatosDelPermiso(MultipartFile multipartFile) {
+		try {
+			FileInputStream file =(FileInputStream) multipartFile.getInputStream();
+			//new FileInputStream(new File("/Users/evomatik/Proformas/Mascara_11_OCT.xlsx"));
+	
+			//Get the workbook instance for XLS file 
+			XSSFWorkbook workbook = new XSSFWorkbook(file);
+		
+			//Get first sheet from the workbook
+			XSSFSheet sheet = workbook.getSheetAt(0);
+			int lastRow = sheet.getLastRowNum();
+			
+			System.err.println("Last rownum: " + lastRow);
+			//Iterate through each rows from first sheet
+			Iterator<Row> rowIterator = sheet.iterator();
+			int rownum = 0;
+			while(rowIterator.hasNext()) {
+				Row row = rowIterator.next();
+				
+				if(rownum==0) {
+					rownum++;
+					continue;
+				}else if(rownum>200) {
+					break;
+				}
+				
+				System.err.println("Fila : " +rownum);
+				int numCelda=-1;
+				//For each row, iterate through each columns
+				Iterator<Cell> cellIterator = row.cellIterator();
+				Proforma p = new Proforma();
+
+				while(cellIterator.hasNext()) {
+					Cell cell = cellIterator.next();
+					CeldaProformaEnum elemento = CeldaProformaEnum.getById(numCelda);
+					
+					switch(elemento) {
+						case ID:
+							Long valor = Long.valueOf(cell.getStringCellValue());
+							p.setIdProforma(valor);
+							break;
+						case NUMERO_SOLICITID: 
+							p.setNumeroSolicitud(cell.getStringCellValue());
+							break; 
+						case PERMISO: 
+							p.setPermiso(cell.getStringCellValue());
+							break;
+						case INICIO_VIGENCIA: 
+							p.setInicioVigencia(cell.getDateCellValue());
+							break;
+						case UNKNOWN: 
+							break;
+						default:
+							break;
+					}
+					debugProcesing(cell);
+					
+					numCelda++;
+				}
+				System.err.println("INSERTING");
+				if(	!StringUtils.isEmpty( p.getIdProforma() ) ) {
+					proformaService.saveOrUpdate(p);
+				}
+				rownum++;
+			}
+			file.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Genera el archivo con los tramites añadiendo la columna id que permitira identificar posteriormente el registro
+	 * para actualizar los datos de numero de referencia, inicio de vigencia y permiso
+	 * @param claveCapturista identificador del capturista
+	 * @param fecha fecha de ingreso de tramite
+	 * @return archivo para el capturista
+	 * @throws Exception
+	 */
+	
 	public ByteArrayInputStream generarArchivoProformasParaCapturista(String claveCapturista, String fecha) throws Exception {
 		List<Proforma> tramites = proformaService.findTramitesByCapturistaAndDate(fecha, claveCapturista);
 		
@@ -306,7 +415,14 @@ public class FileProcesorService {
 
         // La hoja donde pondremos los datos
         Sheet pagina = workbook.createSheet("Reporte de productos");
-
+        
+        //Helpers para dates
+        CreationHelper createHelper = workbook.getCreationHelper();  
+        CellStyle cellStyleDate = workbook.createCellStyle();  
+        cellStyleDate.setDataFormat(  
+            createHelper.createDataFormat().getFormat("dd/MM/yyyy")); 
+        
+        
         // Creamos el estilo paga las celdas del encabezado
         CellStyle style = workbook.createCellStyle();
         // Indicamos que tendra un fondo azul aqua
@@ -352,8 +468,31 @@ public class FileProcesorService {
             	numCelda=enumCelda.getId()+1;
             	// Creamos una celda en esa fila, en la
                 // posicion indicada por el contador del ciclo
-                Cell celda = fila.createCell(numCelda);
-                celda.setCellValue(entry.getValue().toString());
+            	Cell celda = fila.createCell(numCelda);
+            	switch(enumCelda) {
+            		case ID:
+            			Double id = Double.valueOf(entry.getValue().toString());
+              			celda.setCellValue(id);
+            			break;
+            		case INICIO_VIGENCIA:
+            			celda.setCellStyle(cellStyleDate);
+            			celda.setCellValue(processAndReturnTypeAsDate(entry));
+            			break;
+            		case FECHA_CAPTURA:
+            			celda.setCellStyle(cellStyleDate);
+            			celda.setCellValue(processAndReturnTypeAsDate(entry));
+            			break;
+            		case FECHA_FACTURA:
+            			celda.setCellStyle(cellStyleDate);
+            			celda.setCellValue(processAndReturnTypeAsDate(entry));
+            			break;
+            		default:
+            			celda.setCellValue(entry.getValue().toString());
+            			break;
+            	}
+            	debugProcesing(celda);
+                
+                
             }
             rowNum++;
         }

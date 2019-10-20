@@ -215,6 +215,7 @@ public class ProformaController {
 		try {
 			in = fileProcesorService.generarArchivoProformasParaCapturista(claveCapturista, fechaIngresoStr);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return ResponseEntity.badRequest().build();
 		}
 		String fechaDescarga = new SimpleDateFormat("dd-MM-yyyyHHmmss").format(Calendar.getInstance().getTime());
@@ -234,5 +235,10 @@ public class ProformaController {
 	@PostMapping("/proformas/procesaArchivo")
 	public void procesaArchivo(@RequestParam("file") MultipartFile file){
 		fileProcesorService.procesar(file);
+	}
+	
+	@PostMapping("/proformas/actualiza/archivo/tramites")
+	public void procesaActualizacionArchivo(@RequestParam("file") MultipartFile file){
+		fileProcesorService.actualizaDatosDelPermiso(file);
 	}
 }
