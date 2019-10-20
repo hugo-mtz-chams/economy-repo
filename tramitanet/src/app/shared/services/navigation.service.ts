@@ -66,7 +66,7 @@ export class NavigationService {
       icon: 'icon-box',
       sub: [
         { icon: 'icon-book-open', name: 'Capturar proforma', state: '/proforma', type: 'link' },
-        { icon: 'icon-list1', name: 'Registro de trámite', state: '/resumen-tramite', type: 'link' },
+        { icon: 'icon-list1', name: 'Tramites Asignados', state: '/resumen-tramite', type: 'link' },
       ]
     },
     {
@@ -209,7 +209,7 @@ export class NavigationService {
       type: 'dropDown',
       icon: 'icon-box',
       sub: [
-        { icon: 'icon-list1', name: 'Resumen de Trámites', state: '/resumen-tramite', type: 'link' },
+        { icon: 'icon-list1', name: 'Tramites Asignados', state: '/resumen-tramite', type: 'link' },
       ]
     }
   ];
