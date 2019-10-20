@@ -43,7 +43,7 @@ export class ResumenTramiteCreateComponent implements OnInit {
   completeProformas: Proforma[];
   columns: any[];
   searchControl: FormControl = new FormControl();
-
+  bienvenida = true;
   importar = false;
 
   fechaActual: string;
@@ -144,6 +144,7 @@ filterData(val) {
   // funcionalidad para importar archivo
   cargarArchivo() {
     this.importar = !this.importar;
+    this.cargarProformas(this.fecha, this.user.claveCapturista);
   }
 
   exportarArchivo() {
@@ -200,6 +201,7 @@ filterData(val) {
       this.toastr.error('Se presentado un error: ', error.error, {progressBar: true});
     }
   }
-
-
+  mostrarBienvenida() {
+    this.bienvenida = !this.bienvenida;
+  }
 }

@@ -1,3 +1,25 @@
+<div class="card card-ecommerce-4 o-hidden mb-4" *ngIf=bienvenida>
+    <div class="d-flex">
+      <div class="">
+        <img class="card-img-left" src="https://www.uned.ac.cr/ecsh/images/formulario_icon.png"
+          alt="">
+      </div>
+      <div class="flex-grow-1 p-4">
+        <h5 class="m-0 font-weight-bold text-muted">Ingreso de solicitudes</h5>
+        <p class="m-0 text-small text-muted">SAT</p>
+        <p class="m-0"> </p>
+        <p class="text-muted mt-3">En esta sección podrás descargar tus trámites asignados en formato excel para que posteriormente realices el registro correspondiente en el SAT.</p>
+        <p class="text-muted mt-3">Recuerda que una vez que hayas obtenido el <b> Número de solicitud, permiso y fecha de inicio de vigencia</b> deberás importar nuevamente tu archivo excel previamente descargado y actualizado para almacenar esta información en el sistema.</p>
+        <p class="text-muted mt-3">para iniciar selecciona la <b>Fecha de ingreso</b> para listar tus tramites, después presiona la opción <b>Exportar</b>, registra tus trámites en la aplicación del SAT, actualiza el número de solicitud, permiso y fecha de vigencia en la plnatilla que descargaste y por último regresa conmigo y presiona la opción <b>Importar</b></p>
+        <div class="actions">
+            <button type="button" class="btn btn-outline-info btn-sm" (click)="mostrarBienvenida()" placement="right">Comencemos</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
 <!-- div de fecha -->
 <div class="row" *ngIf=!importar>
   <div class="col-md-3 form-group mb-3">
@@ -5,7 +27,6 @@
     <input class="form-control" type="date" [(ngModel)]="fechaActual" (change)="fechaChange()"
       ngbTooltip="Busca las referencias por fecha" tooltipClass="my-custom-class" placement="right">
   </div>
-
 </div>
 
 <!-- div de filtro y boton importar -->
@@ -24,7 +45,9 @@
     <button type="button" class="btn btn-outline-success btn-sm" (click)="cargarArchivo()"
       ngbTooltip="¡Carga el archivo de trámites actualizado!" tooltipClass="my-custom-class" placement="right">Importar</button>
   </div>
-  
+  <div class="col-md-1">
+      <button type="button" class="btn btn-round btn-icon btn-outline-info border-transparent m-1" (click)="mostrarBienvenida()"><i class="icon-info"></i></button>
+  </div>
 </div>
 
 <!-- div de la tabla de preformas -->
@@ -49,6 +72,12 @@
 
       <ngx-datatable style="box-shadow: none" class="material fullscreen" [rows]="listaProformas" [columnMode]="'force'"
         [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [scrollbarH]="true" [limit]="5">
+
+        <ngx-datatable-column name="Id" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.idProforma}}
+          </ng-template>
+        </ngx-datatable-column>
 
         <ngx-datatable-column name="No. proforma" [width]="100">
           <ng-template let-row="row" ngx-datatable-cell-template>
@@ -239,61 +268,6 @@
 
     </div>
   </div>
-  <!--
-</div>
-<div class="row">
--->
-
-  <!-- <div class="col-lg-4 col-md-12">
-
-   <div class="card eg-card-1 o-hidden mb-4">
-
-     <div class="card-body text-center">
-       <div class="content">
-         <p class="title text-13 font-family-1 font-weight-500  mt-0 mb-1">SOLICITUD</p>
-         <p class="subtitle text-13 font-family-1 font-weight-400 mb-2">Favor de llenar los
-             siguientes datos.</p>
-           <div class="card mb-4">
-               <div class="card-body">
-                   <form [formGroup]="formBasic" (ngSubmit)="submit()">
-                       <div class="container">
-                           <div class="row form-group mb-6">
-                               <label for="firstName">No. Solicitud</label>
-                               <input type="text" class="form-control" id="firstName" placeholder="No. de solicitud">
-                           </div>
-
-                           <div class="row form-group mb-6">
-                               <label for="lastName">Permiso</label>
-                               <input type="text" class="form-control" id="lastName" placeholder="Permiso">
-                           </div>
-
-                           <div class="row form-group mb-6">
-                               <label for="picker1">Inicio Vigencia</label>
-                               <div class="input-group">
-                                   <input id="picker1" class="form-control" placeholder="aaaa-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-                                   <div class="input-group-append">
-                                       <button class="btn btn-secondary" (click)="dp.toggle()" type="button">
-                                           <i class="icon-calendar2 mr-0"></i>
-                                       </button>
-                                   </div>
-                               </div>
-                           </div>
-
-                           <div class="col-md-12">
-                               <btn-loading btnClass="btn-primary" [loading]="loading">Submit</btn-loading>
-                           </div>
-                       </div>
-                   </form>
-               </div>
-           </div>
-
-
-       </div>
-     </div>
-
-   </div>
-
- </div> -->
 
 </div>
 

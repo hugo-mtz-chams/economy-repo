@@ -196,6 +196,28 @@ public class ProformaController {
 		
 	}
 	
+	@GetMapping("/proformas/analista/{claveAnalista}/{fechaIngreso}")
+	public List<Proforma> findTramitesByAnalistaAndFechaIngreso(@PathVariable("claveCapturista") String claveCapturista, 
+			@PathVariable("fechaIngreso") String fechaIngreso) {
+			Date fecha = null;
+			String fechaIngresoStr = "";
+			try {
+				fecha = new SimpleDateFormat("dd-MM-yyyy").parse(fechaIngreso);
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				fechaIngresoStr = sdf.format(fecha);
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+			List<Proforma> resumen = proformaService.findTramitesByAnalistaAndDate(fechaIngresoStr,claveCapturista);
+			if(CollectionUtils.isEmpty(resumen)) {
+				return null;
+			}
+			return resumen;
+		
+	}
+	
 	@GetMapping( path =  "/proformas/capturista/archivo/{claveCapturista}/{fechaIngreso}", produces = "application/vnd.ms-excel;charset=UTF-8")
 	public ResponseEntity<InputStreamResource> generaArchivoCapturista(@PathVariable("claveCapturista") String claveCapturista, 
 			@PathVariable("fechaIngreso") String fechaIngreso){

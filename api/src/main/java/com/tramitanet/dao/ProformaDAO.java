@@ -167,6 +167,25 @@ public class ProformaDAO {
 	}
 	
 	/**
+	 * Retorna los registros de tabla proforma asignados a un capturista con base en la fecha seleccionada
+	 * @param numReferencia 
+	 * @param fechaIngreso
+	 * @param claveCliente
+	 * @return
+	 */
+	public List<Proforma> findTramitesByAnalistaAndDate(String fechaIngreso, String claveAnalista){
+		List<ProformaEntity> resumenTramites = proformaRepository.findByAnalistaAndFechaIngreso(claveAnalista, fechaIngreso);
+		
+		List<Proforma> proformas = new ArrayList<Proforma>();
+		for(ProformaEntity entity : resumenTramites) {
+			Proforma p = new Proforma();
+			BeanUtils.copyProperties(entity, p);
+			proformas.add(p);
+		}
+		return proformas;
+	}
+	
+	/**
 	 * 
 	 */
 	public ProformaDAO() {

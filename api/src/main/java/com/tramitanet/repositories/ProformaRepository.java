@@ -45,6 +45,9 @@ public interface ProformaRepository extends JpaRepository<ProformaEntity, Long>{
 	@Query("SELECT p from ProformaEntity p where p.idCapturista = :idCapturista and fecha_ingreso = :fechaIngreso")
 	public List<ProformaEntity> findByCapturistaAndFechaIngreso(@Param("idCapturista") String claveCapturista, @Param("fechaIngreso") String fechaIngreso);
 	
+	@Query("SELECT p from ProformaEntity p where p.idAnalista = :idAnalista and fecha_ingreso = :fechaIngreso")
+	public List<ProformaEntity> findByAnalistaAndFechaIngreso(@Param("idAnalista") String claveCapturista, @Param("fechaIngreso") String fechaIngreso);
+	
 	
 	@Query("SELECT new com.tramitanet.model.Reference (" + 
 			"  p.numReferencia, " + 

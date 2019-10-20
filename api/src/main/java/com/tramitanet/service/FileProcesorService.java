@@ -357,8 +357,8 @@ public class FileProcesorService {
 					
 					switch(elemento) {
 						case ID:
-							Long valor = Long.valueOf(cell.getStringCellValue());
-							p.setIdProforma(valor);
+							Double d = new Double(cell.getNumericCellValue());
+							p.setIdProforma(d.longValue());
 							break;
 						case NUMERO_SOLICITID: 
 							p.setNumeroSolicitud(cell.getStringCellValue());
@@ -380,7 +380,7 @@ public class FileProcesorService {
 				}
 				System.err.println("INSERTING");
 				if(	!StringUtils.isEmpty( p.getIdProforma() ) ) {
-					proformaService.saveOrUpdate(p);
+					proformaService.updateDatosPermiso(p);
 				}
 				rownum++;
 			}
