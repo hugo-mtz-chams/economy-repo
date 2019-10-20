@@ -174,9 +174,6 @@ public class ProformaController {
 	public List<Proforma> findTramitesByCapturistaAndFechaIngreso(@PathVariable("claveCapturista") String claveCapturista, 
 			@PathVariable("numReferencia") String numReferencia,
 			@PathVariable("fechaIngreso") String fechaIngreso) {
-		
-		
-			
 			List<Proforma> resumen = proformaService.findTramitesByCapturistaAndDate(claveCapturista, fechaIngreso);
 			if(CollectionUtils.isEmpty(resumen)) {
 				return null;
