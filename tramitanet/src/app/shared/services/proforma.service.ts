@@ -31,6 +31,12 @@ export class ProformaService {
           retry(1), catchError(this.errorHandler)
       );
     }
+    getFindProformasByFechaAndCapturista(fecha: string, capturista: string): Observable<Proforma[]> {
+        // tslint:disable-next-line: max-line-length
+        return this.http.get<Proforma[]>(this.baseurl + '/tramitanet/proformas/capturista/'+ capturista +'/' + fecha).pipe(
+            retry(1), catchError(this.errorHandler)
+        );
+    }
 
     downloadCapturistFile(clave: string, fecha: string): any {
         const api = this.baseurl + '/tramitanet/proformas/capturista/archivo/' + clave + '/' + fecha;
