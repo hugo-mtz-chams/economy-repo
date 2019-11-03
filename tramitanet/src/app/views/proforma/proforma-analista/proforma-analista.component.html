@@ -17,5 +17,253 @@
         </div>
       </div>
     </div>
+</div>
 
+<div class="row" >
+    <div class="col-md-3 form-group mb-3">
+      <label for="fechaActual">Fecha de ingreso</label>
+      <input class="form-control" type="date" name="fechaActual" [(ngModel)]="fechaActual" (change)="fechaChange()"
+        ngbTooltip="Busca las referencias por fecha" tooltipClass="my-custom-class" placement="right">
+    </div>
+</div>
+  
+  <!-- div de filtro y boton importar -->
+<div class="row" >
+    <div class="col-md-4">
+      <div class="form-group">
+        <input id="busqueda" placeholder="Búsqueda de proformas" [formControl]="searchControl" class="form-control"
+          type="text">
+      </div>
+    </div>
+    <div class="col-md-1">
+      <button type="button" class="btn btn-outline-success btn-sm" (click)="exportarArchivo()"
+        ngbTooltip="¡Descarga el archivo de trámites!" tooltipClass="my-custom-class" placement="right">Exportar</button>
+    </div>
+    <div class="col-md-1">
+      <button type="button" class="btn btn-outline-success btn-sm" (click)="cargarArchivo()"
+        ngbTooltip="¡Carga el archivo de trámites actualizado!" tooltipClass="my-custom-class" placement="right">Importar</button>
+    </div>
+    <div class="col-md-1">
+        <button type="button" class="btn btn-round btn-icon btn-outline-info border-transparent m-1" (click)="mostrarBienvenida()"><i class="icon-info"></i></button>
+    </div>
+</div>
+
+<div class="row" *ngIf=!importar>
+    <div class="col-md-12">
+      <div class="card eg-card-1 o-hidden mb-4">
+  
+        <div class="card-header justify-content-between mb-4">
+  
+          <div class="info">
+            <p class="title text-13 font-family-1 font-weight-500 line-height-1 mt-0 mb-1">TRAMITES</p>
+            <p class="subtitle text-13 font-family-1 font-weight-400 line-height-1 mb-0">Resumen de tramites</p>
+          </div>
+  
+          <div class="action">
+            <a class="text-muted link-primary" href="" id="dropdownMenuButton" type="button">
+              <i class="icon-reload align-middle mr-0"></i>
+            </a>
+          </div>
+  
+        </div>
+  
+        <ngx-datatable style="box-shadow: none" class="material fullscreen" [rows]="listaProformas" [columnMode]="'force'"
+          [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [scrollbarH]="true" [limit]="5">
+  
+          <ngx-datatable-column name="Id" [width]="100">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.idProforma}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="No. proforma" [width]="100">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.numProforma}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="No. solicitud" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.numeroSolicitud}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Permiso" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.permiso}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Inicio Vigencia" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.inicioVigencia | date: 'dd/MM/yyyy'}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Referencia" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.numReferencia}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Ingreso" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.fechaIngreso | date: 'dd/MM/yyyy'}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Descripcion" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.descripcion}}
+            </ng-template>
+          </ngx-datatable-column>
+          <!-- <ngx-datatable-column name="Modelo" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.numModelo}}
+            </ng-template>
+          </ngx-datatable-column> -->
+  
+          <ngx-datatable-column name="Evaluación precio" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.validPrecioTotal}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="Predictamen" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.predictamen}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+  
+          <ngx-datatable-column name="Aduana" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.aduana}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="Fracción" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.fraccion}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="No. Factura" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.numFactura}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="UMC" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.UMC}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="Cantidad" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.cantidad}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Factor" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.factor}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Cantidad UMT" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.cantidadUmt}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="Valor Ant. Desc." [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.valorAntDesc}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="Factor Desc." [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.factorDesc}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="Moneda" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.moneda}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="Valor Mercancía" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.valorMercancia}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="Precio unitario" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.precioUnitario}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="País Exportador" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.paisExportador}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="País Origen" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.paisOrigen}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="Valor total" [width]="autoResize">
+            <ng-template let-row=" row" ngx-datatable-cell-template>
+              {{row.valorTotal}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+  
+          <ngx-datatable-column name="Nombre exportador" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.nombreExportador}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="Domicilio" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.domicilio}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <!--ngx-datatable-column name="Observaciones"width="290">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.observaciones}}
+            </ng-template>
+          </ngx-datatable-column-->
+  
+          <ngx-datatable-column name="Fracción Mala" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.fraccionMala}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="Precio Mínimo" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.precioMinimo}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="FA Vetada" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.faVetada}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="Precio estimado" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.precioEstimado}}
+            </ng-template>
+          </ngx-datatable-column>
+  
+        </ngx-datatable>
+  
+      </div>
+    </div>
+  
   </div>
