@@ -4,6 +4,7 @@
 package com.tramitanet.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +21,8 @@ import com.tramitanet.model.Reference;
  */
 @Repository
 public interface ProformaRepository extends JpaRepository<ProformaEntity, Long>{
+	
+	Optional<ProformaEntity> findByNumeroSolicitud(String numeroSolicitud);
 	
 	public List<ProformaEntity> findByClaveCliente(String claveCliente);
 	

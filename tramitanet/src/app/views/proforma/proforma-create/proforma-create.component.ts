@@ -6,18 +6,32 @@ import { ToastrService } from 'ngx-toastr';
 import { ValidationError } from 'ngx-awesome-uploader';
 import { UploadValidationErrorEnum } from 'src/app/shared/enums/upload.enum';
 import { ErrorMessages } from 'src/app/shared/constants/error.messages';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-proforma-create',
   templateUrl: './proforma-create.component.html',
-  styleUrls: ['./proforma-create.component.scss']
+  //styleUrls: ['./proforma-create.component.scss']
+  styles: [`
+  .my-custom-class .tooltip-inner {
+    background-color: rgb(141, 223, 76);
+    font-size: 125%;
+    color: grey;
+  }
+  .my-custom-class .tooltip-arrow {
+    background-color: rgb(141, 223, 76);
+    border-top-color: rgb(141, 223, 76);
+  }
+  `]
 })
 export class ProformaCreateComponent implements OnInit {
   adapter = new CustomFilePickerAdapter(this.http);
   manual = false;
   form: FormGroup;
 
-  constructor(private http: HttpClient, private toaster: ToastrService) { }
+  constructor(private http: HttpClient, private toaster: ToastrService,
+              private router: Router,
+              public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -75,4 +89,9 @@ export class ProformaCreateComponent implements OnInit {
     this.manual = !this.manual;
   }
 
+  regresar(){
+    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+  }
+
+  
 }

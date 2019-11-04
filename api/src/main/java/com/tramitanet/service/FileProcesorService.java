@@ -8,11 +8,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -32,8 +35,23 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tramitanet.CeldaProformaEnum;
+import com.tramitanet.CeldaProformaValidationEnum;
+import com.tramitanet.ConfiguracionEnum;
+import com.tramitanet.EstatusTramiteEnum;
+import com.tramitanet.SentidoResolucionEnum;
+import com.tramitanet.dao.ArchivoValidacionDAO;
 import com.tramitanet.dao.ProformaDAO;
+import com.tramitanet.entities.ConfiguracionEntity;
+import com.tramitanet.entities.ErrorValidacionEntity;
+import com.tramitanet.entities.ProformaEntity;
+import com.tramitanet.model.ArchivoValidacion;
+import com.tramitanet.model.ErrorValidacion;
 import com.tramitanet.model.Proforma;
+import com.tramitanet.model.TramiteValidacion;
+import com.tramitanet.repositories.ArchivoValidacionRepository;
+import com.tramitanet.repositories.ConfiguracionRepository;
+import com.tramitanet.repositories.ErrorValidacionRepository;
+import com.tramitanet.repositories.ProformaRepository;
 
 /**
  * @author evomatik
@@ -44,6 +62,21 @@ public class FileProcesorService {
 	
 	@Autowired
 	ProformaDAO proformaService;
+	
+	@Autowired
+	ProformaRepository proformaRepository;
+	
+	@Autowired
+	ErrorValidacionRepository errorRepository;
+	
+	@Autowired
+	ArchivoValidacionDAO archivoValidacionService;
+	
+	@Autowired
+	ConfiguracionRepository configRepository;
+	
+	private Double factorPrecioUnitario = null;
+	private String monedaBase = null;
 	
 	public void procesar(MultipartFile multipartFile) {
 		
@@ -522,6 +555,359 @@ public class FileProcesorService {
 	
 	
 	
+	/**
+	 * Genera el archivo con los tramites añadiendo la columna id que permitira identificar posteriormente el registro
+	 * para actualizar los datos de numero de referencia, inicio de vigencia y permiso
+	 * @param claveAnalista identificador del capturista
+	 * @param fecha fecha de ingreso de tramite
+	 * @return archivo para el capturista
+	 * @throws Exception
+	 */
+	
+	public ByteArrayInputStream generarArchivoProformasParaAnalista(String claveCapturista, String fecha) throws Exception {
+		List<Proforma> tramites = proformaService.findTramitesByAnalistaAndDate(fecha, claveCapturista);
+		
+		if(CollectionUtils.isEmpty(tramites)) {
+			throw new Exception("No se cuenta con datos que exportar para la fecha seleccionada");
+		}
+		
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+        // Creamos el libro de trabajo de Excel formato OOXML
+        Workbook workbook = new XSSFWorkbook();
+
+        // La hoja donde pondremos los datos
+        Sheet pagina = workbook.createSheet("Reporte de productos");
+        
+        //Helpers para dates
+        CreationHelper createHelper = workbook.getCreationHelper();  
+        CellStyle cellStyleDate = workbook.createCellStyle();  
+        cellStyleDate.setDataFormat(  
+            createHelper.createDataFormat().getFormat("dd/MM/yyyy")); 
+        
+        
+        // Creamos el estilo paga las celdas del encabezado
+        CellStyle style = workbook.createCellStyle();
+        // Indicamos que tendra un fondo azul aqua
+        // con patron solido del color indicado
+        style.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+        String[] titulos = {"ID","Analista","Capturista",
+        		"No. Proforma","Número referencia","fecha captura","Descripcion","Número de Modelo","Aduana","Fracción","Número de factura",
+        		"Fecha de Factura","UMC","Cantidad UMC","Factor conv","Cantidad UMT","Valor ant. Desc.","Factor desc.","Moneda Comerciallización",
+        		"Valor mercancía","Precio Unitario","País Exportador","Pais Origen","Valor Total Valid.","PRECIO TOTAL","Nombre exportador","Domicilio",
+        		"Observaciones","Fracción","PRECIO MINIMO","FA VETADA","PRECIO ESTIMADO","PRE-DICTAMEN","Númerodesolicitud","Permiso","Inicio vigencia",
+        		"Clave Cliente","Estatus"};
+        
+
+        // Creamos una fila en la hoja en la posicion 0
+        Row fila = pagina.createRow(0);
+
+        // Creamos el encabezado
+        for (int i = 0; i < titulos.length; i++) {
+            // Creamos una celda en esa fila, en la posicion 
+            // indicada por el contador del ciclo
+            Cell celda = fila.createCell(i);
+
+            // Indicamos el estilo que deseamos 
+            // usar en la celda, en este caso el unico 
+            // que hemos creado
+            celda.setCellStyle(style);
+            celda.setCellValue(titulos[i]);
+        }
+
+        // Ahora creamos una fila en la posicion 1
+        int rowNum = 1;
+        int numCelda=0;
+        // Y colocamos los datos en esa fila
+        for ( Proforma t : tramites) {
+            fila = pagina.createRow(rowNum);
+            ObjectMapper mapper = new ObjectMapper();
+            Map<String,Object> celdas = mapper.convertValue(t, Map.class);
+            
+            for (Map.Entry<String, Object> entry : celdas.entrySet()) {
+            	CeldaProformaEnum enumCelda = CeldaProformaEnum.getByColumnName(entry.getKey());
+            	numCelda=enumCelda.getId()+1;
+            	// Creamos una celda en esa fila, en la
+                // posicion indicada por el contador del ciclo
+            	Cell celda = fila.createCell(numCelda);
+            	switch(enumCelda) {
+            		case ID:
+            			Double id = Double.valueOf(entry.getValue().toString());
+              			celda.setCellValue(id);
+            			break;
+            		case INICIO_VIGENCIA:
+            			celda.setCellStyle(cellStyleDate);
+            			celda.setCellValue(processAndReturnTypeAsDate(entry));
+            			break;
+            		case FECHA_CAPTURA:
+            			celda.setCellStyle(cellStyleDate);
+            			celda.setCellValue(processAndReturnTypeAsDate(entry));
+            			break;
+            		case FECHA_FACTURA:
+            			celda.setCellStyle(cellStyleDate);
+            			celda.setCellValue(processAndReturnTypeAsDate(entry));
+            			break;
+            		default:
+            			celda.setCellValue(entry.getValue().toString());
+            			break;
+            	}
+            	debugProcesing(celda);
+                
+                
+            }
+            rowNum++;
+        }
+
+        // Ahora guardaremos el archivo
+        try {
+            // Creamos el flujo de salida de datos,
+            // apuntando al archivo donde queremos 
+            // almacenar el libro de Excel
+
+            // Almacenamos el libro de 
+            // Excel via ese 
+            // flujo de datos
+            workbook.write(out);
+            
+            // Cerramos el libro para concluir operaciones
+            workbook.close();
+
+        } catch (FileNotFoundException ex) {
+        	ex.printStackTrace();
+        } catch (IOException ex) {
+        	ex.printStackTrace();
+        }
+        
+        return new ByteArrayInputStream(out.toByteArray());
+	}
+
+	
+	
+	public void uploadValidationDataFile(MultipartFile multipartFile) {
+		try {
+			FileInputStream file =(FileInputStream) multipartFile.getInputStream();
+			//new FileInputStream(new File("/Users/evomatik/Proformas/Mascara_11_OCT.xlsx"));
+	
+			//Get the workbook instance for XLS file 
+			XSSFWorkbook workbook = new XSSFWorkbook(file);
+		
+			//Get first sheet from the workbook
+			XSSFSheet sheet = workbook.getSheetAt(0);
+			int lastRow = sheet.getLastRowNum();
+			
+			ArchivoValidacion archivo = new ArchivoValidacion();
+			archivo.setNombreArchivo(multipartFile.getOriginalFilename());
+			ConfiguracionEntity configElement = configRepository.findByCodigo(ConfiguracionEnum.FACTOR_USD_EUR.getCodigo());
+			this.factorPrecioUnitario = new Double(configElement.getValor());
+			
+			configElement = configRepository.findByCodigo(ConfiguracionEnum.MONEDA_BASE.getCodigo());
+			this.monedaBase = configElement.getValor();
+			
+			
+			System.err.println("Last rownum: " + lastRow);
+			//Iterate through each rows from first sheet
+			Iterator<Row> rowIterator = sheet.iterator();
+			int rownum = 0;
+			while(rowIterator.hasNext()) {
+				TramiteValidacion tramite = new TramiteValidacion();
+				Row row = rowIterator.next();
+				
+				if(rownum==0) {
+					rownum++;
+					continue;
+				}else if(rownum>200) {
+					break;
+				}
+				
+				System.err.println("Fila : " +rownum);
+				int numCelda=-1;
+				//For each row, iterate through each columns
+				Iterator<Cell> cellIterator = row.cellIterator();
+				
+				
+				while(cellIterator.hasNext()) {
+					
+					Cell cell = cellIterator.next();
+					CeldaProformaValidationEnum elemento = CeldaProformaValidationEnum.getById(numCelda);
+					
+					switch(elemento) {
+						case CANTIDAD_UMC:
+							Double d = new Double(cell.getNumericCellValue());
+							tramite.setCantidadUMC(d.intValue());
+							break;
+						case CANTIDAD_UMT: 
+							Double cantidadUmt = new Double(cell.getNumericCellValue());
+							tramite.setCantidadUMT(cantidadUmt.longValue());
+							break; 
+						case DESC_MERCANCIA: 
+							tramite.setDescMercancia(cell.getStringCellValue());
+							break;
+						case DOMICILIO_EXP: 
+							tramite.setDomicilioExp(cell.getStringCellValue());
+							break;
+						case ESTATUS_TRAMITE: 
+							tramite.setEstatusTramite(cell.getStringCellValue());
+							break;
+						case FEC_FACTURA: 
+							tramite.setFecFactura(cell.getDateCellValue());
+							break;
+						case FOLIO_TRAMITE: 
+							tramite.setFolioTramite(cell.getStringCellValue());
+							break;
+						case FRACCION: 
+							tramite.setFraccion(cell.getStringCellValue());
+							break;
+						case MONEDA_COMERCIAL: 
+							tramite.setMonedaComercial(cell.getStringCellValue());
+							break;
+						case NUM_FACTURA: 
+							tramite.setNumFactura(cell.getStringCellValue());
+							break;
+						case PAIS_DESTINO: 
+							tramite.setPaisDestino(cell.getStringCellValue());
+							break;
+						case PAIS_ORIGEN: 
+							tramite.setPaisOrigen(cell.getStringCellValue());
+							break;
+						case PRECIO_UNITARIO_USD: 
+							tramite.setPrecioUnitario(cell.getNumericCellValue());
+							break;
+						case RAZON_SOCIAL_EXP: 
+							tramite.setRazonSocialExp(cell.getStringCellValue());
+							break;
+						case SENTIDO_DICTAMEN: 
+							tramite.setSentidoDictamen(cell.getStringCellValue());
+							break;
+						case UNKNOWN: 
+							break;
+						default:
+							break;
+					}
+					debugProcesing(cell);
+					
+					numCelda++;
+				}
+				validaFolio(tramite);
+				rownum++;
+			}
+			file.close();
+			System.err.println("INSERTING");
+			archivoValidacionService.save(archivo);
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	private void validaFolio(TramiteValidacion tramite) {
+		Optional<ProformaEntity> proformaOpt = proformaRepository.findByNumeroSolicitud(tramite.getFolioTramite());
+		
+		if(proformaOpt.isPresent()) {
+			ProformaEntity p = proformaOpt.get();
+			validaDato(CeldaProformaValidationEnum.CANTIDAD_UMC.getColumnName(), tramite.getCantidadUMC(), p.getCantidad(), p.getIdProforma());
+			validaDato(CeldaProformaValidationEnum.CANTIDAD_UMT.getColumnName(), tramite.getCantidadUMT(), p.getCantidadUmt(), p.getIdProforma());
+			validaDato(CeldaProformaValidationEnum.DESC_MERCANCIA.getColumnName(), tramite.getDescMercancia(), p.getDescripcion(), p.getIdProforma());
+			validaDato(CeldaProformaValidationEnum.DOMICILIO_EXP.getColumnName(), tramite.getDomicilioExp(), p.getDomicilio(), p.getIdProforma());
+			validaDato(CeldaProformaValidationEnum.FEC_FACTURA.getColumnName(), tramite.getFecFactura(), p.getFechaFactura(), p.getIdProforma());
+			validaDato(CeldaProformaValidationEnum.FOLIO_TRAMITE.getColumnName(), tramite.getFolioTramite(), p.getNumeroSolicitud(), p.getIdProforma());
+			validaDato(CeldaProformaValidationEnum.FRACCION.getColumnName(), tramite.getFraccion(), p.getFraccion(), p.getIdProforma());
+			validaDato(CeldaProformaValidationEnum.MONEDA_COMERCIAL.getColumnName(), tramite.getMonedaComercial(), p.getMoneda(), p.getIdProforma());
+			validaDato(CeldaProformaValidationEnum.NUM_FACTURA.getColumnName(), tramite.getNumFactura(), p.getNumFactura(), p.getIdProforma());
+			validaDato(CeldaProformaValidationEnum.PAIS_DESTINO.getColumnName(), tramite.getPaisDestino(), p.getPaisExportador(), p.getIdProforma());
+			validaDato(CeldaProformaValidationEnum.PAIS_ORIGEN.getColumnName(), tramite.getPaisOrigen(), p.getPaisOrigen(), p.getIdProforma());
+			validaDato(CeldaProformaValidationEnum.RAZON_SOCIAL_EXP.getColumnName(), tramite.getRazonSocialExp(), p.getNombreExportador(), p.getIdProforma());
+						
+			//Hay que aplicar factor si es que se registro en euros
+			validaPrecioUnitario(p, tramite.getPrecioUnitario());
+			
+			actualizaEstatus(p, tramite);	
+		}
+	}
+	
+	private void actualizaEstatus(ProformaEntity p, TramiteValidacion tramite) {
+		if(	tramite.getEstatusTramite().equals(EstatusTramiteEnum.CONCLUIDO.getLabel()) ) {
+			if(tramite.getSentidoDictamen().equalsIgnoreCase(SentidoResolucionEnum.ACEPTADO.getLabel())){
+				p.setEstatus("Aprobado");
+			}else if(tramite.getSentidoDictamen().equalsIgnoreCase(SentidoResolucionEnum.RECHAZADO.getLabel())) {
+				p.setEstatus(SentidoResolucionEnum.RECHAZADO.getLabel());
+			}
+		}
+		p.setSentidoDictamen(tramite.getSentidoDictamen());
+	}
+	
+	private void validaPrecioUnitario(ProformaEntity p, Double precioUnitarioTarget) {
+		Double precioUnitarioSource = null;
+		
+		if(!p.getMoneda().equalsIgnoreCase(this.monedaBase)) {
+			precioUnitarioSource = p.getValorMercancia()*this.factorPrecioUnitario/p.getCantidadUmt();
+			
+			Double diferencia = precioUnitarioSource -  precioUnitarioTarget;
+			if(diferencia>0.01) {
+				registraError(CeldaProformaValidationEnum.PRECIO_UNITARIO_USD.getColumnName(), precioUnitarioTarget.toString(), precioUnitarioSource.toString(), p.getIdProforma());
+			}
+		}
+	}
+	
+	private void validaDato(String fieldName, String target, String source, Long idProforma) {
+		String targetToEvaluate = target.replaceAll(" ", "").toLowerCase();
+		String sourceToEvaluate = source.replaceAll(" ", "").toLowerCase();
+		
+		if(!targetToEvaluate.equals(sourceToEvaluate)) {
+			registraError(fieldName, target, source, idProforma);
+		}
+	}
+	
+	private void validaDato(String fieldName, Integer target, Integer source, Long idProforma) {
+		if(!target.equals(source)) {
+			registraError(fieldName, target.toString(), source.toString(), idProforma);
+		}
+	}
+	
+	/**
+	 * Valida precio unitario
+	 * @param fieldName
+	 * @param target
+	 * @param source
+	 * @param idProforma
+	 */
+	private void validaDato(String fieldName, Double target, Double source, Long idProforma) {
+		if(!target.equals(source)) {
+			registraError(fieldName, target.toString(), source.toString(), idProforma);
+		}
+	}
+	
+	private void validaDato(String fieldName, Date target, Date source, Long idProforma) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
+		String targetDate = dateFormat.format(target);  
+		
+		String sourceDate = dateFormat.format(source);
+		
+		if(!target.equals(source)) {
+			registraError(fieldName, targetDate, sourceDate, idProforma);
+		}
+	}
+	
+	private void validaDato(String fieldName, Long target, Long source, Long idProforma) {
+		if(!target.equals(source)) {
+			registraError(fieldName, target.toString(), source.toString(), idProforma);
+		}
+	}
+	
+	private void registraError(String fieldName, String target, String source, Long idProforma) {
+		ErrorValidacionEntity error = new ErrorValidacionEntity();
+		error.setCampoInvalido(fieldName);
+		error.setValorProforma(source);
+		error.setValorReportado(target);
+		Optional<ProformaEntity> pEntity = proformaRepository.findById(idProforma);
+		error.setProforma(pEntity.get());
+		errorRepository.save(error);
+	}
 	
 	/**
 	 * 

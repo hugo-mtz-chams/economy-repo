@@ -85,6 +85,10 @@ const routes: Routes = [
       {
         path: 'resumen-cliente',
         loadChildren: './views/resumen-cliente/resumen-cliente.module#ResumenClienteModule'
+      },
+      {
+        path: 'validacion',
+        loadChildren: './views/validacion-proforma/validacion-proforma.module#ValidacionProformaModule',
       }
     ]
   },

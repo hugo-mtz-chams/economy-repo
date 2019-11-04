@@ -179,7 +179,7 @@ public class ProformaController {
 			@PathVariable("fechaIngreso") String fechaIngreso) {
 			Date fecha = null;
 			String fechaIngresoStr = "";
-			try {
+			try {	
 				fecha = new SimpleDateFormat("dd-MM-yyyy").parse(fechaIngreso);
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				fechaIngresoStr = sdf.format(fecha);
@@ -197,7 +197,7 @@ public class ProformaController {
 	}
 	
 	@GetMapping("/proformas/analista/{claveAnalista}/{fechaIngreso}")
-	public List<Proforma> findTramitesByAnalistaAndFechaIngreso(@PathVariable("claveCapturista") String claveCapturista, 
+	public List<Proforma> findTramitesByAnalistaAndFechaIngreso(@PathVariable("claveAnalista") String claveAnalista, 
 			@PathVariable("fechaIngreso") String fechaIngreso) {
 			Date fecha = null;
 			String fechaIngresoStr = "";
@@ -210,7 +210,7 @@ public class ProformaController {
 				e.printStackTrace();
 			}
 
-			List<Proforma> resumen = proformaService.findTramitesByAnalistaAndDate(fechaIngresoStr,claveCapturista);
+			List<Proforma> resumen = proformaService.findTramitesByAnalistaAndDate(fechaIngresoStr,claveAnalista);
 			if(CollectionUtils.isEmpty(resumen)) {
 				return null;
 			}
@@ -242,6 +242,41 @@ public class ProformaController {
 		}
 		String fechaDescarga = new SimpleDateFormat("dd-MM-yyyyHHmmss").format(Calendar.getInstance().getTime());
 		String fileName = claveCapturista+"_"+fechaIngreso+"_"+fechaDescarga;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "attachment; filename="+fileName);
+		headers.setContentType(MediaType.parseMediaType("application/vnd.ms-excel"));
+
+
+     return ResponseEntity
+                  .ok()
+                  .headers(headers)
+                  .body(new InputStreamResource(in));
+	}
+	
+	@GetMapping( path =  "/proformas/analista/archivo/{claveAnalista}/{fechaIngreso}", produces = "application/vnd.ms-excel;charset=UTF-8")
+	public ResponseEntity<InputStreamResource> generaArchivoAnalista(@PathVariable("claveAnalista") String claveAnalista, 
+			@PathVariable("fechaIngreso") String fechaIngreso){
+		
+		Date fecha = null;
+		String fechaIngresoStr = "";
+		try {
+			fecha = new SimpleDateFormat("dd-MM-yyyy").parse(fechaIngreso);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			fechaIngresoStr = sdf.format(fecha);
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		ByteArrayInputStream in = null;
+		try {
+			in = fileProcesorService.generarArchivoProformasParaAnalista(claveAnalista, fechaIngresoStr);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.badRequest().build();
+		}
+		String fechaDescarga = new SimpleDateFormat("dd-MM-yyyyHHmmss").format(Calendar.getInstance().getTime());
+		String fileName = claveAnalista+"_"+fechaIngreso+"_"+fechaDescarga;
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Disposition", "attachment; filename="+fileName);
 		headers.setContentType(MediaType.parseMediaType("application/vnd.ms-excel"));

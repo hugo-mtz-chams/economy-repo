@@ -38,8 +38,24 @@ export class ProformaService {
         );
     }
 
+    getFindProformasByFechaAndAnalista(fecha: string, analista: string): Observable<Proforma[]> {
+        // tslint:disable-next-line: max-line-length
+        return this.http.get<Proforma[]>(this.baseurl + '/tramitanet/proformas/analista/'+ analista +'/' + fecha).pipe(
+            retry(1), catchError(this.errorHandler)
+        );
+    }
+
     downloadCapturistFile(clave: string, fecha: string) {
         const api = this.baseurl + '/tramitanet/proformas/capturista/archivo/' + clave + '/' + fecha;
+        const httpOptions = {
+            headers: new HttpHeaders({ 'responseType':  'ResponseContentType.Blob',
+            'Content-Type':  'application/vnd.ms-excel'}), responseType: 'arraybuffer' as 'json'
+            };
+        return this.http.get(api, httpOptions);
+    }
+
+    downloadAnalystFile(clave: string, fecha: string) {
+        const api = this.baseurl + '/tramitanet/proformas/analista/archivo/' + clave + '/' + fecha;
         const httpOptions = {
             headers: new HttpHeaders({ 'responseType':  'ResponseContentType.Blob',
             'Content-Type':  'application/vnd.ms-excel'}), responseType: 'arraybuffer' as 'json'

@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { ProformaRoutingModule } from './proforma-routing.module';
-import { ProformaCreateComponent } from './proforma-create/proforma-create.component';
+import { AceroComponent } from './acero/acero.component';
+import { ValidacionProformaRoutingModule } from './validacion-proforma-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomFormsModule } from 'ng2-validation';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilePickerModule } from 'ngx-awesome-uploader';
-import { ProformaAnalistaComponent } from './proforma-analista/proforma-analista.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
@@ -18,11 +16,11 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ReactiveFormsModule,
     CustomFormsModule,
     NgbModule,
-    ProformaRoutingModule,
     FilePickerModule,
     NgxPaginationModule,
     NgxDatatableModule,
+    ValidacionProformaRoutingModule
   ],
-  declarations: [ProformaCreateComponent, ProformaAnalistaComponent]
+  declarations: [AceroComponent]
 })
-export class ProformaModule { }
+export class ValidacionProformaModule { }

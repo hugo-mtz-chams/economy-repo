@@ -63,9 +63,16 @@
                               Recuerda que únicamente se actualizará la siguiente información:
                             </p>
                             <br>
-                              <div>
-                                  <button type="button" class="btn btn-outline-success btn-sm" (click)="changeManual()"
-                                    ngbTooltip="Presioname para ir a la plantilla de registro de trámite" tooltipClass="my-custom-class" placement="right">Registrar</button>
+                              <div class="row">
+                                  <div class="col-md-2">
+                                      <button type="button" class="btn btn-outline-success btn-sm" (click)="changeManual()"
+                                      ngbTooltip="Presioname para ir a la plantilla de registro de trámite" tooltipClass="my-custom-class" placement="right">Registrar</button>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <button type="button" class="btn btn-info btn-sm" (click)="regresar()"
+                                    ngbTooltip="Presioname para ir a la plantilla de registro de trámite" tooltipClass="my-custom-class" placement="right">Regresar</button>    
+                                  </div>
+                                  
                               </div>
                           </div>
                         </div>

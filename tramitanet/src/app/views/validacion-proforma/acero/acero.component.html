@@ -1,0 +1,46 @@
+<div class="card-body pt-3" *ngIf="!manual">
+  <div class="row">
+      
+      <div class="col-md-4">
+          <ngx-file-picker
+          [adapter]="adapter"  
+          [enableCropper]="false"
+          (validationError)= "onValidationError($event)"
+          [fileExtensions]="['xlsx']"
+          (uploadSuccess) = "uploadSuccess($event)"
+        >
+        </ngx-file-picker>
+      </div>
+      <div class="col-md-8">
+        <div class="info" *ngIf="!manual">
+            <div class="card-header justify-content-between mb-3">
+              <div class="info">
+                <h4 class="m-0 font-weight-bold text-muted">Registrar trámites</h4>
+                <br>
+                <p class="subtitle text-13 font-family-1 font-weight-500 line-height-1 mb-0">
+                  Para agilizar el proceso de registro te damos la opción de cargar tu mascara de capturada en tu archivo de excel. 
+                  Este documento será procesado de forma inmediata y almacenará los datos correspondientes de forma automática e inmediantemente
+                  podrás ver la información cargada en la sección "Trámites capurados"                              
+                </p>
+                <br>
+                <p class="subtitle text-13 font-family-1 font-weight-500 line-height-1 mb-0">
+                  Recuerda que únicamente se actualizará la siguiente información:
+                </p>
+                <br>
+                  <div class="row">
+                      <div class="col-md-2" >
+                          <button type="button" class="btn btn-outline-success btn-sm" (click)="startProcessing()"
+                          ngbTooltip="Presioname para procesar el archivo proporcionado" tooltipClass="my-custom-class" placement="right">Validar</button>
+                      </div>
+                      <div class="col-md-2">
+                          <button type="button" class="btn btn-info btn-sm" (click)="regresar()"
+                        ngbTooltip="Presioname para ir a la plantilla de registro de trámite" tooltipClass="my-custom-class" placement="right">Regresar</button>    
+                      </div>
+                      
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>

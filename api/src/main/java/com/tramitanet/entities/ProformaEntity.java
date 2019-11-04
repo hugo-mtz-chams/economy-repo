@@ -4,13 +4,16 @@
 package com.tramitanet.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -140,7 +143,18 @@ public class ProformaEntity {
 	
 	@Column(name="estatus")
 	private String estatus;
-
+	
+	@Column(name="sentido_dictamen")
+	private String sentidoDictamen;
+	
+	
+	@OneToMany(
+	    mappedBy = "proforma",
+		cascade = CascadeType.ALL,
+        orphanRemoval = false
+	)
+	List<ErrorValidacionEntity> errores;
+	
 	public Long getIdProforma() {
 		return this.idProforma;
 	}
@@ -457,5 +471,34 @@ public class ProformaEntity {
 		this.estatus = estatus;
 	}
 
+	/**
+	 * @return the errores
+	 */
+	public List<ErrorValidacionEntity> getErrores() {
+		return errores;
+	}
 
+	/**
+	 * @param errores the errores to set
+	 */
+	public void setErrores(List<ErrorValidacionEntity> errores) {
+		this.errores = errores;
+	}
+
+	/**
+	 * @return the sentidoDictamen
+	 */
+	public String getSentidoDictamen() {
+		return sentidoDictamen;
+	}
+
+	/**
+	 * @param sentidoDictamen the sentidoDictamen to set
+	 */
+	public void setSentidoDictamen(String sentidoDictamen) {
+		this.sentidoDictamen = sentidoDictamen;
+	}
+
+	
+	
 }

@@ -61,7 +61,7 @@ export class ResumenTramiteCreateComponent implements OnInit {
     this.fechaActual = formatDate(new Date(), 'yyyy-MM-dd', 'en');
     this.user = this.auth.getuser();
     this.fecha = formatDate(this.fechaActual, 'dd-MM-yyyy', 'en');
-    this.cargarProformas(this.fecha,this.user.claveCapturista);
+    this.cargarProformas(this.fecha, this.user.claveCapturista);
   }
 
   adapter = new CapturistFilePickerAdapter(this.http, this.toastr);

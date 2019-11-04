@@ -50,6 +50,7 @@ export class NavigationService {
       icon: 'icon-home',
       sub: [
         { icon: 'icon-activity', name: 'Resumen cliente', state: '/resumen-cliente', type: 'link' },
+        { icon: 'icon-folder-minus1', name: 'Mi estado de cuenta', state: '/resumen-cliente/mi-estado-cuenta', type: 'link' },
         { icon: 'icon-activity', name: 'Analytics', state: '/dashboard/v1', type: 'link' },
         { icon: 'icon-pie-chart1', name: 'Sales', state: '/dashboard/v2', type: 'link' },
         { icon: 'icon-bar-chart-2', name: 'Campaign', state: '/dashboard/v3', type: 'link' },
@@ -67,6 +68,7 @@ export class NavigationService {
       sub: [
         { icon: 'icon-book-open', name: 'Capturar proforma', state: '/proforma', type: 'link' },
         { icon: 'icon-list1', name: 'Tramites Asignados', state: '/resumen-tramite', type: 'link' },
+        { icon: 'icon-list1', name: 'Validación de Trámites', state: '/validacion', type: 'link' },
       ]
     },
     {
@@ -176,7 +178,8 @@ export class NavigationService {
       type: 'dropDown',
       icon: 'icon-home',
       sub: [
-        { icon: 'icon-activity', name: 'Resumen cliente', state: '/resumen-cliente', type: 'link' }
+        { icon: 'icon-activity', name: 'Resumen cliente', state: '/resumen-cliente', type: 'link' },
+        { icon: 'icon-folder-minus1', name: 'Mi estado de cuenta', state: '/resumen-cliente/mi-estado-cuenta', type: 'link' },
       ]
     }
     /**

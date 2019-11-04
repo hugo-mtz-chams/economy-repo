@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ProformaAnalistaComponent
   },
   {
-    path: 'analista',
+    path: 'create',
     component: ProformaCreateComponent
   }
 ];
