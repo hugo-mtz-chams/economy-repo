@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "startdev": "ng serve --host 167.71.90.199",
     "build": "ng build",
     "build:demo": "ng build --prod --base-href \"http://demos.ui-lib.com/blumingo/\"",
     "test": "ng test",
