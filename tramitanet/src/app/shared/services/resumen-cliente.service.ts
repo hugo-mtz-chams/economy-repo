@@ -5,12 +5,13 @@ import { throwError, Observable } from 'rxjs';
 import { ResumenCliente } from '../models/resumen-cliente.model';
 import { catchError, retry } from 'rxjs/operators';
 import { Proforma } from '../models/proforma';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ResumenClienteService {
-    baseurl = 'http://localhost:8080';
+    baseurl = environment.base_api_url;
 
     httpOptions = {
         headers: new HttpHeaders({

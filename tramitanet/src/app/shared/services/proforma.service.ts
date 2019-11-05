@@ -5,12 +5,13 @@ import { throwError, Observable } from 'rxjs';
 import { Proforma } from '../models/proforma';
 import { catchError, retry } from 'rxjs/operators';
 import { ResponseContentType } from '@angular/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProformaService {
-    baseurl = 'http://localhost:8080';
+    baseurl = environment.base_api_url;
 
     httpOptions = {
         headers: new HttpHeaders({

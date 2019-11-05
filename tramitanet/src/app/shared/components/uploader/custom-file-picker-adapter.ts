@@ -2,6 +2,7 @@ import { FilePickerAdapter, FilePreviewModel } from 'ngx-awesome-uploader';
 import { HttpClient, HttpEvent, HttpEventType, HttpRequest } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export class CustomFilePickerAdapter extends FilePickerAdapter {
 
@@ -11,7 +12,7 @@ export class CustomFilePickerAdapter extends FilePickerAdapter {
     public uploadFile(fileItem: FilePreviewModel) {
         const form = new FormData();
         form.append('file', fileItem.file);
-        const api = 'http://localhost:8080/tramitanet/proformas/procesaArchivo';
+        const api = environment.base_api_url + '/tramitanet/proformas/procesaArchivo';
         const req = new HttpRequest('POST', api, form, {reportProgress: true});
         return this.http.request(req)
         .pipe(
