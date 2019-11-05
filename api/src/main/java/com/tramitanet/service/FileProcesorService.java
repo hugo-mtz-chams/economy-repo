@@ -30,6 +30,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -125,8 +126,12 @@ public class FileProcesorService {
 						p.setIdCapturista(cell.getStringCellValue());
 						break; 
 					case PROFORMA:
-						Double numero = new Double(cell.getNumericCellValue());
-						p.setNumProforma(numero.intValue());
+						if(!ObjectUtils.isEmpty(cell.getNumericCellValue())) {
+							Double numero = new Double(cell.getNumericCellValue());
+							p.setNumProforma(numero.intValue());
+						}else {
+							p.setNumProforma(null);
+						}
 						break;
 					case NUM_REFERENCIA:
 						p.setNumReferencia(processAndReturnValueAsString(cell));
