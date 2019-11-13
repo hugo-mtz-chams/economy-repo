@@ -179,19 +179,8 @@ export class NavigationService {
       icon: 'icon-home',
       sub: [
         { icon: 'icon-activity', name: 'Resumen cliente', state: '/resumen-cliente', type: 'link' },
-        { icon: 'icon-folder-minus1', name: 'Mi estado de cuenta', state: '/resumen-cliente/mi-estado-cuenta', type: 'link' },
       ]
     }
-    /**
-    {
-      name: 'Application',
-      type: 'dropDown',
-      icon: 'icon-box',
-      sub: [
-        { icon: 'icon-list1', name: 'Resumen de Trámites', state: '/resumen-tramite', type: 'link' },
-      ]
-    }
-    */
   ];
 
   analystMenu: IMenuItem[] = [
@@ -201,7 +190,6 @@ export class NavigationService {
       icon: 'icon-box',
       sub: [
         { icon: 'icon-book-open', name: 'Capturar proforma', state: '/proforma', type: 'link' },
-        // { icon: 'icon-list1', name: 'Resumen de Trámites', state: '/resumen-tramite', type: 'link' },
       ]
     }
   ];
@@ -213,6 +201,19 @@ export class NavigationService {
       icon: 'icon-box',
       sub: [
         { icon: 'icon-list1', name: 'Tramites Asignados', state: '/resumen-tramite', type: 'link' },
+      ]
+    }
+  ];
+
+  adminMenu: IMenuItem[] = [
+    {
+      name: 'Application',
+      type: 'dropDown',
+      icon: 'icon-box',
+      sub: [
+        { icon: 'icon-book-open', name: 'Capturar proforma', state: '/proforma', type: 'link' },
+        { icon: 'icon-list1', name: 'Tramites Asignados', state: '/resumen-tramite', type: 'link' },
+        { icon: 'icon-list1', name: 'Validación de Trámites', state: '/validacion', type: 'link' },
       ]
     }
   ];
@@ -232,7 +233,7 @@ export class NavigationService {
           this.menuItems.next(this.clientMenu);
           break;
         case RoleEnum.Administrador:
-          this.menuItems.next(this.defaultMenu);
+          this.menuItems.next(this.adminMenu);
           break;
         case RoleEnum.Analista:
           this.menuItems.next(this.analystMenu);

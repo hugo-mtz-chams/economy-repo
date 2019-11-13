@@ -96,4 +96,25 @@ export class HeaderComponent implements OnInit {
     return false;
   }
 
+  isAnalista(){
+    return this.principal.rolename == 'Analista';
+
+  }
+
+  isCapturista(){
+    return this.principal.rolename == 'Capturista';
+
+  }
+
+  isCliente(){
+    return this.principal.rolename == 'Cliente';
+  }
+
+  isAdministrador(){
+    return this.principal.rolename == 'Administrador';
+
+  }
+
+  
+
 }
