@@ -25,13 +25,14 @@ import { Router, ActivatedRoute } from '@angular/router';
   `]
 })
 export class ProformaCreateComponent implements OnInit {
-  adapter = new CustomFilePickerAdapter(this.http);
+  adapter = new CustomFilePickerAdapter(this.http, this.toastr);
   manual = false;
   form: FormGroup;
 
   constructor(private http: HttpClient, private toaster: ToastrService,
               private router: Router,
-              public activatedRoute: ActivatedRoute) { }
+              public activatedRoute: ActivatedRoute,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.form = new FormGroup({

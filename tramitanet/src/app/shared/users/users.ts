@@ -11,6 +11,7 @@ export class Users {
         { username: 'cliente', email: 'gm_motors@gmail.com', claveCliente: 'CLI0001', password: 'cliente', role: 1, razonSocial: 'ALTER EGO MCX', rolename: 'Cliente' },
         { username: 'e.trejo', email: 'ernesto_trejo@hotmail.com', claveAnalista: 'ERNESTO', razonSocial: 'Ernesto Trejo Oviedo', password: 'e.trejo', role: 2, rolename: 'Analista' },
         { username: 'boni', email: 'j.m.r@hotmail.com', claveCapturista: 'BONI', razonSocial: 'Bonifacio Nuñez', password: 'boni', role: 3, rolename: 'Capturista' },
+        { username: 'jesus', email: 'jesus.r@hotmail.com', claveCapturista: 'JESUS', razonSocial: 'Jesus', password: 'jesus', role: 3, rolename: 'Capturista' },
         { username: 'j.hernandez', email: 'capturista2@gmail.com', claveCapturista: 'JAVIER', razonSocial: 'Javier Hernández', password: 'j.hernandez', role: 3, rolename: 'Capturista' },
         
         // se agregan usuarios de prueba
