@@ -30,7 +30,7 @@ export class CapturistFilePickerAdapter extends FilePickerAdapter {
                 }
             }, error => {
                 this.toast.error('Error al procesar el archivo');
-                }
+                }   
         )
         );
     }
