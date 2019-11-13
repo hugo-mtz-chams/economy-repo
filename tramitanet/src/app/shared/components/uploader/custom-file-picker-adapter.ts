@@ -29,7 +29,10 @@ export class CustomFilePickerAdapter extends FilePickerAdapter {
                 }
                 return UploadProgress;
             }
-        })
+        }, error => {
+            this.toast.error('Error al procesar el archivo');
+            }
+        )
         );
     }
     public removeFile(fileItem): Observable<any> {
