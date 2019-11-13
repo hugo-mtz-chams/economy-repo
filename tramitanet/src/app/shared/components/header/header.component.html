@@ -71,7 +71,7 @@
         </div>
     </div>
     <div style="margin: auto"></div>
-    <div class="header-part-right">
+    <div class="header-part-right"> 
             <div ngbDropdown [placement]="'bottom-right'" class="d-sm-inline-block">
                 <div  >
                     <b style="text-align: center; color: rgb(143, 18, 126);">{{principal.rolename}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -86,7 +86,7 @@
                     <a routerLink="/proforma" *ngIf="isAnalista() || isAdministrador()"><i class="icon-book-open"></i> Proforma</a>
                     <a routerLink="/resumen-tramite" *ngIf="isCapturista() || isAdministrador()"><i class="icon-list1"></i> Tramites</a>
                     <a routerLink="/resumen-cliente" *ngIf="isCliente()"><i class="icon-activity"></i> Resumen</a>
-                    <a routerLink="/resumen-tramite" *ngIf="isAdministrador()"><i class="icon-list1"></i> Validacion</a>
+                    <a routerLink="/validacion" *ngIf="isAdministrador()"><i class="icon-checkmark"></i> Validacion</a>
 
                     <!-- <a routerLink="/uikits/buttons"><i class="icon-layers1"></i> UI Kits</a>
                     <a routerLink="/forms/actions"><i class="icon-edit-pencil"></i> Forms</a>

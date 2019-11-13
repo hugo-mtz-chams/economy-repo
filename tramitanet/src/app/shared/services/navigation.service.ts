@@ -213,7 +213,7 @@ export class NavigationService {
       sub: [
         { icon: 'icon-book-open', name: 'Capturar proforma', state: '/proforma', type: 'link' },
         { icon: 'icon-list1', name: 'Tramites Asignados', state: '/resumen-tramite', type: 'link' },
-        { icon: 'icon-list1', name: 'Validación de Trámites', state: '/validacion', type: 'link' },
+        { icon: 'icon-checkmark', name: 'Validación de Trámites', state: '/validacion', type: 'link' },
       ]
     }
   ];
