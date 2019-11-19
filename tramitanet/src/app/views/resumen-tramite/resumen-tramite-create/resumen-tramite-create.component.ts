@@ -144,6 +144,7 @@ filterData(val) {
   // funcionalidad para importar archivo
   cargarArchivo() {
     this.importar = !this.importar;
+    this.bienvenida = !this.bienvenida;
     this.cargarProformas(this.fecha, this.user.claveCapturista);
   }
 
