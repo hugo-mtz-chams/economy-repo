@@ -55,7 +55,7 @@
                             <br>
                             <p class="subtitle text-13 font-family-1 font-weight-500 line-height-1 mb-0">
                               Para agilizar el proceso de registro te damos la opción de cargar tu mascara de capturada en tu archivo de excel. 
-                              Este documento será procesado de forma inmediata y almacenará los datos correspondientes de forma automática e inmediantemente
+                              Este documento será procesado de forma inmediata y se almacenarán los datos correspondientes de forma automática e inmediantemente
                               podrás ver la información cargada en la sección "Trámites capurados"                              
                             </p>
                             <br>
@@ -70,7 +70,7 @@
                                   </div>
                                   <div class="col-md-2">
                                       <button type="button" class="btn btn-info btn-sm" (click)="regresar()"
-                                    ngbTooltip="Presioname para ir a la plantilla de registro de trámite" tooltipClass="my-custom-class" placement="right">Regresar</button>    
+                                    ngbTooltip="Presioname para ir al ingreso de trámite" tooltipClass="my-custom-class" placement="right">Regresar</button>    
                                   </div>
                                   
                               </div>
@@ -140,7 +140,7 @@
                   <div class="row mb-4">
                     <div class="col-md-2">
                         <label for="aduana">Aduana</label>
-                        <select class="form-control" aria-placeholder="Aduana" formControlName="aduana">
+                        <select class="form-control" placeholder="Aduana*" formControlName="aduana">
                             <option>Marítima</option>
                             <option>Otras</option>
                           </select>
@@ -210,7 +210,8 @@
                     </div>
                     <div class="col-md-2">
                       <label for="factorConv">Factor de conversión</label>
-                      <input type="text" class="form-control" formControlName="factorConv" placeholder="Factor conv">  
+                      <input type="text" class="form-control" formControlName="factorConv" place
+                      holder="Factor conv">  
                       <div *ngIf="form.controls.factorConv.dirty || form.controls.factorConv.touched">
                           <p class="form-alert alert-danger m-1" *ngIf="form.controls.factorConv.errors?.required">
                             <i class="icon-close-solid mr-1 align-middle"></i>Requerido
