@@ -10,7 +10,7 @@ import { SharedComponentsModule } from 'src/app/shared/components/shared-compone
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxEchartsModule } from 'ngx-echarts';
-//import { ResumenClienteEstadoCuentaShowComponent } from './resumen-cliente-estado-cuenta-show/resumen-cliente-estado-cuenta-show.component';
+import { ResumenClienteEstadoCuentaShowComponent } from './resumen-cliente-estado-cuenta-show/resumen-cliente-estado-cuenta-show.component';
 
 @NgModule({
   imports: [
@@ -27,7 +27,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     ResumenClienteRoutingModule,
   ],
   declarations: [ResumenClienteShowComponent, 
-    //ResumenClienteEstadoCuentaShowComponent
+    ResumenClienteEstadoCuentaShowComponent
   ]
 })
 export class ResumenClienteModule { }
