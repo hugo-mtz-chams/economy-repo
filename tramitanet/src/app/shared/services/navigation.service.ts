@@ -179,6 +179,8 @@ export class NavigationService {
       icon: 'icon-home',
       sub: [
         { icon: 'icon-activity', name: 'Resumen cliente', state: '/resumen-cliente', type: 'link' },
+        { icon: 'icon-document', name: 'Mis Documentos', state: '/resumen-cliente/mis-documentos', type: 'link' },
+
       ]
     }
   ];
