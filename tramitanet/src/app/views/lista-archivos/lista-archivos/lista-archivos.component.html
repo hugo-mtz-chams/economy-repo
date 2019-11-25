@@ -35,7 +35,7 @@
 
         <ngx-datatable-column name="Cargar" [width]="autoResize">
             <ng-template let-row="row" ngx-datatable-cell-template>
-                <a class="btn btn-link border-transparent" (click)="adjuntarArchivos(row)" target="_blank"
+                <a class="btn btn-link border-transparent" (click)="download(row)" target="_blank"
                     *ngIf="row.file">
                     <i class="icon-download"></i>
                 </a>
@@ -55,8 +55,14 @@
     <div class="card-header justify-content-between mb-4">
         <div class="card-body pt-3" *ngIf="adjuntar">
             <div class="row">
+                    <div class="col-md-1 ">
+                        <button type="button" class="btn btn-info btn-sm" (click)="back()" placement="right">Regresar</button>
+                    </div>
+            </div>
+            <br>
+            <div class="row">
                 <div class="col-md-4">
-                    <ngx-file-picker [adapter]="adapter" [enableCropper]="false"
+                    <ngx-file-picker [adapter]="adapter" [enableCropper]="false" [fileExtensions]="['pdf']"
                         (validationError)="onValidationError($event)" (uploadSuccess)="uploadSuccess($event)">
                     </ngx-file-picker>
                 </div>
