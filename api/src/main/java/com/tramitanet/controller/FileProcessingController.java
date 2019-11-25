@@ -58,4 +58,10 @@ public class FileProcessingController {
 		List<ArchivoDTO> archivos = fileRepositoryService.listarFilesAndFolder();
 		return CollectionUtils.isEmpty(archivos) ? null : archivos;
 	}
+	
+	@GetMapping("/archivos/listar/{folderName}")
+	public List<ArchivoDTO> listarFolderArchivos(@PathVariable("folderName") String folderName){
+		List<ArchivoDTO> archivos = fileRepositoryService.listarFilesAndFolder(folderName);
+		return CollectionUtils.isEmpty(archivos) ? null : archivos;
+	}
 }
