@@ -24,7 +24,7 @@ export class UploaderFilePickerAdapter extends FilePickerAdapter {
         map( (res: HttpEvent<any>) => {
             if (res.type === HttpEventType.Response) {
                 this.blockUI.stop();
-                this.toast.success('Su archivo se ha procesado correctamente.');
+                this.toast.success('Su archivo se ha almacenado correctamente.');
                 return '200';
             } else if (res.type ===  HttpEventType.UploadProgress) {
                 // Compute and show the % done:
