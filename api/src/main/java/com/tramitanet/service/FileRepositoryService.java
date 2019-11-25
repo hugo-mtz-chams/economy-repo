@@ -14,6 +14,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tramitanet.FileRepositoryConstant;
 import com.tramitanet.model.ArchivoDTO;
 
 /**
@@ -23,11 +24,11 @@ import com.tramitanet.model.ArchivoDTO;
 @Service
 public class FileRepositoryService {
 	
-	String ROOT_FOLDER = "/Users/evomatik/tramitanet/archivos";
+	String ROOT_FOLDER = FileRepositoryConstant.ROOT_FOLDER_PATH;
 	
 	public List<ArchivoDTO> listarFilesAndFolder() {
 		List<ArchivoDTO> archivos = null;
-		File carpeta = new File("/Users/evomatik/tramitanet/archivos");
+		File carpeta = new File(ROOT_FOLDER);
 		File[] files = carpeta.listFiles();
 		if (files == null || files.length == 0) {
 		 System.out.println("No hay elementos dentro de la carpeta actual");
