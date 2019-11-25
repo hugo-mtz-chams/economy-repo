@@ -9,6 +9,7 @@ import { SharedComponentsModule } from './components/shared-components.module';
 import { SharedDirectivesModule } from './directives/shared-directives.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { FilePickerModule } from 'ngx-awesome-uploader';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({

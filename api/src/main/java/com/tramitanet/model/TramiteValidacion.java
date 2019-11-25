@@ -10,18 +10,18 @@ import java.util.Date;
  *
  */
 public class TramiteValidacion {
-	
+	private Long idTramite;
 	private String folioTramite;
 	private String estatusTramite;
 	private Integer cantidadUMC;
 	private Long cantidadUMT;
 	private String descMercancia;
 	private String numFactura;
-	private Date fecFactura;
+	private Date fechaFactura;
 	private String sentidoDictamen;
 	private String paisOrigen;
 	private String paisDestino;
-	private String monedaComercial;
+	private String moneda;
 	private Double precioUnitario;
 	private String fraccion;
 	private String razonSocialExp;
@@ -101,14 +101,14 @@ public class TramiteValidacion {
 	/**
 	 * @return the fecFactura
 	 */
-	public Date getFecFactura() {
-		return fecFactura;
+	public Date getFechaFactura() {
+		return fechaFactura;
 	}
 	/**
 	 * @param fecFactura the fecFactura to set
 	 */
-	public void setFecFactura(Date fecFactura) {
-		this.fecFactura = fecFactura;
+	public void setFechaFactura(Date fecFactura) {
+		this.fechaFactura = fecFactura;
 	}
 	/**
 	 * @return the sentidoDictamen
@@ -149,14 +149,14 @@ public class TramiteValidacion {
 	/**
 	 * @return the monedaComercial
 	 */
-	public String getMonedaComercial() {
-		return monedaComercial;
+	public String getMoneda() {
+		return moneda;
 	}
 	/**
 	 * @param monedaComercial the monedaComercial to set
 	 */
-	public void setMonedaComercial(String monedaComercial) {
-		this.monedaComercial = monedaComercial;
+	public void setMoneda(String monedaComercial) {
+		this.moneda = monedaComercial;
 	}
 	/**
 	 * @return the precioUnitario
@@ -206,6 +206,19 @@ public class TramiteValidacion {
 	public void setDomicilioExp(String domicilioExp) {
 		this.domicilioExp = domicilioExp;
 	}
+	/**
+	 * @return the idTramite
+	 */
+	public Long getIdTramite() {
+		return idTramite;
+	}
+	/**
+	 * @param idTramite the idTramite to set
+	 */
+	public void setIdTramite(Long idTramite) {
+		this.idTramite = idTramite;
+	}
+	
 	
 	
 }

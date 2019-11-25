@@ -20,7 +20,7 @@ public enum CeldaProformaValidationEnum {
 	PAIS_DESTINO(24,"paisDestino"),
 	MONEDA_COMERCIAL(30, "monedaComercial"),
 	PRECIO_UNITARIO_USD(31, "precioUnitario"),
-	FRACCION(32, "fraccion"),
+	FRACCION(33, "fraccion"),
 	RAZON_SOCIAL_EXP(35, "razonSocialExp"),
 	DOMICILIO_EXP(36, "domicilioExp"),
 	UNKNOWN(99,"Desconocido");

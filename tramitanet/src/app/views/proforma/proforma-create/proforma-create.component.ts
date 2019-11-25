@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-proforma-create',
   templateUrl: './proforma-create.component.html',
-  //styleUrls: ['./proforma-create.component.scss']
+  // styleUrls: ['./proforma-create.component.scss']
   styles: [`
   .my-custom-class .tooltip-inner {
     background-color: rgb(141, 223, 76);
@@ -80,7 +80,7 @@ export class ProformaCreateComponent implements OnInit {
 
   onValidationError(error: ValidationError) {
     if ( error.error === UploadValidationErrorEnum.EXTENSIONS ) {
-      this.toaster.error( ErrorMessages.INVALID_EXTENSION, 'Documento inválido',{progressBar: true});
+      this.toaster.error( ErrorMessages.INVALID_EXTENSION, 'Documento inválido', {progressBar: true});
     } else {
       this.toaster.error('Se presentado un error: ', error.error, {progressBar: true});
     }
@@ -90,9 +90,7 @@ export class ProformaCreateComponent implements OnInit {
     this.manual = !this.manual;
   }
 
-  regresar(){
+  regresar() {
     this.router.navigate(['../'], { relativeTo: this.activatedRoute });
   }
-
-  
 }

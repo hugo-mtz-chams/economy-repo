@@ -6,6 +6,8 @@ import { AuthGaurd } from './shared/services/auth.gaurd';
 import { RoleGuard } from './shared/services/auth.role';
 import { BlankLayoutComponent } from './shared/components/layouts/blank-layout/blank-layout.component';
 import { RoleEnum } from './shared/enums/role.enum';
+import { FilepageComponent } from './views/archivos/filepage/filepage.component';
+import { ListaArchivosComponent } from './views/lista-archivos/lista-archivos/lista-archivos.component';
 const routes: Routes = [
   {
     path: '',
@@ -89,6 +91,10 @@ const routes: Routes = [
       {
         path: 'validacion',
         loadChildren: './views/validacion-proforma/validacion-proforma.module#ValidacionProformaModule',
+      },
+      {
+        path: 'filepage',
+        loadChildren: './views/lista-archivos/lista-archivos.module#ListaArchivosModule',
       }
     ]
   },
