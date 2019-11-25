@@ -12,4 +12,9 @@ export class FileRepositoryService {
         const api = this.baseurl + '/tramitanet/archivos/listar';
         return this.http.get(api);
     }
+
+    listFolderFiles(folder: string) {
+        const api = this.baseurl + '/tramitanet/archivos/listar/' + folder;
+        return this.http.get(api);
+    }
 }
