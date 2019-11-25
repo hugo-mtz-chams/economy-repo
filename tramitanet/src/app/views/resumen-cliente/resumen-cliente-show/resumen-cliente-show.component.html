@@ -409,11 +409,108 @@
         [headerHeight]="50" [limit]="10" [footerHeight]="50" [rowHeight]="50" [scrollbarV]="false" [rows]="listaProformas"
         [scrollbarH]="true">
 
-        <ngx-datatable-column name="numProforma" [width]="autoResize">
+        <ngx-datatable-column name="numReferencia" [width]="autoResize">
+          <ng-template ngx-datatable-header-template>
+            No.Referencia
+          </ng-template>
+        </ngx-datatable-column>
+
+        
+        <ngx-datatable-column name="Fecha ingreso" [width]="autoResize">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.fechaIngreso | date: 'dd/MM/yyyy'}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="descripcion" [width]="autoResize">
+          <ng-template ngx-datatable-header-template>
+            Descripcion
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="aduana" [width]="autoResize">
+          <ng-template ngx-datatable-header-template>
+            Aduana
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="fraccion" [width]="autoResize">
+          <ng-template ngx-datatable-header-template>
+            Fracción
+          </ng-template>
+        </ngx-datatable-column>
+
+         <ngx-datatable-column name="numFactura" [width]="autoResize">
+          <ng-template ngx-datatable-header-template>
+            No.Factura
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Fecha Factura" [width]="autoResize">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.fechaFactura | date: 'dd/MM/yyyy'}}
+          </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="cantidadUmc" [width]="autoResize">
+        <ng-template ngx-datatable-header-template>
+          Cantidad UMC
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="cantidad" [width]="autoResize">
+        <ng-template ngx-datatable-header-template>
+          Cantidad UMT
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="moneda" [width]="autoResize">
+        <ng-template ngx-datatable-header-template>
+          Moneda Comercialización
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="valorMercancia" [width]="autoResize">
+        <ng-template ngx-datatable-header-template>
+          Valor Mercancia
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="paisExportador" [width]="autoResize">
+        <ng-template ngx-datatable-header-template>
+          Pais Exportador
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="paisOrigen" [width]="autoResize">
+        <ng-template ngx-datatable-header-template>
+          Pais Origen
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="numeroSolicitud" [width]="autoResize">
+        <ng-template ngx-datatable-header-template>
+          No. Solicitud
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="permiso" [width]="autoResize">
+        <ng-template ngx-datatable-header-template>
+          Permiso
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Inicio Vigencia" [width]="autoResize">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.inicioVigencia | date: 'dd/MM/yyyy'}}
+          </ng-template>
+      </ngx-datatable-column>
+
+        <!-- <ngx-datatable-column name="numProforma" [width]="autoResize">
           <ng-template ngx-datatable-header-template>
             No. Proforma
           </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column> -->
 
         <!--ngx-datatable-column name="idProforma" [width]="autoResize">
           <ng-template ngx-datatable-header-template>
@@ -421,25 +518,7 @@
           </ng-template>
         </ngx-datatable-column-->
 
-        <ngx-datatable-column name="numFactura" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            No.Factura
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="Fecha Factura" [width]="autoResize">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row.fechaFactura | date: 'dd/MM/yyyy'}}
-            </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="numeroSolicitud" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            No. Solicitud
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="validPrecioTotal" [width]="autoResize">
+        <!-- <ngx-datatable-column name="validPrecioTotal" [width]="autoResize">
           <ng-template ngx-datatable-header-template>
             Valid. Precio. Total
           </ng-template>
@@ -462,40 +541,10 @@
             Capturista
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="numReferencia" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            No.Referencia
-          </ng-template>
-        </ngx-datatable-column>
-
-        <!--ngx-datatable-column name="Fecha ingreso" [width]="autoResize">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row.fechaIngreso | date: 'dd/MM/yyyy'}}
-            </ng-template>
-          
-        </ngx-datatable-column-->
-
-        <ngx-datatable-column name="descripcion" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            Descripcion
-          </ng-template>
-        </ngx-datatable-column>
-
+       
         <ngx-datatable-column name="numModelo" [width]="autoResize">
           <ng-template ngx-datatable-header-template>
             No.Modelo
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="aduana" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            Aduana
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="fraccion" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            Fracción
           </ng-template>
         </ngx-datatable-column>
 
@@ -503,23 +552,11 @@
           <ng-template ngx-datatable-header-template>
             UMC
           </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="cantidadUmc" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            Cantidad UMC
-          </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column>      
 
         <ngx-datatable-column name="factor" [width]="autoResize">
           <ng-template ngx-datatable-header-template>
             Factor conv
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="cantidad" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            Cantidad UMT
           </ng-template>
         </ngx-datatable-column>
 
@@ -535,35 +572,11 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="moneda" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            Moneda Comercialización
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="valorMercancia" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            Valor Mercancia
-          </ng-template>
-        </ngx-datatable-column>
-
         <ngx-datatable-column name="precioUnitario" [width]="autoResize">
           <ng-template ngx-datatable-header-template>
             Preio Unitario
           </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="paisExportador" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            Pais Exportador
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="paisOrigen" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            Pais Origen
-          </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column>    
 
         <ngx-datatable-column name="valorTotal" [width]="autoResize">
           <ng-template ngx-datatable-header-template>
@@ -617,19 +630,7 @@
           <ng-template ngx-datatable-header-template>
             Predictamen
           </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="permiso" [width]="autoResize">
-          <ng-template ngx-datatable-header-template>
-            Permiso
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="Inicio Vigencia" [width]="autoResize">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row.inicioVigencia | date: 'dd/MM/yyyy'}}
-            </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column> -->
 
       </ngx-datatable>
     </div>

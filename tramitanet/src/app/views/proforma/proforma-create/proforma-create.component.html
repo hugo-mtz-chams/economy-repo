@@ -32,9 +32,10 @@
           <div class="card-header justify-content-between mb-3" *ngIf="manual">
               <div class="info" >
                   <h5 class="m-0 font-weight-bold text-muted">Captura de Datos de Proforma</h5><br>
-                  <div (click)="changeManual()" style="text-align: center; color: rgb(47, 74, 161);"><b>Prefieres cargar tu mascara pre-capturada presiona aquí.</b></div>
+                  <!-- <div (click)="changeManual()" style="text-align: center; color: rgb(47, 74, 161);"><b>Prefieres cargar tu mascara pre-capturada presiona aquí.</b></div> -->
               </div>
           </div>
+          
           <div class="card-body pt-3" *ngIf="!manual">
               <div class="row">
                   
@@ -80,7 +81,7 @@
                   </div>
               </div>
           </div>
-          <div class="card-body pt-3" *ngIf="manual">
+          <!-- <div class="card-body pt-3" *ngIf="manual">
               <form [formGroup]="form" >
                   <div class="row mb-4">
                     <div class="col-md-2">
@@ -425,7 +426,7 @@
                     <button class="btn btn-primary" [disabled]="!form.valid" type="submit">Guardar</button>
                 
                 </form>
-          </div>
+          </div> -->
       </div>
 
     </div>
