@@ -66,7 +66,8 @@ public class FileProcessingController {
 	}
 	
 	@PostMapping("/archivos/adjuntar")
-	public ArchivoValidacion adjuntarArchivos(@RequestParam("file") MultipartFile file){
-		return fileProcesorService.uploadValidationDataFile(file);
+	public void adjuntarArchivos(@RequestParam("file") MultipartFile file, @RequestParam("destinationFolder") String destinationFolder,
+			@RequestParam("fileName") String fileName){
+		fileRepositoryService.uploadCedulaTramite(file, destinationFolder, fileName);
 	}
 }

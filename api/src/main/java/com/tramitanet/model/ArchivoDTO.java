@@ -1,10 +1,15 @@
 package com.tramitanet.model;
 
+import java.io.File;
+
 public class ArchivoDTO {
 	
 	private String folder;
 	private String nombreArchivo;
 	private String fecha;
+	private boolean directory;
+	private boolean file;
+	private File archivo;
 	/**
 	 * @return the folder
 	 */
@@ -40,6 +45,42 @@ public class ArchivoDTO {
 	 */
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
+	}
+	/**
+	 * @return the directory
+	 */
+	public boolean isDirectory() {
+		return directory;
+	}
+	/**
+	 * @param directory the directory to set
+	 */
+	public void setDirectory(boolean directory) {
+		this.directory = directory;
+	}
+	/**
+	 * @return the file
+	 */
+	public boolean isFile() {
+		return file;
+	}
+	/**
+	 * @param file the file to set
+	 */
+	public void setFile(boolean file) {
+		this.file = file;
+	}
+	/**
+	 * @return the archivo
+	 */
+	public File getArchivo() {
+		return archivo;
+	}
+	/**
+	 * @param archivo the archivo to set
+	 */
+	public void setArchivo(File archivo) {
+		this.archivo = archivo;
 	}
 	
 	

@@ -1,39 +1,68 @@
+
+
 <div *ngIf="!adjuntar">
+    <div class="card card-ecommerce-4 o-hidden mb-4">
+        <div>
+            <div class="actions">
+                    <div class="row">
+                            <div class="col-md-2">
+                                    <button type="button" class="btn btn-outline-info btn-sm" (click)="back()" placement="right">Regresar</button>            
+                            </div>
+                            <div class="col-md-2">
+                                    <button type="button" class="btn btn-outline-info btn-sm" (click)="adjuntarArchivos()" placement="right">Adjuntar archivos</button>
+                            </div>
+                    </div>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Folder: </b> &nbsp;&nbsp;&nbsp;<b>{{relativePath}}</b>
+        </div> 
+    </div>
+    
     <ngx-datatable style="box-shadow: none" class="material fullscreen" [rows]="archivos" [columnMode]="'force'"
               [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [scrollbarH]="true" [limit]="10">
       
-        <ngx-datatable-column name="Folder" [width]="100">
+        <ngx-datatable-column name="Tipo Elemento" [width]="autoResize">
         <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.folder}}
+            <i class="icon-folder" *ngIf="row.directory"></i>
+            <i class="icon-file" *ngIf="row.file"></i>
         </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Archivo" [width]="100">
+        <ngx-datatable-column name="Archivo" [width]="autoResize">
         <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.nombreArchivo}}
         </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Cargar" [width]="100">
+        <ngx-datatable-column name="Cargar" [width]="autoResize">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              <a class="btn btn-link text-danger border-transparent" (click)="adjuntarArchivos(row)" target="_blank">
-                  <i class="icon-server"></i>
+                <a class="btn btn-link border-transparent" (click)="adjuntarArchivos(row)" target="_blank" *ngIf="row.file">
+                    <i class="icon-download"></i>
+                </a>
+              <a class="btn btn-link border-transparent" (click)="abrirNuevoDirectorio(row)" target="_blank" *ngIf="row.directory">
+                  <i class="icon-folder-plus"></i>
               </a>
+              <!--a class="btn btn-link border-transparent" (click)="adjuntarArchivos(row)" target="_blank">
+                  <i class="icon-upload"></i>
+              </a-->
             </ng-template>
         </ngx-datatable-column>
     </ngx-datatable>
 </div>
-<div class="card-body pt-3" *ngIf="adjuntar">
-    <div class="row">
-        <div class="col-md-4">
-            <ngx-file-picker
-            [adapter]="adapter"  
-            [enableCropper]="false"
-            (validationError)= "onValidationError($event)"
-            [fileExtensions]="['xlsx']"
-            (uploadSuccess) = "uploadSuccess($event)"   
-          >
-          </ngx-file-picker>
+
+<div class="card eg-card-1 o-hidden mb-4">
+    <div class="card-header justify-content-between mb-4">
+        <div class="card-body pt-3" *ngIf="adjuntar">
+            <div class="row">
+                <div class="col-md-4">
+                    <ngx-file-picker
+                    [adapter]="adapter"  
+                    [enableCropper]="false"
+                    (validationError)= "onValidationError($event)"
+                    (uploadSuccess) = "uploadSuccess($event)"   
+                >
+                </ngx-file-picker>
+                </div>
+            </div>
         </div>
     </div>
 </div>

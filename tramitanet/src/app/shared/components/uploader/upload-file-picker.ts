@@ -7,8 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgBlockUI } from 'ng-block-ui';
 
 export class UploaderFilePickerAdapter extends FilePickerAdapter {
-
-    public concluyeValidacion = new BehaviorSubject(null);
+    public destinationFolder: string;
 
     constructor(private http: HttpClient, private toast: ToastrService, private blockUI: NgBlockUI) {
         super();
@@ -16,6 +15,8 @@ export class UploaderFilePickerAdapter extends FilePickerAdapter {
     public uploadFile(fileItem: FilePreviewModel) {
         const form = new FormData();
         form.append('file', fileItem.file);
+        form.append('destinationFolder', this.destinationFolder);
+        form.append('fileName', fileItem.fileName);
         const api = environment.base_api_url + '/tramitanet/archivos/adjuntar';
         const req = new HttpRequest('POST', api, form, {reportProgress: true});
         return this.http.request(req)
@@ -24,7 +25,6 @@ export class UploaderFilePickerAdapter extends FilePickerAdapter {
             if (res.type === HttpEventType.Response) {
                 this.blockUI.stop();
                 this.toast.success('Su archivo se ha procesado correctamente.');
-                this.concluyeValidacion.next(res.body.idArchivo);
                 return '200';
             } else if (res.type ===  HttpEventType.UploadProgress) {
                 // Compute and show the % done:

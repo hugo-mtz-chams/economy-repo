@@ -712,8 +712,6 @@ public class FileProcesorService {
         
         return new ByteArrayInputStream(out.toByteArray());
 	}
-
-	
 	
 	public ArchivoValidacion uploadValidationDataFile(MultipartFile multipartFile) {
 		ArchivoValidacion archivo = null;
