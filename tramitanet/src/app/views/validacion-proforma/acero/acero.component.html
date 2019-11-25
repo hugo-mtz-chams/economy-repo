@@ -15,23 +15,24 @@
         <div class="info" *ngIf="!manual">
             <div class="card-header justify-content-between mb-3">
               <div class="info">
-                <h4 class="m-0 font-weight-bold text-muted">Registrar trámites</h4>
+                <h4 class="m-0 font-weight-bold text-muted">Validar trámites</h4>
                 <br>
                 <p class="subtitle text-13 font-family-1 font-weight-500 line-height-1 mb-0">
-                  Para agilizar el proceso de registro te damos la opción de cargar tu mascara de capturada en tu archivo de excel. 
-                  Este documento será procesado de forma inmediata y almacenará los datos correspondientes de forma automática e inmediantemente
-                  podrás ver la información cargada en la sección "Trámites capurados"                              
+                  En esta sección puedes subir el reporte de trámites diarios emitidos por el SAT. Este reporte se validará
+                  con la información registrada en sistema y en caso de existir errores estos se desplegarán en pantalla para que puedes corregirlos
+                  y realizar nuevamente tu trámite.                              
                 </p>
                 <br>
                 <p class="subtitle text-13 font-family-1 font-weight-500 line-height-1 mb-0">
-                  Recuerda que únicamente se actualizará la siguiente información:
+                  Recuerda que únicamente se validarán aquellos trámites cuyo número de solicitud (trámite) haya sido previamente registrado por el capturista.
+                  Para iniciar solo arrastra tu reporte a la sección de "Drag and Drop"
                 </p>
                 <br>
                   <div class="row">
-                      <div class="col-md-2" >
+                      <!--div class="col-md-2" >
                           <button type="button" class="btn btn-outline-success btn-sm" (click)="startProcessing()"
                           ngbTooltip="Presioname para procesar el archivo proporcionado" tooltipClass="my-custom-class" placement="right">Validar</button>
-                      </div>
+                      </div-->
                       <div class="col-md-2">
                           <button type="button" class="btn btn-info btn-sm" (click)="regresar()"
                         ngbTooltip="Presioname para ir a la plantilla de registro de trámite" tooltipClass="my-custom-class" placement="right">Regresar</button>    
