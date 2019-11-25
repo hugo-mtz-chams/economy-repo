@@ -128,7 +128,8 @@ public class FileProcesorService {
 				while(cellIterator.hasNext()) {
 					
 					Cell cell = cellIterator.next();
-					CeldaProformaEnum elemento = CeldaProformaEnum.getById(numCelda);
+					
+					CeldaProformaEnum elemento = CeldaProformaEnum.getById(cell.getColumnIndex());
 					
 					switch(elemento) {
 					case ANALISTA: 
@@ -278,9 +279,10 @@ public class FileProcesorService {
 						break; 
 					case UNKNOWN: break;
 					}
+					numCelda++;
 					debugProcesing(cell);
 					
-					numCelda++;
+					
 				}
 				System.err.println("INSERTING");
 				if(	!StringUtils.isEmpty( p.getIdAnalista() )  && 
