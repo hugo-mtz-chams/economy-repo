@@ -3,6 +3,7 @@
  */
 package com.tramitanet.repositories;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,4 +62,7 @@ public interface ProformaRepository extends JpaRepository<ProformaEntity, Long>{
 			"  sum(case when p.estatus = 'En espera' then 1 else 0 end) AS EnEspera )" + 
 			"FROM ProformaEntity p where p.claveCliente=:claveCliente and fecha_ingreso = :fechaIngreso group by num_referencia")
 	public List<Reference> findReferenciasByCliente(@Param("claveCliente") String claveCliente, @Param("fechaIngreso") String fechaIngreso);
+	
+	@Query("SELECT p from ProformaEntity p where p.numProforma = :numProforma and p.numReferencia = :referencia and fecha_ingreso = :fechaIngreso")
+	public List<ProformaEntity> findByNumProformaAndNumReferenciaAndFechaIngreso(@Param("numProforma") Integer numProforma, @Param("referencia") String referencia, @Param("fechaIngreso") String fechaIngreso);
 }

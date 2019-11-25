@@ -4,6 +4,7 @@
 package com.tramitanet.dao;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -175,6 +176,30 @@ public class ProformaDAO {
 	 */
 	public List<Proforma> findTramitesByAnalistaAndDate(String fechaIngreso, String claveAnalista){
 		List<ProformaEntity> resumenTramites = proformaRepository.findByAnalistaAndFechaIngreso(claveAnalista, fechaIngreso);
+		
+		List<Proforma> proformas = new ArrayList<Proforma>();
+		for(ProformaEntity entity : resumenTramites) {
+			Proforma p = new Proforma();
+			BeanUtils.copyProperties(entity, p);
+			proformas.add(p);
+		}
+		return proformas;
+	}
+	
+	/**
+	 * Retorna los registros de tabla proforma asignados a un capturista con base en la fecha seleccionada
+	 * @param numReferencia 
+	 * @param fechaIngreso
+	 * @param claveCliente
+	 * @return
+	 */
+	public List<Proforma> existeProforma(Integer numProforma, String numeroReferencia, Date fechaIngreso){
+		String fechaIngresoStr = null;
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		fechaIngresoStr = sdf.format(fechaIngreso);
+		
+		List<ProformaEntity> resumenTramites = proformaRepository.findByNumProformaAndNumReferenciaAndFechaIngreso(numProforma, numeroReferencia, fechaIngresoStr);
 		
 		List<Proforma> proformas = new ArrayList<Proforma>();
 		for(ProformaEntity entity : resumenTramites) {

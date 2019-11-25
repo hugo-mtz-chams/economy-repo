@@ -93,6 +93,8 @@ public class FileProcesorService {
 	
 	public void procesar(MultipartFile multipartFile) {
 		
+		
+		
 		try {
 			
 			FileInputStream file =(FileInputStream) multipartFile.getInputStream();
@@ -139,7 +141,7 @@ public class FileProcesorService {
 						p.setIdCapturista(cell.getStringCellValue());
 						break; 
 					case PROFORMA:
-						if(!ObjectUtils.isEmpty(cell.getNumericCellValue())) {
+						if(!ObjectUtils.isEmpty(cell.getNumericCellValue()) && cell.getNumericCellValue() > 0 ) {
 							Double numero = new Double(cell.getNumericCellValue());
 							p.setNumProforma(numero.intValue());
 						}else {
@@ -285,11 +287,19 @@ public class FileProcesorService {
 					
 				}
 				System.err.println("INSERTING");
+				
+				
+				
 				if(	!StringUtils.isEmpty( p.getIdAnalista() )  && 
 					!StringUtils.isEmpty( p.getIdCapturista() )  && 
 					!StringUtils.isEmpty( p.getNumProforma() ) &&
 					!StringUtils.isEmpty( p.getNumReferencia() ) ) {
-					proformaService.saveOrUpdate(p);
+					List<Proforma> proformasExistentes = proformaService.existeProforma(p.getNumProforma(), p.getNumReferencia(), p.getFechaIngreso());
+					if( CollectionUtils.isEmpty(proformasExistentes) ) {
+						proformaService.saveOrUpdate(p);
+					}else {
+						System.err.println("Esta proforma se registro previamente y se omitirá su registro");
+					}
 				}
 				rownum++;
 			}
