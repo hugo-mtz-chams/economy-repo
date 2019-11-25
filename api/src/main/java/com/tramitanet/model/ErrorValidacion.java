@@ -22,6 +22,8 @@ public class ErrorValidacion {
 	private Long idProforma;
 	
 	private ProformaEntity proforma;
+	
+	private Long idArchivo;
 
 	/**
 	 * @return the idErrorValidacion
@@ -105,6 +107,20 @@ public class ErrorValidacion {
 	 */
 	public void setProforma(ProformaEntity proforma) {
 		this.proforma = proforma;
+	}
+
+	/**
+	 * @return the idArchivo
+	 */
+	public Long getIdArchivo() {
+		return idArchivo;
+	}
+
+	/**
+	 * @param idArchivo the idArchivo to set
+	 */
+	public void setIdArchivo(Long idArchivo) {
+		this.idArchivo = idArchivo;
 	}
 	
 	

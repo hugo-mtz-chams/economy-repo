@@ -4,11 +4,10 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
-import { isSuccess } from 'angular-in-memory-web-api';
 
 export class CustomFilePickerAdapter extends FilePickerAdapter {
 
-    constructor(private http: HttpClient,private toast: ToastrService) {
+    constructor(private http: HttpClient, private toast: ToastrService) {
         super();
     }
     public uploadFile(fileItem: FilePreviewModel) {
@@ -24,8 +23,8 @@ export class CustomFilePickerAdapter extends FilePickerAdapter {
             } else if (res.type ===  HttpEventType.UploadProgress) {
                 // Compute and show the % done:
                 const UploadProgress = +Math.round((100 * res.loaded) / res.total);
-                if(UploadProgress == 100){
-                    this.toast.success('Su archivo se a cargado correctamente.');
+                if ( UploadProgress === 100 ) {
+                    this.toast.success('Su archivo se ha cargado correctamente.');
                 }
                 return UploadProgress;
             }

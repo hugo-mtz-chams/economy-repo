@@ -55,6 +55,11 @@ export class ProformaService {
         return this.http.get(api, httpOptions);
     }
 
+    listErrorsByFile(fileId: number) {
+        const api = this.baseurl + '/tramitanet/proformas/validacion/errores/archivo/' + fileId;
+        return this.http.get(api);
+    }
+
     downloadAnalystFile(clave: string, fecha: string) {
         const api = this.baseurl + '/tramitanet/proformas/analista/archivo/' + clave + '/' + fecha;
         const httpOptions = {

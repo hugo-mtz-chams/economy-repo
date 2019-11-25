@@ -24,7 +24,7 @@ export class CapturistFilePickerAdapter extends FilePickerAdapter {
                     // Compute and show the % done:
                     const UploadProgress = +Math.round((100 * res.loaded) / res.total);
                     if(UploadProgress == 100){
-                        this.toast.success('Su archivo se a cargado correctamente.');
+                        this.toast.success('Su archivo se ha cargado correctamente.');
                     }
                     return UploadProgress;
                 }

@@ -7,7 +7,7 @@
           [enableCropper]="false"
           (validationError)= "onValidationError($event)"
           [fileExtensions]="['xlsx']"
-          (uploadSuccess) = "uploadSuccess($event)"
+          (uploadSuccess) = "uploadSuccess($event)"   
         >
         </ngx-file-picker>
       </div>
@@ -40,6 +40,30 @@
                   </div>
               </div>
             </div>
+        </div>
+
+        <div *ngIf="listaErrores">
+            <ngx-datatable style="box-shadow: none" class="material fullscreen" [rows]="listaErrores" [columnMode]="'force'"
+            [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [scrollbarH]="true" [limit]="5">
+    
+              <ngx-datatable-column name="Campo Inválido" [width]="100">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.campoInvalido}}
+                </ng-template>
+              </ngx-datatable-column>
+      
+              <ngx-datatable-column name="Valor Proforma" [width]="100">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.valorProforma}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Valor Reportado SAT" [width]="autoResize">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.valorReportado}}
+                </ng-template>
+              </ngx-datatable-column>
+              
+          </ngx-datatable>
         </div>
       </div>
   </div>

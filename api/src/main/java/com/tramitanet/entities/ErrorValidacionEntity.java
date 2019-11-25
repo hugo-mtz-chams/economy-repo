@@ -37,6 +37,23 @@ public class ErrorValidacionEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_proforma")
 	private ProformaEntity proforma;
+	
+	@Column(name="id_archivo")
+	private Long idArchivoValidacion;
+	
+	/**
+	 * @return the idArchivoValidacion
+	 */
+	public Long getIdArchivoValidacion() {
+		return idArchivoValidacion;
+	}
+
+	/**
+	 * @param idArchivoValidacion the idArchivoValidacion to set
+	 */
+	public void setIdArchivoValidacion(Long idArchivoValidacion) {
+		this.idArchivoValidacion = idArchivoValidacion;
+	}
 
 	/**
 	 * @return the idErrorValidacion

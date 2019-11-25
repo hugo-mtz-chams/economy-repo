@@ -35,7 +35,7 @@ public class TramiteValidacionEntity {
 	private String estatusTramite;
 	
 	@Column(name="Cantidad_UMC")
-	private Long cantidadUMC;
+	private Integer cantidadUMC;
 	
 	@Column(name="Cantidad_UMT")
 	private Long cantidadUMT;
@@ -46,8 +46,8 @@ public class TramiteValidacionEntity {
 	@Column(name="Numero_Factura")
 	private String numFactura;
 	
-	@Column(name="Fec_Factura")
-	private Date fecFactura;
+	@Column(name="Fecha_Factura")
+	private Date fechaFactura;
 	
 	@Column(name="Sentido_Dictamen")
 	private String sentidoDictamen;
@@ -58,8 +58,8 @@ public class TramiteValidacionEntity {
 	@Column(name="Pais_Destino")
 	private String paisDestino;
 	
-	@Column(name="Moneda_Comercial")
-	private String monedaComercial;
+	@Column(name="Moneda")
+	private String moneda;
 	
 	@Column(name="Precio_Unitario")
 	private Double precioUnitario;
@@ -122,14 +122,14 @@ public class TramiteValidacionEntity {
 	/**
 	 * @return the cantidadUMC
 	 */
-	public Long getCantidadUMC() {
+	public Integer getCantidadUMC() {
 		return cantidadUMC;
 	}
 
 	/**
 	 * @param cantidadUMC the cantidadUMC to set
 	 */
-	public void setCantidadUMC(Long cantidadUMC) {
+	public void setCantidadUMC(Integer cantidadUMC) {
 		this.cantidadUMC = cantidadUMC;
 	}
 
@@ -178,15 +178,15 @@ public class TramiteValidacionEntity {
 	/**
 	 * @return the fecFactura
 	 */
-	public Date getFecFactura() {
-		return fecFactura;
+	public Date getFechaFactura() {
+		return fechaFactura;
 	}
 
 	/**
 	 * @param fecFactura the fecFactura to set
 	 */
-	public void setFecFactura(Date fecFactura) {
-		this.fecFactura = fecFactura;
+	public void setFechaFactura(Date fecFactura) {
+		this.fechaFactura = fecFactura;
 	}
 
 	/**
@@ -234,15 +234,15 @@ public class TramiteValidacionEntity {
 	/**
 	 * @return the monedaComercial
 	 */
-	public String getMonedaComercial() {
-		return monedaComercial;
+	public String getMoneda() {
+		return moneda;
 	}
 
 	/**
 	 * @param monedaComercial the monedaComercial to set
 	 */
-	public void setMonedaComercial(String monedaComercial) {
-		this.monedaComercial = monedaComercial;
+	public void setMoneda(String monedaComercial) {
+		this.moneda = monedaComercial;
 	}
 
 	/**
