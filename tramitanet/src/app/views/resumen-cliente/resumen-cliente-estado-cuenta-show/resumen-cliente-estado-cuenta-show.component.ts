@@ -5,7 +5,7 @@ import { LineChart1  } from 'src/app/shared/charts/barcharts'
 import { FileRepositoryService } from 'src/app/shared/services/file.repository.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
-
+ 
 
 
 
