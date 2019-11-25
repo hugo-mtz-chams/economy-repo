@@ -1,16 +1,39 @@
-<ngx-datatable style="box-shadow: none" class="material fullscreen" [rows]="archivos" [columnMode]="'force'"
-          [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [scrollbarH]="true" [limit]="10">
-  
-    <ngx-datatable-column name="Folder" [width]="100">
-    <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.folder}}
-    </ng-template>
-    </ngx-datatable-column>
+<div *ngIf="!adjuntar">
+    <ngx-datatable style="box-shadow: none" class="material fullscreen" [rows]="archivos" [columnMode]="'force'"
+              [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [scrollbarH]="true" [limit]="10">
+      
+        <ngx-datatable-column name="Folder" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.folder}}
+        </ng-template>
+        </ngx-datatable-column>
 
-    <ngx-datatable-column name="Archivo" [width]="100">
-    <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.nombreArchivo}}
-    </ng-template>
-    </ngx-datatable-column>
+        <ngx-datatable-column name="Archivo" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.nombreArchivo}}
+        </ng-template>
+        </ngx-datatable-column>
 
-</ngx-datatable>
+        <ngx-datatable-column name="Cargar" [width]="100">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a class="btn btn-link text-danger border-transparent" (click)="adjuntarArchivos(row)" target="_blank">
+                  <i class="icon-server"></i>
+              </a>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>
+<div class="card-body pt-3" *ngIf="adjuntar">
+    <div class="row">
+        <div class="col-md-4">
+            <ngx-file-picker
+            [adapter]="adapter"  
+            [enableCropper]="false"
+            (validationError)= "onValidationError($event)"
+            [fileExtensions]="['xlsx']"
+            (uploadSuccess) = "uploadSuccess($event)"   
+          >
+          </ngx-file-picker>
+        </div>
+    </div>
+</div>

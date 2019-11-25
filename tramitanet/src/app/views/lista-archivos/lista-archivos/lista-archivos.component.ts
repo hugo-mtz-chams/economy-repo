@@ -9,9 +9,12 @@ import { FileRepositoryService } from 'src/app/shared/services/file.repository.s
 
 })
 export class ListaArchivosComponent implements OnInit {
-
+  adjuntar = true;
   archivos: any;
+  folderNuevo: string;
+  folderBase: string;
     constructor(private fileService: FileRepositoryService) {
+      this.adjuntar = false;
     }
 
     ngOnInit(): void {
@@ -22,4 +25,8 @@ export class ListaArchivosComponent implements OnInit {
         );
     }
 
+    adjuntarArchivos(event: any) {
+      this.adjuntar = true;
+      this.folderNuevo = event.folder;
+    }
 }
