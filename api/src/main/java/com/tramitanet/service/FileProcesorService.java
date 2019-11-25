@@ -253,8 +253,22 @@ public class FileProcesorService {
 					case PERMISO: 
 						p.setPermiso(cell.getStringCellValue());
 						break;
-					case INICIO_VIGENCIA: 
-						p.setInicioVigencia(cell.getDateCellValue());
+					case INICIO_VIGENCIA:
+						Date fecVigencia = null;	
+						if(cell.getCellType().equals(CellType.STRING)) {
+							if(!StringUtils.isEmpty(cell.getStringCellValue())) {
+								DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+								try {
+									fecVigencia = sdf.parse(cell.getStringCellValue());
+								} catch (ParseException e) {
+									e.printStackTrace();
+								}
+							}
+						}else {
+							fecVigencia = cell.getDateCellValue();
+						}
+						
+						p.setInicioVigencia(fecVigencia);
 						break;
 					case CLAVE_CLIENTE: 
 						p.setClaveCliente(cell.getStringCellValue());
