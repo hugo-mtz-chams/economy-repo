@@ -2,6 +2,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { EChartOption } from 'echarts';
 import * as cloneDeep from 'lodash/cloneDeep';
 import { LineChart1  } from 'src/app/shared/charts/barcharts'
+import { FileRepositoryService } from 'src/app/shared/services/file.repository.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
+
+
 
 
 
@@ -10,6 +14,7 @@ import { LineChart1  } from 'src/app/shared/charts/barcharts'
   selector: 'app-resumen-cliente-estado-cuenta-show',
   templateUrl: './resumen-cliente-estado-cuenta-show.component.html',
   styleUrls: ['./resumen-cliente-estado-cuenta-show.component.scss'],
+  providers: [ FileRepositoryService ],
   encapsulation: ViewEncapsulation.None,
   styles: [`
   .my-custom-class .tooltip-inner {
@@ -25,54 +30,27 @@ import { LineChart1  } from 'src/app/shared/charts/barcharts'
 export class ResumenClienteEstadoCuentaShowComponent implements OnInit {
 
   public bienvenida: boolean = true;
+  archivos: any;
 
-  chartLineOptionD1: EChartOption; 
-  chartLineOptionD2: EChartOption;
-  chartLineOptionD3: EChartOption;
-  chartLineOptionD4: EChartOption;
-  chartLineOptionD5: EChartOption;
+  constructor(
+    private fileService: FileRepositoryService,
+    private authService: AuthService
+    ) {
+    this.cargarDocumentos();
+   }
 
-  constructor() { }
-
-  ngOnInit() {
-    this.chartLineOptionD1 = cloneDeep(LineChart1);
-    this.chartLineOptionD1.xAxis.data = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
-      '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
-      '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'];
-    this.chartLineOptionD1.series[0].lineStyle.color = ['#5f6ac2'];
-    this.chartLineOptionD1.series[0].data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 7, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 1, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-
-    this.chartLineOptionD2 = cloneDeep(LineChart1);
-    this.chartLineOptionD2.xAxis.data = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
-      '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
-      '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'];
-    this.chartLineOptionD2.series = [...LineChart1.series];
-    this.chartLineOptionD2.series[0].lineStyle.color = ['#ff5721'];
-    this.chartLineOptionD2.series[0].data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 7, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 1, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-
-    this.chartLineOptionD3 = cloneDeep(LineChart1);
-    this.chartLineOptionD3.xAxis.data = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
-      '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
-      '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'];
-    this.chartLineOptionD3.series[0].lineStyle.color = '#4cae4f';
-    this.chartLineOptionD3.series[0].data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 7, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 1, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-    this.chartLineOptionD4 = cloneDeep(LineChart1);
-    this.chartLineOptionD4.xAxis.data = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
-      '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
-      '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'];
-    this.chartLineOptionD4.series[0].lineStyle.color = '#04a9f4';
-    this.chartLineOptionD4.series[0].data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 7, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 1, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  }
+  ngOnInit() {}
 
   mostrarBienvenida() {
     this.bienvenida = !this.bienvenida;
+  }
+
+  cargarDocumentos() {
+    this.fileService.listFolderFiles(this.authService.getuser().claveCliente).subscribe(
+      (listaArchivos) => {
+          this.archivos = listaArchivos;
+      }
+    );
   }
   
 

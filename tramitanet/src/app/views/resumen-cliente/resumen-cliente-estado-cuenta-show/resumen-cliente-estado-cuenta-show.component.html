@@ -8,13 +8,11 @@
             src="http://www.jjcustomtrade.com.ve/wp-content/uploads/2015/11/Banner-tramites.png" alt="">
         </div>
         <div class="flex-grow-1 p-4">
-          <h5 class="m-0 font-weight-bold text-muted">Redumen de Facturas</h5>
+          <h5 class="m-0 font-weight-bold text-muted">Mis Documentos</h5>
           <p class="m-0 text-small text-muted">SAT</p>
           <p class="m-0"> </p>
-          <p class="text-muted mt-3">En esta sección podrás ver tu resumen general de facturas completo.</p>
-          <p class="text-muted mt-3">Puedes consultar lo referente a tus facturas en la seccion superior dando click
-            sobre cualquiera de los cuatro apartados.<b>Mis Facturas</b>.</p>
-          <p class="text-muted mt-3">De igual forma podras descargar el resumen de cada rubro que elijas. </p>
+          <p class="text-muted mt-3">En esta sección podrás ver tus documentos.</p>
+          <p class="text-muted mt-3">De igual forma podras descargar el documento que elijas. </p>
           <div class="actions">
             <button type="button" class="btn btn-outline-info btn-sm" (click)="mostrarBienvenida()"
               placement="right">Comencemos</button>
@@ -29,100 +27,39 @@
     <button type="button" class="btn btn-round btn-icon btn-outline-info border-transparent m-1"
       (click)="mostrarBienvenida()"><i class="icon-info"></i></button>
   </div>
-
-  <div class="separator-breadcrumb border-top"></div>
- 
-  <!-- tarjetas de facturas -->
-  <div class="row">
-
-    <div class="col-lg-3 col-md-6 col-sm-6"  ngbTooltip="¡Ver tu resumen completo de faturas¡" tooltipClass="my-custom-class" placement="top" >
-
-      <div class="card bm-card-10 o-hidden mb-4" style="cursor: pointer;" >
-
-        <div class="card-body text-left" >
-
-          <div class="content">
-
-            <p class="title text-black text-12 font-family-1 font-weight-500 mt-0 mb-0">Total Facturas</p>
-            <p class="subtitle text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$50,000</p>
-
-            <div echarts [options]="chartLineOptionD1" [autoResize]="true" style="height: 30px;"></div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="col-lg-3 col-md-6 col-sm-6" ngbTooltip="¡Ver tus facturas pagadas¡" tooltipClass="my-custom-class" placement="top">
-
-      <div class="card bm-card-10 o-hidden mb-4" style="cursor: pointer;">
-
-        <div class="card-body text-left">
-
-          <div class="content">
-
-            <p class="title text-12 font-family-1 font-weight-500 mt-0 mb-0">Facturas Pagadas</p>
-            <p class="subtitle text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$1,095,190</p>
-
-            <div echarts [options]="chartLineOptionD2" [autoResize]="true" style="height: 30px;"></div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="col-lg-3 col-md-6 col-sm-6" ngbTooltip="¡Ver tus faturas por pagar¡" tooltipClass="my-custom-class" placement="top">
-
-      <div class="card bm-card-10 o-hidden mb-4" style="cursor: pointer;">
-
-        <div class="card-body text-left">
-
-          <div class="content">
-
-            <p class="title text-12 font-family-1 font-weight-500 mt-0 mb-0">Facturas Por Pagar</p>
-            <p class="subtitle text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$306.20</p>
-
-            <div echarts [options]="chartLineOptionD3" [autoResize]="true" style="height: 30px;"></div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="col-lg-3 col-md-6 col-sm-6" ngbTooltip="¡Ver tus facturas xxxxx" tooltipClass="my-custom-class" placement="top">
-
-      <div class="card bm-card-10 o-hidden mb-4" style="cursor: pointer;">
-
-        <div class="card-body text-left">
-
-          <div class="content">
-
-            <p class="title text-12 font-family-1 font-weight-500 mt-0 mb-0">Facturas XXXXXX</p>
-            <p class="subtitle text-30 font-family-2 font-weight-500 mt-0 mb-0 line-height-1">$306.20</p>
-
-            <div echarts [options]="chartLineOptionD4" [autoResize]="true" style="height: 30px;"></div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-
-
-
 </div>
+
+<div class="separator-breadcrumb border-top"></div>
+
+    <ngx-datatable style="box-shadow: none" class="material fullscreen" [rows]="archivos" [columnMode]="'force'"
+      [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [scrollbarH]="true" [limit]="10">
+
+      <ngx-datatable-column name="Tipo Elemento" [width]="autoResize">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <i class="icon-folder" *ngIf="row.directory"></i>
+          <i class="icon-file" *ngIf="row.file"></i>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Archivo" [width]="autoResize">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.nombreArchivo}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Cargar" [width]="autoResize">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <a class="btn btn-link border-transparent" (click)="adjuntarArchivos(row)" target="_blank" *ngIf="row.file">
+            <i class="icon-download"></i>
+          </a>
+          <a class="btn btn-link border-transparent" (click)="abrirNuevoDirectorio(row)" target="_blank"
+            *ngIf="row.directory">
+            <i class="icon-folder-plus"></i>
+          </a>
+          <!--a class="btn btn-link border-transparent" (click)="adjuntarArchivos(row)" target="_blank">
+              <i class="icon-upload"></i>
+          </a-->
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+ 
