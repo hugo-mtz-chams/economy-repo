@@ -28,6 +28,7 @@ import com.tramitanet.service.FileRepositoryService;
  *
  */
 @CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://167.71.90.199:4200")
 @RestController
 @RequestMapping("/tramitanet")
 public class FileProcessingController {
