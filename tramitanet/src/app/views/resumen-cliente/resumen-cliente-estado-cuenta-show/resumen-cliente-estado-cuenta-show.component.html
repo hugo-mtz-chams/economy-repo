@@ -47,18 +47,11 @@
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="Cargar" [width]="autoResize">
+      <ngx-datatable-column name="Descargar" [width]="autoResize">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <a class="btn btn-link border-transparent" (click)="adjuntarArchivos(row)" target="_blank" *ngIf="row.file">
+          <a class="btn btn-link border-transparent" (click)="download(row)" target="_blank" *ngIf="row.file">
             <i class="icon-download"></i>
           </a>
-          <a class="btn btn-link border-transparent" (click)="abrirNuevoDirectorio(row)" target="_blank"
-            *ngIf="row.directory">
-            <i class="icon-folder-plus"></i>
-          </a>
-          <!--a class="btn btn-link border-transparent" (click)="adjuntarArchivos(row)" target="_blank">
-              <i class="icon-upload"></i>
-          </a-->
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>
