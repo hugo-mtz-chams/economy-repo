@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FileRepositoryService } from 'src/app/shared/services/file.repository.service';
+import { UploaderFilePickerAdapter } from 'src/app/shared/components/uploader/upload-file-picker';
+import { ToastrService } from 'ngx-toastr';
+import { HttpClient } from '@angular/common/http';
+import { NgBlockUI, BlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-lista-archivos',
@@ -9,11 +13,15 @@ import { FileRepositoryService } from 'src/app/shared/services/file.repository.s
 
 })
 export class ListaArchivosComponent implements OnInit {
+  @BlockUI() blockUI: NgBlockUI;
   adjuntar = true;
   archivos: any;
   folderNuevo: string;
   folderBase: string;
-    constructor(private fileService: FileRepositoryService) {
+  adapter = new UploaderFilePickerAdapter(this.http, this.toaster, this.blockUI);
+
+
+    constructor(private fileService: FileRepositoryService, private http: HttpClient, private toaster: ToastrService) {
       this.adjuntar = false;
     }
 

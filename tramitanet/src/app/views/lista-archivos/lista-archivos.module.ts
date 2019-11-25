@@ -5,6 +5,7 @@ import { ListaArchivosRoutingModule } from './lista-archivos-routing.module';
 import { ListaArchivosComponent } from './lista-archivos/lista-archivos.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { FilePickerModule } from 'ngx-awesome-uploader';
 
 @NgModule({
   imports: [
@@ -12,6 +13,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ListaArchivosRoutingModule,
     NgxPaginationModule,
     NgxDatatableModule,
+    FilePickerModule,
+
   ],
   declarations: [
     ListaArchivosComponent

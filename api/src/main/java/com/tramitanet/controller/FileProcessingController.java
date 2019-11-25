@@ -64,4 +64,9 @@ public class FileProcessingController {
 		List<ArchivoDTO> archivos = fileRepositoryService.listarFilesAndFolder(folderName);
 		return CollectionUtils.isEmpty(archivos) ? null : archivos;
 	}
+	
+	@PostMapping("/archivos/adjuntar")
+	public ArchivoValidacion adjuntarArchivos(@RequestParam("file") MultipartFile file){
+		return fileProcesorService.uploadValidationDataFile(file);
+	}
 }
