@@ -18,9 +18,33 @@ import com.tramitanet.model.ArchivoDTO;
 @Service
 public class FileRepositoryService {
 	
+	String ROOT_FOLDER = "/Users/evomatik/tramitanet/archivos";
+	
 	public List<ArchivoDTO> listarFilesAndFolder() {
 		List<ArchivoDTO> archivos = null;
 		File carpeta = new File("/Users/evomatik/tramitanet/archivos");
+		File[] files = carpeta.listFiles();
+		if (files == null || files.length == 0) {
+		 System.out.println("No hay elementos dentro de la carpeta actual");
+		 return null;
+		}
+		else {
+			archivos = new ArrayList<ArchivoDTO>();
+			for (int i=0; i< files.length; i++) {
+				 System.out.println(files[i]);
+				 ArchivoDTO a = new ArchivoDTO();
+				 a.setNombreArchivo(files[i].getName());
+				 a.setFolder(files[i].getParent());
+				 archivos.add(a);
+			}
+		}
+		return archivos;
+	}
+	
+	public List<ArchivoDTO> listarFilesAndFolder(String folder) {
+		List<ArchivoDTO> archivos = null;
+		String PATH = ROOT_FOLDER + "/" + folder;
+		File carpeta = new File(PATH);
 		File[] files = carpeta.listFiles();
 		if (files == null || files.length == 0) {
 		 System.out.println("No hay elementos dentro de la carpeta actual");
