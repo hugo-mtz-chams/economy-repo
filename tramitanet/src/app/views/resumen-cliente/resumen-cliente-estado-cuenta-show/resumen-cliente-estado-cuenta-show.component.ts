@@ -52,6 +52,5 @@ export class ResumenClienteEstadoCuentaShowComponent implements OnInit {
       }
     );
   }
-  
 
 }
