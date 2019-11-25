@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
 
-  base_api_url: 'http://localhost:8080',
+  //base_api_url: 'http://localhost:8080',
+  base_api_url: 'http://167.71.90.199:8080',
   baseFolder: '/Users/evomatik/tramitanet/archivos'
 };
 
