@@ -113,7 +113,7 @@ public class FileProcesorService {
 			int rownum = 0;
 			while(rowIterator.hasNext()) {
 				Row row = rowIterator.next();
-				
+				row.
 				if(rownum==0) {
 					rownum++;
 					continue;
@@ -303,7 +303,9 @@ public class FileProcesorService {
 						System.err.println("Esta proforma se registro previamente y se omitirá su registro");
 					}
 				} else {
-					throw new Exception("Alguno de los registros no cuentan con la siguiente información requerida: Analista, Capturista, Numero de Proforma, Numero de Referencia, Clave del Cliente, por favor verifica el archivo");
+					if(!StringUtils.isEmpty( p.getIdAnalista() )) {
+						throw new Exception("Alguno de los registros no cuentan con la siguiente información requerida: Analista, Capturista, Numero de Proforma, Numero de Referencia, Clave del Cliente, por favor verifica el archivo");
+					}
 				}
 				rownum++;
 			}
