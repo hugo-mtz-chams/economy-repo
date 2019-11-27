@@ -95,6 +95,10 @@ const routes: Routes = [
       {
         path: 'filepage',
         loadChildren: './views/lista-archivos/lista-archivos.module#ListaArchivosModule',
+      },
+      {
+        path: 'drive',
+        component: FilepageComponent
       }
     ]
   },

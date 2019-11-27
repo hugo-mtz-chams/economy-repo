@@ -217,6 +217,7 @@ export class NavigationService {
         // { icon: 'icon-list1', name: 'Tramites Asignados', state: '/resumen-tramite', type: 'link' },
         { icon: 'icon-checkmark', name: 'Validación de Trámites', state: '/validacion', type: 'link' },
         { icon: 'icon-upload', name: 'Adjuntar Archivos Resultantes', state: '/filepage', type: 'link' },
+        { icon: 'icon-upload', name: 'Drive', state: '/drive', type: 'link' },
 
       ]
     }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
-/*
+
 import { BreadCrumbItem } from 'src/infrastructure/models/breadCrumbItem';
 import { FileInfo, MIME_TYPE_FOLDER } from 'src/infrastructure/models/fileInfo';
 import {MatSort, MatTableDataSource, MatDialog, MatBottomSheet} from '@angular/material';
@@ -10,7 +10,7 @@ import { BreadCrumbItemOption, OPTION_NEW_FOLDER, OPTION_UPLOAD_FILES,
     OPTION_GET_ALL_SHARABLE_LINKS } from 'src/app/shared/models/bredcrumb.item';
 import { FilesUploadComponent } from '../filesupload/filesupload.component';
 import { AppContext } from 'src/infrastructure/app.context';
-*/
+
 import { FileRepositoryService } from 'src/app/shared/services/file.repository.service';
 
 
@@ -22,18 +22,7 @@ import { FileRepositoryService } from 'src/app/shared/services/file.repository.s
 })
 export class FilepageComponent implements OnInit {
     archivos: any;
-    constructor(private fileService: FileRepositoryService) {
-    }
 
-    ngOnInit(): void {
-        this.fileService.listFiles().subscribe(
-            (listaArchivos) => {
-                this.archivos = listaArchivos;
-            }
-        );
-    }
-
-/*
   @ViewChild(MatSort) sort: MatSort;
     breadCrumbItems: BreadCrumbItem[] = [];
     dataSource: MatTableDataSource<FileInfo>;
@@ -161,5 +150,5 @@ export class FilepageComponent implements OnInit {
                 });
             });
     }
-*/
+
 }

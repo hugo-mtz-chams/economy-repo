@@ -25,6 +25,7 @@ export class GapiSession {
                     scope: SCOPES,
                 }).then(() => {
                     this.googleAuth = gapi.auth2.getAuthInstance();
+                    this.googleAuth.isSignedIn.get();
                     resolve();
                 });
             });
