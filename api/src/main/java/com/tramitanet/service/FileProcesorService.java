@@ -91,7 +91,7 @@ public class FileProcesorService {
 	private Double factorPrecioUnitario = null;
 	private String monedaBase = null;
 	
-	public void procesar(MultipartFile multipartFile) {
+	public void procesar(MultipartFile multipartFile) throws Exception {
 		
 		
 		
@@ -293,13 +293,17 @@ public class FileProcesorService {
 				if(	!StringUtils.isEmpty( p.getIdAnalista() )  && 
 					!StringUtils.isEmpty( p.getIdCapturista() )  && 
 					!StringUtils.isEmpty( p.getNumProforma() ) &&
-					!StringUtils.isEmpty( p.getNumReferencia() ) ) {
+					!StringUtils.isEmpty( p.getNumReferencia() ) &&
+					!StringUtils.isEmpty( p.getClaveCliente() )
+					) {
 					List<Proforma> proformasExistentes = proformaService.existeProforma(p.getNumProforma(), p.getNumReferencia(), p.getFechaIngreso());
 					if( CollectionUtils.isEmpty(proformasExistentes) ) {
 						proformaService.saveOrUpdate(p);
 					}else {
 						System.err.println("Esta proforma se registro previamente y se omitirá su registro");
 					}
+				} else {
+					throw new Exception("Alguno de los registros no cuentan con la siguiente información requerida: Analista, Capturista, Numero de Proforma, Numero de Referencia, Clave del Cliente, por favor verifica el archivo");
 				}
 				rownum++;
 			}

@@ -1,6 +1,6 @@
 import { FilePickerAdapter, FilePreviewModel } from 'ngx-awesome-uploader';
 import { HttpClient, HttpEvent, HttpEventType, HttpRequest } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
@@ -19,24 +19,28 @@ export class CustomFilePickerAdapter extends FilePickerAdapter {
         .pipe(
         map( (res: HttpEvent<any>) => {
             if (res.type === HttpEventType.Response) {
-            return '200';
+                this.toast.success('Su archivo se ha cargado correctamente.');
+                return '200';
             } else if (res.type ===  HttpEventType.UploadProgress) {
                 // Compute and show the % done:
                 const UploadProgress = +Math.round((100 * res.loaded) / res.total);
                 if ( UploadProgress === 100 ) {
-                    this.toast.success('Su archivo se ha cargado correctamente.');
+                    //
                 }
                 return UploadProgress;
             }
-        }, error => {
+        }, (error) => {
             this.toast.error('Error al procesar el archivo');
             }
-        )
+        ), catchError((err, caught) => {
+            this.toast.error('Error al procesar el archivo: ' + err.error);
+            return null;
+          })
         );
     }
     public removeFile(fileItem): Observable<any> {
         const removeApi = 'https://file-remove-demo.free.beeceptor.com';
-        return this.http.post(removeApi, {});
+        return new Observable();
     }
 
 }
