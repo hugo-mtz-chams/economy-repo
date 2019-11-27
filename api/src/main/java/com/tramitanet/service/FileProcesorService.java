@@ -563,7 +563,7 @@ public class FileProcesorService {
             			celda.setCellValue(processAndReturnTypeAsDate(entry));
             			break;
             		default:
-            			celda.setCellValue(entry.getValue().toString());
+            			celda.setCellValue(entry.getValue()!= null ? entry.getValue().toString() : null);
             			break;
             	}
             	debugProcesing(celda);
