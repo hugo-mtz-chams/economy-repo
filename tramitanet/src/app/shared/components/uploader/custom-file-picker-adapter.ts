@@ -34,7 +34,7 @@ export class CustomFilePickerAdapter extends FilePickerAdapter {
             }
         ), catchError((err, caught) => {
             this.toast.error('Error al procesar el archivo: ' + err.error);
-            return null;
+            return '400';
           })
         );
     }
