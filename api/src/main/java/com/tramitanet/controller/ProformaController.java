@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
@@ -291,8 +292,16 @@ public class ProformaController {
 	
 	
 	@PostMapping("/proformas/procesaArchivo")
-	public void procesaArchivo(@RequestParam("file") MultipartFile file){
-		fileProcesorService.procesar(file);
+	public ResponseEntity procesaArchivo(@RequestParam("file") MultipartFile file) {
+		try {
+			fileProcesorService.procesar(file);
+			
+		} catch (Exception e) {
+			return ResponseEntity
+		            .status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+		return ResponseEntity
+	            .ok().build();
 	}
 	
 	@PostMapping("/proformas/actualiza/archivo/tramites")
