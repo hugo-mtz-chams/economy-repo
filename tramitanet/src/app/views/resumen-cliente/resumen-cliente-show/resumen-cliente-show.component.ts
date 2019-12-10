@@ -127,6 +127,7 @@ export class ResumenClienteShowComponent implements OnInit {
 
   fechaChange() {
     this.mostrarTablaReferencias = false;
+    this.mostrarTablaDetalleReferencia = false;
       this.resetValores();
     this.fecha = formatDate(this.fechaActual, 'dd-MM-yyyy', 'en');
     this.fechaCorrecta = formatDate(this.fechaActual, 'yyyy-MM-dd', 'en');
